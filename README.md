@@ -6,9 +6,9 @@ However, we expect that this README becomes your own
 ## Notes
 Remember you are required to commit your code to the **main** branch of your repository before the deadline.
 
-This project contains default naming of `team0` throughout.
+This project contains default naming of `team8` throughout.
 If you are interested you can update this to reflect your team number, however it is **not required**.
-This can be done by renaming any instance of `team0` with `team<x>` (where x is your number).
+This can be done by renaming any instance of `team8` with `team<x>` (where x is your number).
 IntelliJ can help with this using `ctrl+shift+f` to find all instances of a string, and `ctrl+shift+r` to replace them, though make sure to change the package names as well.
 
 ## Authors
@@ -47,9 +47,9 @@ IntelliJ has built-in support for Gradle. To import your project:
 2. The app should then open a new window, this may not be displayed over IntelliJ but can be easily selected from the taskbar
 
 ## Build and Run Jar
-1. Open a command line interface inside the project directory and run `./gradlew jar` to create a packaged Jar. The Jar file is located at build/libs/seng201_team0-1.0-SNAPSHOT.jar
+1. Open a command line interface inside the project directory and run `./gradlew jar` to create a packaged Jar. The Jar file is located at build/libs/seng201_team8-1.0-SNAPSHOT.jar
 2. Navigate to the build/libs/ directory (you can do this with `cd build/libs`)
-3. Run the command `java -jar seng201_team0-1.0-SNAPSHOT.jar` to open the application.
+3. Run the command `java -jar seng201_team8-1.0-SNAPSHOT.jar` to open the application.
 
 ## Run Tests
 1. Open a command line interface inside the project directory and run `./gradlew test` to run the tests.

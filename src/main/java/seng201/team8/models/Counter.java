@@ -1,4 +1,4 @@
-package seng201.team0.models;
+package seng201.team8.models;
 
 /**
  * Simple counter class to keep track of current count

@@ -5,10 +5,10 @@ plugins {
     id 'jacoco'
 }
 
-archivesBaseName = 'seng201_team0'
-group = 'seng201.team0'
+archivesBaseName = 'seng201_team8'
+group = 'seng201.team8'
 version = '1.0-SNAPSHOT'
-mainClassName = 'seng201.team0.App'
+mainClassName = 'seng201.team8.App'
 
 def javaVersion = '17'
 def javafxVersion = '21.0.2'
