@@ -20,10 +20,10 @@ public class Round {
 
     public String[] getCartResourceType(){
         int numberOfCarts = carts.length;
-        String[] cartResourceType = new String[numberOfCarts];
+        String[] cartResourceTypes = new String[numberOfCarts];
         for (int i = 0; i <= numberOfCarts; i++){
-            cartResourceType[i] = carts[i].getResourceType();
+            cartResourceTypes[i] = carts[i].getResourceType();
         }
-        return cartResourceType;
+        return cartResourceTypes;
     }
 }
