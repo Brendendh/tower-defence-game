@@ -1,27 +1,27 @@
 package seng201.team8.models;
 
 public class Round {
-    private Integer distanceAllowed;
+    private int distanceAllowed;
     private Cart[] carts;
-    public Round(Integer numberOfCarts){
+    public Round(int numberOfCarts){
         carts = new Cart[numberOfCarts];
     }
 
-    public Integer getCartNumber(){
+    public int getCartNumber(){
         return carts.length;
     }
 
-    public Integer getDistanceAllowed() {
+    public int getDistanceAllowed() {
         return distanceAllowed;
     }
-    public Integer getCartSize(){
+    public int getCartSize(){
         return carts[0].getTargetAmount();
     }
 
     public String[] getCartResourceType(){
         int numberOfCarts = carts.length;
         String[] cartResourceTypes = new String[numberOfCarts];
-        for (int i = 0; i < numberOfCarts; i++){
+        for (int i = 0; i <= numberOfCarts; i++){
             cartResourceTypes[i] = carts[i].getResourceType();
         }
         return cartResourceTypes;

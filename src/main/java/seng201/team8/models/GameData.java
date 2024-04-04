@@ -2,26 +2,26 @@ package seng201.team8.models;
 
 public class GameData {
     private String playerName;
-    private Integer targetRound;
-    private Integer round;
-    private Integer difficulty;
-    private Integer money;
-    private Integer point;
+    private int targetRound;
+    private int round;
+    private int difficulty;
+    private int money;
+    private int point;
 
     public GameData() {
         money = 0;
         point = 0;
     }
 
-    public Integer getTargetRound() {
+    public int getTargetRound() {
         return targetRound;
     }
 
-    public Integer getRound() {
+    public int getRound() {
         return round;
     }
 
-    public Integer getDifficulty() {
+    public int getDifficulty() {
         return difficulty;
     }
 
@@ -29,15 +29,15 @@ public class GameData {
         return playerName;
     }
 
-    public Integer getMoney() {
+    public int getMoney() {
         return money;
     }
 
-    public Integer getPoint() {
+    public int getPoint() {
         return point;
     }
 
-    public void setRound(Integer round) {
+    public void setRound(int round) {
         this.round = round;
     }
 
@@ -45,19 +45,19 @@ public class GameData {
         this.playerName = playerName;
     }
 
-    public void setDifficulty(Integer difficulty) {
+    public void setDifficulty(int difficulty) {
         this.difficulty = difficulty;
     }
 
-    public void setMoney(Integer money) {
+    public void setMoney(int money) {
         this.money = money;
     }
 
-    public void setPoint(Integer point) {
+    public void setPoint(int point) {
         this.point = point;
     }
 
-    public void setTargetRound(Integer targetRound) {
+    public void setTargetRound(int targetRound) {
         this.targetRound = targetRound;
     }
 }

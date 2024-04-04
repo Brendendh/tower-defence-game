@@ -1,27 +1,27 @@
 package seng201.team8.models;
 
 public class Cart {
-    private Integer targetAmount;
+    private int targetAmount;
     private String resourceType;
-    private Integer speed;
-    private Integer amount;
-    private Integer distance;
-    public Cart(Integer targetAmount, String resourceType, Integer speed){
+    private int speed;
+    private int amount;
+    private int distance;
+    public Cart(int targetAmount, String resourceType, int speed){
         this.targetAmount = targetAmount;
         this.resourceType = resourceType;
         this.speed = speed;
         this.amount = 0;
         this.distance = 0;
     }
-    public void increaseAmount(Integer amountToAdd){
+    public void increaseAmount(int amountToAdd){
         amount += amountToAdd;
     }
 
-    public void increaseDistance(Integer distanceToAdd){
+    public void increaseDistance(int distanceToAdd){
         distance += distanceToAdd;
     }
 
-    public Integer getTargetAmount() {
+    public int getTargetAmount() {
         return targetAmount;
     }
 
@@ -29,15 +29,15 @@ public class Cart {
         return resourceType;
     }
 
-    public Integer getSpeed() {
+    public int getSpeed() {
         return speed;
     }
 
-    public Integer getDistance() {
+    public int getDistance() {
         return distance;
     }
 
-    public Integer getAmount() {
+    public int getAmount() {
         return amount;
     }
 }
