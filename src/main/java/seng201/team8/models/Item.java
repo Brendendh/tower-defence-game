@@ -26,4 +26,6 @@ public class Item {
     public int getSellingPrice() {
         return sellingPrice;
     }
+
+    public Rarity getRarity(){ return rarity;}
 }
