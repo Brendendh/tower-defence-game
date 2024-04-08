@@ -14,8 +14,19 @@ public class Round {
     public int getDistanceAllowed() {
         return distanceAllowed;
     }
+
     public int getCartSize(){
         return carts[0].getTargetAmount();
+    }
+
+    public boolean addCart(Cart cart){
+        for(int i = 0; i < carts.length; i++){
+            if(carts[i] == null){
+                carts[i] = cart;
+                return true;
+            }
+        }
+        return false;
     }
 
     public String[] getCartResourceType(){
