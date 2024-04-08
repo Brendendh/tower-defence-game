@@ -16,4 +16,8 @@ public class CooldownReduction implements Effect{
             tower.getTowerStats().setCooldown(tower.getTowerStats().getCooldown() - reductionAmount);
         }
     }
+
+    public int getReductionAmount() {
+        return reductionAmount;
+    }
 }
