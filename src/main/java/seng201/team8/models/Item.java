@@ -3,11 +3,12 @@ package seng201.team8.models;
 public class Item {
     private int buyingPrice;
     private int sellingPrice;
-    private String rarity;
+    private Rarity rarity;
 
-    public Item(int buyingPrice, int sellingPrice){
+    public Item(int buyingPrice, int sellingPrice, Rarity rarity){
         this.buyingPrice = buyingPrice;
         this.sellingPrice = sellingPrice;
+        this.rarity = rarity;
     }
 
     public void setBuyingPrice(int buyingPrice) {
