@@ -11,6 +11,7 @@ public class GameData {
     public GameData() {
         money = 0;
         point = 0;
+        round = 1;
     }
 
     public int getTargetRound() {
