@@ -20,4 +20,5 @@ public class CooldownReduction implements Effect{
     public int getReductionAmount() {
         return reductionAmount;
     }
+    public void setReductionAmount(int reductionAmount){this.reductionAmount = reductionAmount;}
 }

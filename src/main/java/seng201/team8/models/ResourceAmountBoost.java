@@ -20,4 +20,5 @@ public class ResourceAmountBoost implements Effect{
     public int getBoostAmount() {
         return boostAmount;
     }
+    public void setBoostAmount(int boostAmount){this.boostAmount = boostAmount;}
 }
