@@ -38,4 +38,8 @@ public class GameManager {
     public Rarity[] getLateGameRarity() {
         return lateGameRarity;
     }
+
+    public GameData getGameData() {
+        return gameData;
+    }
 }
