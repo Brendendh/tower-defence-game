@@ -18,7 +18,7 @@ public class GameManager {
 
     final private Rarity[] earlyGameRarity = new Rarity[]{Rarity.COMMON,Rarity.COMMON,Rarity.COMMON,Rarity.COMMON,Rarity.COMMON,Rarity.COMMON,Rarity.COMMON,Rarity.RARE,Rarity.RARE, Rarity.RARE};
     final private Rarity[] midGameRarity = new Rarity[]{Rarity.COMMON,Rarity.COMMON,Rarity.COMMON,Rarity.COMMON,Rarity.COMMON,Rarity.RARE,Rarity.RARE,Rarity.RARE,Rarity.EPIC,Rarity.EPIC};
-    final private Rarity[] lateGameParty = new Rarity[]{Rarity.COMMON, Rarity.COMMON,Rarity.COMMON,Rarity.RARE,Rarity.RARE,Rarity.RARE,Rarity.RARE,Rarity.EPIC,Rarity.EPIC,Rarity.EPIC};
+    final private Rarity[] lateGameRarity = new Rarity[]{Rarity.COMMON, Rarity.COMMON,Rarity.COMMON,Rarity.RARE,Rarity.RARE,Rarity.RARE,Rarity.RARE,Rarity.EPIC,Rarity.EPIC,Rarity.EPIC};
     public Tower[] getDefaultTowers() {
         return defaultTowers;
     }
@@ -35,7 +35,7 @@ public class GameManager {
         return midGameRarity;
     }
 
-    public Rarity[] getLateGameParty() {
-        return lateGameParty;
+    public Rarity[] getLateGameRarity() {
+        return lateGameRarity;
     }
 }
