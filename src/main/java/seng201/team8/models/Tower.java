@@ -11,12 +11,11 @@ public class Tower extends Item{
     private int[] levelRequirements;
 
     public Tower(String name, TowerStats towerStats, int buyingPrice, Rarity rarity){
-        super(buyingPrice, 0, rarity);
+        super(buyingPrice * rarity.rarityStatMultiplier, 0, rarity);
 
         this.name = name;
         this.towerStats = towerStats;
         this.towerStats.setResourceAmount(this.towerStats.getResourceAmount()* rarity.rarityStatMultiplier);
-        super.setBuyingPrice(super.getBuyingPrice()* rarity.rarityStatMultiplier);
         this.levelRequirements = new int[]{2, 3, 5};
     }
 
