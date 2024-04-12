@@ -3,6 +3,7 @@ package seng201.team8.services;
 import seng201.team8.models.*;
 
 public class GameManager {
+    private InventoryManager inventoryManager;
     private GameData gameData;
     final private Tower[] defaultTowers = new Tower[]{
             new Tower("", new TowerStats(10,"Coal",5),10, Rarity.COMMON),
@@ -41,5 +42,8 @@ public class GameManager {
 
     public GameData getGameData() {
         return gameData;
+    }
+    public InventoryManager getInventoryManager() {
+        return inventoryManager;
     }
 }
