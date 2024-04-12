@@ -29,12 +29,21 @@ public class InventoryManager {
         inventoryData.getReserveTowers()[towerIndex] = null;
     }
 
-    public void swapTowers(int mainTowerIndex, int reserveTowerIndex){
-        Tower tower1 = inventoryData.getMainTowers()[mainTowerIndex];
-        Tower tower2 = inventoryData.getReserveTowers()[reserveTowerIndex];
-
-        inventoryData.getMainTowers()[mainTowerIndex] = tower2;
-        inventoryData.getReserveTowers()[reserveTowerIndex] = tower1;
+    public void swapTowers(int tower1Index, int tower2Index){
+        Tower[] tower1Array = inventoryData.getMainTowers();
+        Tower[] tower2Array = inventoryData.getMainTowers();
+        if (tower1Index > 4){
+            tower1Array = inventoryData.getReserveTowers();
+            tower1Index -= 4;
+        }
+        if (tower2Index > 4){
+            tower2Array= inventoryData.getReserveTowers();
+            tower2Index -=4;
+        }
+        Tower tower1 = tower1Array[tower1Index];
+        Tower tower2 = tower2Array[tower2Index];
+        tower1Array[tower1Index] = tower2;
+        tower2Array[tower2Index] = tower1;
     }
 
     public void applyUpgradeTo(int upgradeIndex, ArrayList<Tower> towers){
