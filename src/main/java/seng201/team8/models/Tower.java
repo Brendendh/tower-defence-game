@@ -15,6 +15,8 @@ public class Tower extends Item{
 
         this.name = name;
         this.towerStats = towerStats;
+        this.towerStats.setResourceAmount(this.towerStats.getResourceAmount()* rarity.rarityStatMultiplier);
+        super.setBuyingPrice(super.getBuyingPrice()* rarity.rarityStatMultiplier);
         this.levelRequirements = new int[]{2, 3, 5};
     }
 
