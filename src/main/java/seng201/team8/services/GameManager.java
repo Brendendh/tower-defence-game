@@ -20,6 +20,11 @@ public class GameManager {
     final private Rarity[] earlyGameRarity = new Rarity[]{Rarity.COMMON,Rarity.COMMON,Rarity.COMMON,Rarity.COMMON,Rarity.COMMON,Rarity.COMMON,Rarity.COMMON,Rarity.RARE,Rarity.RARE, Rarity.RARE};
     final private Rarity[] midGameRarity = new Rarity[]{Rarity.COMMON,Rarity.COMMON,Rarity.COMMON,Rarity.COMMON,Rarity.COMMON,Rarity.RARE,Rarity.RARE,Rarity.RARE,Rarity.EPIC,Rarity.EPIC};
     final private Rarity[] lateGameRarity = new Rarity[]{Rarity.COMMON, Rarity.COMMON,Rarity.COMMON,Rarity.RARE,Rarity.RARE,Rarity.RARE,Rarity.RARE,Rarity.EPIC,Rarity.EPIC,Rarity.EPIC};
+
+    public GameManager(GameData gameData, InventoryManager inventoryManager){
+        this.gameData = gameData;
+        this.inventoryManager = inventoryManager;
+    }
     public Tower[] getDefaultTowers() {
         return defaultTowers;
     }
