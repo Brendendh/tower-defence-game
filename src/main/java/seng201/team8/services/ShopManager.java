@@ -125,18 +125,4 @@ public class ShopManager {
     public ShopData getShopData() {
         return shopData;
     }
-
-    public static void main(String[] args) {
-        Tower[] testTowers = new Tower[]{new Tower("", new TowerStats(10, "Coal",10), 10, Rarity.COMMON), null, null, null, null};
-        InventoryData inventoryData = new InventoryData();
-        inventoryData.setMainTowers(testTowers);
-        InventoryManager inventoryManager = new InventoryManager(inventoryData);
-        GameData gameData = new GameData();
-        gameData.setRound(11);
-        GameManager gameManager = new GameManager(gameData,inventoryManager);
-        ShopManager shopManager = new ShopManager(gameManager);
-
-        shopManager.shopData.printStoreData();
-    }
-
 }
