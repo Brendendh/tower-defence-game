@@ -16,7 +16,7 @@ class InventoryManagerTest {
 
     @BeforeEach
     public void setupTest(){
-        Tower[] testTowers = new Tower[]{new Tower("", new TowerStats(10, "Coal",10), 10, Rarity.COMMON), null, null, null, null};
+        Tower[] testTowers = new Tower[]{new Tower("", new TowerStats(10,"Coal",5),10, Rarity.COMMON), null, null, null, null};
         InventoryData inventoryData = new InventoryData();
         inventoryData.setMainTowers(testTowers);
         inventoryManager = new InventoryManager(inventoryData);
