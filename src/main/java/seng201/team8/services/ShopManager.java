@@ -1,10 +1,8 @@
 package seng201.team8.services;
 
 import seng201.team8.exceptions.NoSpaceException;
-import seng201.team8.models.Rarity;
-import seng201.team8.models.ShopData;
-import seng201.team8.models.Tower;
-import seng201.team8.models.Upgrade;
+import seng201.team8.exceptions.NotEnoughCurrencyException;
+import seng201.team8.models.*;
 
 import java.util.Random;
 
@@ -23,13 +21,19 @@ public class ShopManager {
         defaultUpgrades = gameManager.getDefaultUpgrades();
         this.inventoryManager = this.gameManager.getInventoryManager();
         this.shopData = new ShopData();
-        refresh();
-    }
-
-    public void refresh(){
         updateTowers();
         updateUpgrades();
-        gameManager.getGameData().setMoney(gameManager.getGameData().getMoney() - 5);
+    }
+
+    public void refresh() throws NotEnoughCurrencyException {
+        if (gameManager.getGameData().getMoney() < 5){
+            throw new NotEnoughCurrencyException("Not enough money to refresh!");
+        }
+        else{
+            updateTowers();
+            updateUpgrades();
+            gameManager.getGameData().setMoney(gameManager.getGameData().getMoney() - 5);
+        }
     }
 
     private void updateTowers(){
@@ -74,17 +78,32 @@ public class ShopManager {
         return shopData.getUpgradesSold();
     }
 
-    public void buyTower(int towerIndex) throws NoSpaceException {
+    public void buyTower(int towerIndex) throws NoSpaceException, NotEnoughCurrencyException {
         Tower towerBought = shopData.getTowersSold()[towerIndex];
-        inventoryManager.moveToMain(towerBought);
-        gameManager.getGameData().setMoney(gameManager.getGameData().getMoney() - towerBought.getBuyingPrice());
-        shopData.getTowersSold()[towerIndex] = null;
+        if (gameManager.getGameData().getMoney() < towerBought.getBuyingPrice()){
+            throw new NotEnoughCurrencyException("Not enough money to purchase tower!");
+        }
+        else{
+            try{
+                inventoryManager.moveToMain(towerBought);
+            }
+            catch (NoSpaceException noSpaceInMain){
+                inventoryManager.moveToReserve(towerBought);
+            }
+            gameManager.getGameData().setMoney(gameManager.getGameData().getMoney() - towerBought.getBuyingPrice());
+            shopData.getTowersSold()[towerIndex] = null;
+        }
     }
-    public void buyUpgrade(int upgradeIndex){
+    public void buyUpgrade(int upgradeIndex) throws NotEnoughCurrencyException {
         Upgrade upgradeBought = shopData.getUpgradesSold()[upgradeIndex];
-        inventoryManager.getInventoryData().getUpgrades().add(upgradeBought);
-        gameManager.getGameData().setPoint(gameManager.getGameData().getPoint() - upgradeBought.getBuyingPrice());
-        shopData.getUpgradesSold()[upgradeIndex] = null;
+        if (gameManager.getGameData().getPoint() < upgradeBought.getBuyingPrice()){
+            throw new NotEnoughCurrencyException("Not enough points to purchase upgrade!");
+        }
+        else{
+            inventoryManager.getInventoryData().getUpgrades().add(upgradeBought);
+            gameManager.getGameData().setPoint(gameManager.getGameData().getPoint() - upgradeBought.getBuyingPrice());
+            shopData.getUpgradesSold()[upgradeIndex] = null;
+        }
     }
     public void sellMainTower(int towerIndex){
         Tower towerSold = inventoryManager.getInventoryData().getMainTowers()[towerIndex];
@@ -101,6 +120,23 @@ public class ShopManager {
         Upgrade upgradeSold = inventoryManager.getInventoryData().getUpgrades().get(upgradeIndex);
         gameManager.getGameData().setPoint(gameManager.getGameData().getPoint() + upgradeSold.getSellingPrice());
         inventoryManager.getInventoryData().getUpgrades().remove(upgradeIndex);
+    }
+
+    public ShopData getShopData() {
+        return shopData;
+    }
+
+    public static void main(String[] args) {
+        Tower[] testTowers = new Tower[]{new Tower("", new TowerStats(10, "Coal",10), 10, Rarity.COMMON), null, null, null, null};
+        InventoryData inventoryData = new InventoryData();
+        inventoryData.setMainTowers(testTowers);
+        InventoryManager inventoryManager = new InventoryManager(inventoryData);
+        GameData gameData = new GameData();
+        gameData.setRound(11);
+        GameManager gameManager = new GameManager(gameData,inventoryManager);
+        ShopManager shopManager = new ShopManager(gameManager);
+
+        shopManager.shopData.printStoreData();
     }
 
 }
