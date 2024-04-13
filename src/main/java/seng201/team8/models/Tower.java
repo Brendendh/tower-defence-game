@@ -11,7 +11,7 @@ public class Tower extends Item{
     private int[] levelRequirements;
 
     public Tower(String name, TowerStats towerStats, int buyingPrice, Rarity rarity){
-        super(buyingPrice * rarity.rarityStatMultiplier, 0, rarity);
+        super(buyingPrice * rarity.rarityStatMultiplier, 10, rarity);
 
         this.name = name;
         this.towerStats = towerStats;

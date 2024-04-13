@@ -5,7 +5,7 @@ public class Upgrade extends Item{
     private int maximumTargets;
 
     public Upgrade(Effect effect, Rarity rarity, int buyingPrice, int maximumTargets){
-        super(buyingPrice * rarity.rarityStatMultiplier, 0, rarity);
+        super(buyingPrice * rarity.rarityStatMultiplier, 20, rarity);
         this.maximumTargets = maximumTargets;
         this.effect = effect;
         updateValues(this.effect, rarity);
