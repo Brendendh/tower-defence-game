@@ -5,6 +5,7 @@ public class Round {
     private Cart[] carts;
     public Round(int numberOfCarts){
         carts = new Cart[numberOfCarts];
+        this.distanceAllowed = 15;
     }
 
     public int getCartNumber(){
