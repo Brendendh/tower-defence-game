@@ -5,6 +5,7 @@ import seng201.team8.models.*;
 public class GameManager {
     private InventoryManager inventoryManager;
     private GameData gameData;
+    final private String[] defaultResources = new String[]{"Coal","Corn","Stone","Steel","Diamonds"};
     final private Tower[] defaultTowers = new Tower[]{
             new Tower("", new TowerStats(10,"Coal",5),10, Rarity.COMMON),
             new Tower("", new TowerStats(10,"Corn",5),10, Rarity.COMMON),
@@ -48,7 +49,10 @@ public class GameManager {
     public GameData getGameData() {
         return gameData;
     }
+
     public InventoryManager getInventoryManager() {
         return inventoryManager;
     }
+
+    public String[] getDefaultResources() { return defaultResources;}
 }
