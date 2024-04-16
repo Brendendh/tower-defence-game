@@ -56,7 +56,7 @@ public class RoundEvaluationService {
 
     private void fillCarts(){
         for(Cart cart:carts){
-            if(!isCartFull(cart)){
+            if(isCartNotFull(cart)){
                 fillCart(cart);
             }
         }
@@ -76,14 +76,14 @@ public class RoundEvaluationService {
 
     private void advanceCarts(){
         for(Cart cart:carts){
-            if(!isCartFull(cart)){
+            if(isCartNotFull(cart)){
                 cart.setDistance(cart.getDistance() + cart.getSpeed());
             }
         }
     }
 
-    private boolean isCartFull(Cart cart){
-        return cart.getAmount() >= cart.getTargetAmount();
+    private boolean isCartNotFull(Cart cart){
+        return cart.getAmount() < cart.getTargetAmount();
     }
 
     private boolean didCartReach(){
@@ -97,7 +97,7 @@ public class RoundEvaluationService {
 
     private boolean areAllCartsFull(){
         for(Cart cart:carts){
-            if(!isCartFull(cart)){
+            if(isCartNotFull(cart)){
                 return false;
             }
         }
