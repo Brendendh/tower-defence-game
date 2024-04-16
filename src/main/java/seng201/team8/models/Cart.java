@@ -41,5 +41,11 @@ public class Cart {
         return amount;
     }
 
-    public void setAmount(int amount) {this.amount = amount;}
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
+
+    public void setDistance(int distance) {
+        this.distance = distance;
+    }
 }
