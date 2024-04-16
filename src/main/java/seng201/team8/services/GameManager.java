@@ -5,6 +5,7 @@ import seng201.team8.models.*;
 public class GameManager {
     private InventoryManager inventoryManager;
     private GameData gameData;
+    private Round round;
     final private String[] defaultResources = new String[]{"Coal","Corn","Stone","Steel","Diamonds"};
     final private Tower[] defaultTowers = new Tower[]{
             new Tower("", new TowerStats(10,"Coal",5),10, Rarity.COMMON),
@@ -26,6 +27,9 @@ public class GameManager {
         this.gameData = gameData;
         this.inventoryManager = inventoryManager;
     }
+    public Round getRound(){return round;}
+
+    public void setRound(Round round){this.round = round;}
     public Tower[] getDefaultTowers() {
         return defaultTowers;
     }
