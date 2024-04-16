@@ -20,6 +20,10 @@ public class Round {
         return carts[0].getTargetAmount();
     }
 
+    public Cart[] getCarts() {
+        return carts;
+    }
+
     public boolean addCart(Cart cart){
         for(int i = 0; i < carts.length; i++){
             if(carts[i] == null){
