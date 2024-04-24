@@ -36,7 +36,7 @@ public class TowerStats implements Cloneable{
     }
 
     @Override
-    public Object clone(){
+    public TowerStats clone(){
         try{
             return (TowerStats) super.clone();
         }
