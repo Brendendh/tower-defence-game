@@ -6,6 +6,7 @@ public class GameManager {
     private InventoryManager inventoryManager;
     private GameData gameData;
     private Round round;
+    private RarityData rarityData = new RarityData();
     final private String[] defaultResources = new String[]{"Coal","Corn","Stone","Steel","Diamonds"};
     final private Tower[] defaultTowers = new Tower[]{
             new Tower("", new TowerStats(10,"Coal",5),10, Rarity.COMMON),
@@ -18,10 +19,6 @@ public class GameManager {
             new Upgrade(new ExpBoost(10), Rarity.COMMON,10,1),
             new Upgrade(new CooldownReduction(10), Rarity.COMMON,10,1),
             new Upgrade(new ResourceAmountBoost(10), Rarity.COMMON,10,1)};
-
-    final private Rarity[] earlyGameRarity = new Rarity[]{Rarity.COMMON,Rarity.COMMON,Rarity.COMMON,Rarity.COMMON,Rarity.COMMON,Rarity.COMMON,Rarity.COMMON,Rarity.RARE,Rarity.RARE, Rarity.RARE};
-    final private Rarity[] midGameRarity = new Rarity[]{Rarity.COMMON,Rarity.COMMON,Rarity.COMMON,Rarity.COMMON,Rarity.COMMON,Rarity.RARE,Rarity.RARE,Rarity.RARE,Rarity.EPIC,Rarity.EPIC};
-    final private Rarity[] lateGameRarity = new Rarity[]{Rarity.COMMON, Rarity.COMMON,Rarity.COMMON,Rarity.RARE,Rarity.RARE,Rarity.RARE,Rarity.RARE,Rarity.EPIC,Rarity.EPIC,Rarity.EPIC};
 
     public GameManager(GameData gameData, InventoryManager inventoryManager){
         this.gameData = gameData;
@@ -39,15 +36,15 @@ public class GameManager {
     }
 
     public Rarity[] getEarlyGameRarity() {
-        return earlyGameRarity;
+        return rarityData.getEarlyGameRarity();
     }
 
     public Rarity[] getMidGameRarity() {
-        return midGameRarity;
+        return rarityData.getMidGameRarity();
     }
 
     public Rarity[] getLateGameRarity() {
-        return lateGameRarity;
+        return rarityData.getLateGameRarity();
     }
 
     public GameData getGameData() {
@@ -59,4 +56,5 @@ public class GameManager {
     }
 
     public String[] getDefaultResources() { return defaultResources;}
+
 }
