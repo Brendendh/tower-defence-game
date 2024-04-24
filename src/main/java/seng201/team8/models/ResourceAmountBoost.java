@@ -2,7 +2,7 @@ package seng201.team8.models;
 
 import java.util.ArrayList;
 
-public class ResourceAmountBoost implements Effect{
+public class ResourceAmountBoost implements Effect, Cloneable{
 
     private int boostAmount;
 
@@ -14,6 +14,16 @@ public class ResourceAmountBoost implements Effect{
     public void affects(ArrayList<Tower> towers) {
         for (Tower tower: towers){
             tower.getTowerStats().setResourceAmount(tower.getTowerStats().getResourceAmount() + boostAmount);
+        }
+    }
+
+    @Override
+    public ResourceAmountBoost clone(){
+        try{
+            return (ResourceAmountBoost) super.clone();
+        }
+        catch (CloneNotSupportedException e){
+            return new ResourceAmountBoost(this.getBoostAmount());
         }
     }
 
