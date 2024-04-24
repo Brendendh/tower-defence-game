@@ -1,6 +1,6 @@
 package seng201.team8.models;
 
-public class TowerStats {
+public class TowerStats implements Cloneable{
     private int resourceAmount;
     private String resourceType;
     private int cooldown;
@@ -33,5 +33,15 @@ public class TowerStats {
 
     public void setCooldown(int cooldown) {
         this.cooldown = cooldown;
+    }
+
+    @Override
+    public Object clone(){
+        try{
+            return (TowerStats) super.clone();
+        }
+        catch (CloneNotSupportedException e){
+            return new TowerStats(this.getResourceAmount(), this.getResourceType(), this.getCooldown());
+        }
     }
 }

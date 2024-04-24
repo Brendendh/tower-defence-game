@@ -1,6 +1,6 @@
 package seng201.team8.models;
 
-public class Tower extends Item{
+public class Tower extends Item implements Cloneable{
     private TowerStats towerStats;
     private int level;
     private int experiencePoints;
@@ -65,6 +65,18 @@ public class Tower extends Item{
 
     public void setLevelRequirements(int[] levelRequirements) {
         this.levelRequirements = levelRequirements;
+    }
+
+    public Tower clone(){
+        Tower clonedTower = null;
+        try {
+            clonedTower = (Tower) super.clone();
+        }
+        catch (CloneNotSupportedException e){
+            clonedTower = new Tower(this.getName(), this.getTowerStats(), this.getBuyingPrice(),this.getRarity());
+        }
+        clonedTower.towerStats = (TowerStats) this.towerStats.clone();
+        return clonedTower;
     }
 
 }
