@@ -74,6 +74,4 @@ public class ShopManagerTest {
         assertEquals(gameManager.getInventoryManager().getInventoryData().getReserveTowers()[0],testTower1);
     }
 
-
-
 }
