@@ -40,7 +40,7 @@ public class ShopManager {
         Tower[] towersToBeSold = new Tower[3];
         for (int i = 0; i < 3; i++){
             int randomTowerIndex = randomGenerator.nextInt(defaultTowersToPick.length);
-            Tower tower = defaultTowersToPick[randomTowerIndex];
+            Tower tower = defaultTowersToPick[randomTowerIndex].clone();
             towersToBeSold[i] = new Tower(tower.getName(), tower.getTowerStats(), tower.getBuyingPrice(),generateRarities(gameManager.getGameData().getRound()));
         }
         shopData.setTowersSold(towersToBeSold);
@@ -50,7 +50,7 @@ public class ShopManager {
         Upgrade[] upgradesToBeSold = new Upgrade[3];
         for (int i = 0; i < 3; i++){
             int randomUpgradeIndex = randomGenerator.nextInt(defaultUpgrades.length);
-            Upgrade upgrade = defaultUpgrades[randomUpgradeIndex];
+            Upgrade upgrade = defaultUpgrades[randomUpgradeIndex].clone();
             upgradesToBeSold[i] = new Upgrade(upgrade.getEffect(),generateRarities(gameManager.getGameData().getRound()),upgrade.getBuyingPrice(),upgrade.getMaximumTargets());
         }
         shopData.setUpgradesSold(upgradesToBeSold);
