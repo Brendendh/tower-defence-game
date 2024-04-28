@@ -22,7 +22,8 @@ public class GameManager {
     final private Upgrade[] defaultUpgrades = new Upgrade[]{
             new Upgrade(new ExpBoost(10), Rarity.COMMON, 10, 1),
             new Upgrade(new CooldownReduction(10), Rarity.COMMON, 10, 1),
-            new Upgrade(new ResourceAmountBoost(10), Rarity.COMMON, 10, 1)};
+            new Upgrade(new ResourceAmountBoost(10), Rarity.COMMON, 10, 1),
+            new Upgrade(new RepairTower(), Rarity.COMMON, 10, 1)};
 
     public GameManager(Consumer<GameManager> screenLauncher, Runnable clearPane){
         this.gameGUIManager = new GameGUIManager(screenLauncher, clearPane, this);

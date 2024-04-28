@@ -6,7 +6,12 @@ public class Upgrade extends Item implements Cloneable{
 
     public Upgrade(Effect effect, Rarity rarity, int buyingPrice, int maximumTargets){
         super(buyingPrice * rarity.rarityStatMultiplier, 20, rarity);
-        this.maximumTargets = maximumTargets;
+        if (effect.getClass() == RepairTower.class){
+            this.maximumTargets = maximumTargets * rarity.rarityStatMultiplier;
+        }
+        else{
+            this.maximumTargets = maximumTargets;
+        }
         this.effect = effect;
         updateValues(this.effect, rarity);
     }
@@ -58,6 +63,9 @@ public class Upgrade extends Item implements Cloneable{
         }
         if (clonedUpgrade.getEffect().getClass() == ResourceAmountBoost.class){
             clonedUpgrade.effect = ((ResourceAmountBoost) this.effect).clone();
+        }
+        if (clonedUpgrade.getEffect().getClass() == RepairTower.class){
+            clonedUpgrade.effect = ((RepairTower) this.effect).clone();
         }
         return clonedUpgrade;
     }
