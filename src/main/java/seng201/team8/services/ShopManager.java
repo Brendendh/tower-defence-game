@@ -60,13 +60,13 @@ public class ShopManager {
         int randomValue = randomGenerator.nextInt(10);
         Rarity generatedRarity = Rarity.COMMON;
         if (currentRound <= 5){
-            generatedRarity = gameManager.getEarlyGameRarity()[randomValue];
+            generatedRarity = gameManager.getDifferentRarities().getEarlyGameRarity()[randomValue];
         }
         if (currentRound <= 10 && currentRound > 5){
-            generatedRarity = gameManager.getMidGameRarity()[randomValue];
+            generatedRarity = gameManager.getDifferentRarities().getMidGameRarity()[randomValue];
         }
         if (currentRound <= 15 && currentRound > 10){
-            generatedRarity = gameManager.getLateGameRarity()[randomValue];
+            generatedRarity = gameManager.getDifferentRarities().getLateGameRarity()[randomValue];
         }
         return generatedRarity;
     }
