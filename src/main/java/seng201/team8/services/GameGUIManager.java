@@ -8,7 +8,7 @@ import java.util.function.Consumer;
 
 public class GameGUIManager {
     private Scene currentScene;
-    private HashMap<String, Scene> Scenes;
+    private HashMap<String, Scene> scenes;
     private Consumer<GameManager> screenLauncher;
     private Runnable clearPane;
     private GameManager gameManager;
@@ -21,9 +21,9 @@ public class GameGUIManager {
     }
 
     public void createSceneMap(){
-        Scenes = new HashMap<>();
+        scenes = new HashMap<>();
         try {
-            Scenes.put("Game Start", new Scene("Game Start", "GameStartScreen.fxml", GameStartController.class.getConstructor(GameManager.class)));
+            scenes.put("Game Start", new Scene("Game Start", "GameStartScreen.fxml", GameStartController.class.getConstructor(GameManager.class)));
         } catch (NoSuchMethodException e) {
             throw new RuntimeException(e);
         }
@@ -31,7 +31,7 @@ public class GameGUIManager {
 
     public void launchScreen(String sceneKey){
         clearPane.run();
-        this.currentScene = Scenes.get(sceneKey);
+        this.currentScene = scenes.get(sceneKey);
         this.screenLauncher.accept(this.gameManager);
     }
 
