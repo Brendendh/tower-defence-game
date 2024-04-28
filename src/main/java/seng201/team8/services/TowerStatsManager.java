@@ -37,8 +37,7 @@ public class TowerStatsManager {
     }
 
     public void addExp(Tower tower, int addedExp){
-        Tower clonedTower = tower.clone();
-        int oldLvl = clonedTower.getLevel();
+        int oldLvl = tower.clone().getLevel();
         tower.setExperiencePoints(tower.getExperiencePoints() + addedExp);
         while (tower.getExperiencePoints() >= levelRequirements[oldLvl] && oldLvl != 15){
             oldLvl += 1;
@@ -50,17 +49,6 @@ public class TowerStatsManager {
         if (tower.getLevel() < 15){
             tower.setLevel(tower.getLevel() + 1);
             tower.getTowerStats().setResourceAmount(tower.getTowerStats().getResourceAmount() + 5);
-        }
-    }
-
-    public static void main(String[] args) {
-        Tower[] testTowers = new Tower[]{new Tower("Starting Tower", new TowerStats(10, "Coal", 10), 10, Rarity.COMMON), new Tower("Seoncd Tower", new TowerStats(10, "Coal", 10), 10, Rarity.COMMON), null, null, null};
-        InventoryData inventoryData = new InventoryData();
-        inventoryData.setMainTowers(testTowers);
-        TowerStatsManager test1 = new TowerStatsManager(inventoryData);
-        test1.addExp(inventoryData.getMainTowers()[0], 160 );
-        for (Tower tower: test1.getPlayerTowers()){
-            System.out.println("Tower: " + tower.getName()+" Lvl: " + tower.getLevel() + " Exp value: " + tower.getExperiencePoints()+" rss amount: " + tower.getTowerStats().getResourceAmount());
         }
     }
 }
