@@ -46,18 +46,6 @@ public class GameManager {
         return defaultUpgrades;
     }
 
-    public Rarity[] getEarlyGameRarity() {
-        return rarityData.getEarlyGameRarity();
-    }
-
-    public Rarity[] getMidGameRarity() {
-        return rarityData.getMidGameRarity();
-    }
-
-    public Rarity[] getLateGameRarity() {
-        return rarityData.getLateGameRarity();
-    }
-
     public GameData getGameData() {
         return gameData;
     }
