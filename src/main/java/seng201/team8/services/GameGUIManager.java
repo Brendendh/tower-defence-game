@@ -17,10 +17,10 @@ public class GameGUIManager {
         this.screenLauncher = screenLauncher;
         this.clearPane = clearPane;
         this.gameManager = gameManager;
-        createSceneMap();
+        createScenes();
     }
 
-    public void createSceneMap(){
+    public void createScenes(){
         scenes = new HashMap<>();
         try {
             scenes.put("Game Start", new Scene("Game Start", "GameStartScreen.fxml", GameStartController.class.getConstructor(GameManager.class)));
