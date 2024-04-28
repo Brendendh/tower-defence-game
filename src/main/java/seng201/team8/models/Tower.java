@@ -8,15 +8,12 @@ public class Tower extends Item implements Cloneable{
     private boolean isBroken;
     private String name;
 
-    private int[] levelRequirements;
-
     public Tower(String name, TowerStats towerStats, int buyingPrice, Rarity rarity){
         super(buyingPrice * rarity.rarityStatMultiplier, 10, rarity);
 
         this.name = name;
         this.towerStats = towerStats;
         this.towerStats.setResourceAmount(this.towerStats.getResourceAmount()* rarity.rarityStatMultiplier);
-        this.levelRequirements = new int[]{2, 3, 5};
     }
 
     public TowerStats getTowerStats(){
@@ -39,10 +36,6 @@ public class Tower extends Item implements Cloneable{
         return isBroken;
     }
 
-    public int[] getLevelRequirements() {
-        return levelRequirements;
-    }
-
     public void setTowerStats(TowerStats towerStats) {
         this.towerStats = towerStats;
     }
@@ -61,10 +54,6 @@ public class Tower extends Item implements Cloneable{
 
     public void setBroken(boolean broken) {
         isBroken = broken;
-    }
-
-    public void setLevelRequirements(int[] levelRequirements) {
-        this.levelRequirements = levelRequirements;
     }
 
     public Tower clone(){
