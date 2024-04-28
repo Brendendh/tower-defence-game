@@ -46,7 +46,7 @@ public class GameManager {
         return defaultUpgrades;
     }
 
-    public RarityData getDifferentRarities() { return rarityData;}
+    public RarityData getRarityData() { return rarityData;}
 
     public GameData getGameData() {
         return gameData;
