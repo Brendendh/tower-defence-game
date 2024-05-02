@@ -1,5 +1,6 @@
 package seng201.team8.services;
 
+import seng201.team8.gui.GameMenuController;
 import seng201.team8.gui.GameStartController;
 import seng201.team8.models.Scene;
 
@@ -24,6 +25,7 @@ public class GameGUIManager {
         scenes = new HashMap<>();
         try {
             scenes.put("Game Start", new Scene("Game Start", "GameStartScreen.fxml", GameStartController.class.getConstructor(GameManager.class)));
+            scenes.put("Game Menu", new Scene("Game Menu", "GameMenuScreen.fxml", GameMenuController.class.getConstructor(GameManager.class)));
         } catch (NoSuchMethodException e) {
             throw new RuntimeException(e);
         }
