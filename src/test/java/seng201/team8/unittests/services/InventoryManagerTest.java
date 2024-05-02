@@ -2,10 +2,7 @@ package seng201.team8.unittests.services;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import seng201.team8.models.InventoryData;
-import seng201.team8.models.Rarity;
-import seng201.team8.models.Tower;
-import seng201.team8.models.TowerStats;
+import seng201.team8.models.*;
 import seng201.team8.services.InventoryManager;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -16,7 +13,7 @@ class InventoryManagerTest {
 
     @BeforeEach
     public void setupTest(){
-        Tower[] testTowers = new Tower[]{new Tower("", new TowerStats(10,"Coal",5),10, Rarity.COMMON), null, null, null, null};
+        Tower[] testTowers = new Tower[]{new Tower("", new TowerStats(10, Resource.CORN,5),10, Rarity.COMMON), null, null, null, null};
         InventoryData inventoryData = new InventoryData();
         inventoryData.setMainTowers(testTowers);
         inventoryManager = new InventoryManager(inventoryData);
@@ -24,7 +21,7 @@ class InventoryManagerTest {
 
     @Test
     public void testRemoveFromMain(){
-        Tower testTower = new Tower("", new TowerStats(10, "Coal",10), 10, Rarity.EPIC);
+        Tower testTower = new Tower("", new TowerStats(10, Resource.CORN,10), 10, Rarity.EPIC);
         inventoryManager.getInventoryData().getMainTowers()[1] = testTower;
         assertEquals(inventoryManager.getInventoryData().getMainTowers()[1], testTower);
         inventoryManager.removeFromMain(1);
@@ -33,8 +30,8 @@ class InventoryManagerTest {
 
     @Test
     public void testSwapTowers(){
-        Tower testMainTower = new Tower("", new TowerStats(10, "Coal",10), 10, Rarity.COMMON);
-        Tower testReserveTower = new Tower("", new TowerStats(15, "Coal",10), 10, Rarity.COMMON);
+        Tower testMainTower = new Tower("", new TowerStats(10, Resource.CORN,10), 10, Rarity.COMMON);
+        Tower testReserveTower = new Tower("", new TowerStats(15, Resource.WOOD,10), 10, Rarity.COMMON);
         inventoryManager.getInventoryData().getMainTowers()[3] = testMainTower;
         inventoryManager.getInventoryData().getReserveTowers()[2] = testReserveTower;
         assertEquals(inventoryManager.getInventoryData().getMainTowers()[3],testMainTower);

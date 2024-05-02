@@ -7,7 +7,7 @@ import seng201.team8.services.ShopManager;
 
 public class ShopManagerGenerateTest {
     public static void main(String[] args) {
-        Tower[] testTowers = new Tower[]{new Tower("Starting Tower", new TowerStats(10, "Coal", 10), 10, Rarity.COMMON), null, null, null, null};
+        Tower[] testTowers = new Tower[]{new Tower("Starting Tower", new TowerStats(10, Resource.CORN, 10), 10, Rarity.COMMON), null, null, null, null};
         InventoryData inventoryData = new InventoryData();
         inventoryData.setMainTowers(testTowers);
         InventoryManager inventoryManager = new InventoryManager(inventoryData);

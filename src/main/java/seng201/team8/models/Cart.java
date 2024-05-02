@@ -2,11 +2,11 @@ package seng201.team8.models;
 
 public class Cart {
     private int targetAmount;
-    private String resourceType;
+    private Resource resourceType;
     private int speed;
     private int amount;
     private int distance;
-    public Cart(int targetAmount, String resourceType, int speed){
+    public Cart(int targetAmount, Resource resourceType, int speed){
         this.targetAmount = targetAmount;
         this.resourceType = resourceType;
         this.speed = speed;
@@ -25,7 +25,7 @@ public class Cart {
         return targetAmount;
     }
 
-    public String getResourceType() {
+    public Resource getResourceType() {
         return resourceType;
     }
 

@@ -2,10 +2,10 @@ package seng201.team8.models;
 
 public class TowerStats implements Cloneable{
     private int resourceAmount;
-    private String resourceType;
+    private Resource resourceType;
     private int cooldown;
 
-    public TowerStats(int resourceAmount, String resourceType, int cooldown){
+    public TowerStats(int resourceAmount, Resource resourceType, int cooldown){
         this.resourceAmount = resourceAmount;
         this.resourceType = resourceType;
         this.cooldown = cooldown;
@@ -15,7 +15,7 @@ public class TowerStats implements Cloneable{
         return resourceAmount;
     }
 
-    public String getResourceType() {
+    public Resource getResourceType() {
         return resourceType;
     }
 
@@ -27,7 +27,7 @@ public class TowerStats implements Cloneable{
         this.resourceAmount = resourceAmount;
     }
 
-    public void setResourceType(String resourceType) {
+    public void setResourceType(Resource resourceType) {
         this.resourceType = resourceType;
     }
 

@@ -9,6 +9,8 @@ import seng201.team8.services.GameManager;
 import seng201.team8.services.InventoryManager;
 import seng201.team8.services.ShopManager;
 
+import java.util.Dictionary;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ShopManagerTest {
@@ -18,7 +20,7 @@ public class ShopManagerTest {
 
     @BeforeEach
     public void setupTest(){
-        Tower[] testTowers = new Tower[]{new Tower("Starting Tower", new TowerStats(10, "Coal",10), 10, Rarity.COMMON), null, null, null, null};
+        Tower[] testTowers = new Tower[]{new Tower("Starting Tower", new TowerStats(10, Resource.CORN,10), 10, Rarity.COMMON), null, null, null, null};
         InventoryData inventoryData = new InventoryData();
         inventoryData.setMainTowers(testTowers);
         inventoryManager = new InventoryManager(inventoryData);
@@ -30,9 +32,9 @@ public class ShopManagerTest {
 
     @Test
     public void buyingTowerToMainTest() throws NoSpaceException, NotEnoughCurrencyException {
-        Tower testTower1 = new Tower("", new TowerStats(10,"Coal",5),10, Rarity.COMMON);
-        Tower testTower2 = new Tower("", new TowerStats(10,"Corn",5),10, Rarity.COMMON);
-        Tower testTower3 = new Tower("", new TowerStats(10,"Stone",5),10, Rarity.COMMON);
+        Tower testTower1 = new Tower("", new TowerStats(10,Resource.CORN,5),10, Rarity.COMMON);
+        Tower testTower2 = new Tower("", new TowerStats(10,Resource.WOOD,5),10, Rarity.COMMON);
+        Tower testTower3 = new Tower("", new TowerStats(10, Resource.IRON,5),10, Rarity.COMMON);
         shopManager.getShopData().setTowersSold(new Tower[]{testTower1, testTower2, testTower3});
         gameManager.getGameData().setMoney(20);
         shopManager.buyTower(0);
@@ -48,9 +50,9 @@ public class ShopManagerTest {
     }
     @Test
     public void notEnoughMoneyAndPointsTest(){
-        Tower testTower1 = new Tower("", new TowerStats(10,"Coal",5),10, Rarity.COMMON);
-        Tower testTower2 = new Tower("", new TowerStats(10,"Corn",5),10, Rarity.COMMON);
-        Tower testTower3 = new Tower("", new TowerStats(10,"Stone",5),10, Rarity.COMMON);
+        Tower testTower1 = new Tower("", new TowerStats(10,Resource.CORN,5),10, Rarity.COMMON);
+        Tower testTower2 = new Tower("", new TowerStats(10,Resource.WOOD,5),10, Rarity.COMMON);
+        Tower testTower3 = new Tower("", new TowerStats(10,Resource.IRON,5),10, Rarity.COMMON);
         shopManager.getShopData().setTowersSold(new Tower[]{testTower1, testTower2, testTower3});
         gameManager.getGameData().setMoney(0);
         gameManager.getGameData().setPoint(0);
@@ -63,12 +65,12 @@ public class ShopManagerTest {
         assertEquals(gameManager.getGameData().getPoint(),0);
     }
     @Test public void buyingToReserveTest() throws NoSpaceException, NotEnoughCurrencyException {
-        Tower testTower1 = new Tower("", new TowerStats(10,"Coal",5),10, Rarity.COMMON);
-        Tower testTower2 = new Tower("", new TowerStats(10,"Corn",5),10, Rarity.COMMON);
-        Tower testTower3 = new Tower("", new TowerStats(10,"Stone",5),10, Rarity.COMMON);
+        Tower testTower1 = new Tower("", new TowerStats(10,Resource.CORN,5),10, Rarity.COMMON);
+        Tower testTower2 = new Tower("", new TowerStats(10,Resource.WOOD,5),10, Rarity.COMMON);
+        Tower testTower3 = new Tower("", new TowerStats(10,Resource.IRON,5),10, Rarity.COMMON);
         shopManager.getShopData().setTowersSold(new Tower[]{testTower1, testTower2, testTower3});
         gameManager.getGameData().setMoney(100);
-        Tower fillerTower = new Tower("filler", new TowerStats(10,"Filler",5),10, Rarity.COMMON);
+        Tower fillerTower = new Tower("filler", new TowerStats(10,Resource.CORN,5),10, Rarity.COMMON);
         gameManager.getInventoryManager().getInventoryData().setMainTowers(new Tower[]{fillerTower,fillerTower,fillerTower,fillerTower,fillerTower});
         shopManager.buyTower(0);
         assertEquals(gameManager.getInventoryManager().getInventoryData().getReserveTowers()[0],testTower1);

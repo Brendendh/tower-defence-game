@@ -34,9 +34,9 @@ public class Round {
         return false;
     }
 
-    public String[] getCartResourceType(){
+    public Resource[] getCartResourceType(){
         int numberOfCarts = carts.length;
-        String[] cartResourceTypes = new String[numberOfCarts];
+        Resource[] cartResourceTypes = new Resource[numberOfCarts];
         for (int i = 0; i <= numberOfCarts; i++){
             cartResourceTypes[i] = carts[i].getResourceType();
         }

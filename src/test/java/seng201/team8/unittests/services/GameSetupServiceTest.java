@@ -2,10 +2,7 @@ package seng201.team8.unittests.services;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import seng201.team8.models.InventoryData;
-import seng201.team8.models.Rarity;
-import seng201.team8.models.Tower;
-import seng201.team8.models.TowerStats;
+import seng201.team8.models.*;
 import seng201.team8.services.GameSetupService;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -44,7 +41,7 @@ public class GameSetupServiceTest {
 
     @Test
     public void testCreateInventory(){
-        Tower[] towers = new Tower[]{new Tower("", new TowerStats(10, "Coal",10), 10, Rarity.COMMON), new Tower("", new TowerStats(10, "Diamond",10), 10, Rarity.EPIC)};
+        Tower[] towers = new Tower[]{new Tower("", new TowerStats(10, Resource.CORN,10), 10, Rarity.COMMON), new Tower("", new TowerStats(10, Resource.IRON,10), 10, Rarity.EPIC)};
         InventoryData inventoryData = gameSetupService.createInventory(towers);
         assertEquals(inventoryData.getMainTowers().length, 5);
     }

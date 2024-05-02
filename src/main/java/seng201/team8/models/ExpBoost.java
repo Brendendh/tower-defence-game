@@ -1,9 +1,12 @@
 package seng201.team8.models;
 
+import seng201.team8.services.TowerStatsManager;
+
 import java.util.ArrayList;
 
 public class ExpBoost implements Effect, Cloneable{
     private int boostAmount;
+    private TowerStatsManager towerStatsManager;
 
     public ExpBoost(int boostAmount){this.boostAmount = boostAmount;}
 

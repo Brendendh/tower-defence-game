@@ -1,9 +1,6 @@
 package seng201.team8.services;
 
-import seng201.team8.models.Cart;
-import seng201.team8.models.InventoryData;
-import seng201.team8.models.Round;
-import seng201.team8.models.Tower;
+import seng201.team8.models.*;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -46,7 +43,7 @@ public class RoundSelectorService {
     }
 
     private Cart generateCart(int numOfCartsSoFar){
-        ArrayList<String> ownedResourceTypes = getPlayerOwnedResourceTypes();
+        ArrayList<Resource> ownedResourceTypes = getPlayerOwnedResourceTypes();
         if (numOfCartsSoFar == 0){
             int randomOwnedResourceIndex = randomGenerator.nextInt(ownedResourceTypes.size());
             return new Cart(generateTargetAmount(), ownedResourceTypes.get(randomOwnedResourceIndex),generateSpeed());
@@ -57,9 +54,9 @@ public class RoundSelectorService {
         }
     }
 
-    private ArrayList<String> getPlayerOwnedResourceTypes(){
+    private ArrayList<Resource> getPlayerOwnedResourceTypes(){
         InventoryData inventoryData = gameManager.getInventoryManager().getInventoryData();
-        ArrayList<String> ownedResourceTypes = new ArrayList<String>();
+        ArrayList<Resource> ownedResourceTypes = new ArrayList<Resource>();
         for (Tower mainTower: inventoryData.getMainTowers()){
             if (!ownedResourceTypes.contains(mainTower.getTowerStats().getResourceType())){
                 ownedResourceTypes.add(mainTower.getTowerStats().getResourceType());

@@ -11,13 +11,13 @@ public class GameManager {
     private Round round;
     private RarityData rarityData = new RarityData();
     private GameGUIManager gameGUIManager;
-    final private String[] defaultResources = new String[]{"Coal", "Corn", "Stone", "Steel", "Diamonds"};
+    final private Resource[] defaultResources = new Resource[]{Resource.CORN, Resource.WOOD, Resource.IRON};
     final private Tower[] defaultTowers = new Tower[]{
-            new Tower("", new TowerStats(10, "Coal", 5), 10, Rarity.COMMON),
-            new Tower("", new TowerStats(10, "Corn", 5), 10, Rarity.COMMON),
-            new Tower("", new TowerStats(10, "Stone", 5), 10, Rarity.COMMON),
-            new Tower("", new TowerStats(10, "Steel", 5), 10, Rarity.COMMON),
-            new Tower("", new TowerStats(10, "Diamonds", 5), 10, Rarity.COMMON)};
+            new Tower("", new TowerStats(10, Resource.CORN, 1 ), 10, Rarity.COMMON),
+            new Tower("", new TowerStats(35, Resource.CORN, 3), 15, Rarity.COMMON),
+            new Tower("", new TowerStats(8, Resource.WOOD, 1), 10, Rarity.COMMON),
+            new Tower("", new TowerStats(30, Resource.WOOD, 3), 15, Rarity.COMMON),
+            new Tower("", new TowerStats(1, Resource.IRON, 3), 10, Rarity.COMMON)};
 
     final private Upgrade[] defaultUpgrades = new Upgrade[]{
             new Upgrade(new ExpBoost(10), Rarity.COMMON, 10, 1),
@@ -56,7 +56,7 @@ public class GameManager {
         return inventoryManager;
     }
 
-    public String[] getDefaultResources() { return defaultResources;}
+    public Resource[] getDefaultResources() { return defaultResources;}
 
     public GameGUIManager getGameGUIManager() {
         return this.gameGUIManager;
