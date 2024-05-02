@@ -8,12 +8,15 @@ public class ExpBoost implements Effect, Cloneable{
     private int boostAmount;
     private TowerStatsManager towerStatsManager;
 
-    public ExpBoost(int boostAmount){this.boostAmount = boostAmount;}
+    public ExpBoost(int boostAmount){
+        this.boostAmount = boostAmount;
+        this.towerStatsManager = new TowerStatsManager();
+    }
 
     @Override
     public void affects(ArrayList<Tower> towers) {
         for(Tower tower: towers){
-            tower.setExperiencePoints(tower.getExperiencePoints() + boostAmount);
+            towerStatsManager.addExp(tower, boostAmount);
         }
     }
 
