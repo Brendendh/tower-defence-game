@@ -1,19 +1,20 @@
 package seng201.team8.services;
 
 import seng201.team8.models.Cart;
+import seng201.team8.models.Resource;
 import seng201.team8.models.Round;
 import seng201.team8.models.Tower;
 
 import java.util.Arrays;
 import java.util.Comparator;
-import java.util.HashMap;
+import java.util.EnumMap;
 
 public class RoundEvaluationService {
 
     private Round roundData;
     private GameManager gameManager;
     private Tower[] mainTowers;
-    private HashMap<String, Integer> resourcesProduced;
+    private EnumMap<Resource, Integer> resourcesProduced;
     private int counter = 0;
     private Cart[] carts;
 
@@ -25,9 +26,9 @@ public class RoundEvaluationService {
         Arrays.sort(carts, Comparator.comparing(Cart::getSpeed).reversed());
     }
 
-    private HashMap<String, Integer> createResourcesProduced(String[] resources){
-        HashMap<String, Integer> tempResourcesProduced = new HashMap<String, Integer>();
-        for(String resource:resources){
+    private EnumMap<Resource, Integer> createResourcesProduced(Resource[] resources){
+        EnumMap<Resource, Integer> tempResourcesProduced = new EnumMap<Resource, Integer>(Resource.class);
+        for(Resource resource:resources){
             tempResourcesProduced.put(resource, 0);
         }
         return tempResourcesProduced;
