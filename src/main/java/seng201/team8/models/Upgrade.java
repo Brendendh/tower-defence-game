@@ -5,13 +5,12 @@ import javax.print.DocFlavor;
 public class Upgrade extends Item implements Cloneable{
     private Effect effect;
     private int maximumTargets;
-
     private String effectName;
 
     public Upgrade(Effect effect, Rarity rarity, int buyingPrice, int maximumTargets){
-        super(buyingPrice * rarity.rarityStatMultiplier, 20, rarity);
+        super(buyingPrice * rarity.getRarityStatMultiplier(), 20, rarity);
         if (effect.getClass() == RepairTower.class){
-            this.maximumTargets = maximumTargets * rarity.rarityStatMultiplier;
+            this.maximumTargets = maximumTargets * rarity.getRarityStatMultiplier();
         }
         else{
             this.maximumTargets = maximumTargets;
@@ -26,13 +25,13 @@ public class Upgrade extends Item implements Cloneable{
     public int getMaximumTargets(){return maximumTargets;}
     private void updateValues(Effect effect, Rarity rarity){
         if (effect.getClass() == ExpBoost.class){
-            ((ExpBoost) effect).setBoostAmount(((ExpBoost) effect).getBoostAmount() * rarity.rarityStatMultiplier);
+            ((ExpBoost) effect).setBoostAmount(((ExpBoost) effect).getBoostAmount() * rarity.getRarityStatMultiplier());
         }
         if (effect.getClass() == CooldownReduction.class){
-            ((CooldownReduction) effect).setReductionAmount(((CooldownReduction) effect).getReductionAmount() * rarity.rarityStatMultiplier);
+            ((CooldownReduction) effect).setReductionAmount(((CooldownReduction) effect).getReductionAmount() * rarity.getRarityStatMultiplier());
         }
         if (effect.getClass() == ResourceAmountBoost.class){
-            ((ResourceAmountBoost) effect).setBoostAmount(((ResourceAmountBoost) effect).getBoostAmount() * rarity.rarityStatMultiplier);
+            ((ResourceAmountBoost) effect).setBoostAmount(((ResourceAmountBoost) effect).getBoostAmount() * rarity.getRarityStatMultiplier());
         }
     }
 
@@ -75,7 +74,6 @@ public class Upgrade extends Item implements Cloneable{
     }
 
     public String toString(){
-        return effect.getEffectName() + effect.toString() + " up to "+maximumTargets+" Towers";
+        return effect.getEffectName() +" "+ effect.toString() + " up to "+maximumTargets+" Towers";
     }
-
 }
