@@ -32,7 +32,9 @@ public class TowerStats implements Cloneable{
     }
 
     public void setCooldown(int cooldown) {
-        this.cooldown = cooldown;
+        if (cooldown >= 1){
+            this.cooldown = cooldown;
+        }
     }
 
     @Override
