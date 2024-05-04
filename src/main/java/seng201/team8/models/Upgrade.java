@@ -1,8 +1,12 @@
 package seng201.team8.models;
 
+import javax.print.DocFlavor;
+
 public class Upgrade extends Item implements Cloneable{
     private Effect effect;
     private int maximumTargets;
+
+    private String effectName;
 
     public Upgrade(Effect effect, Rarity rarity, int buyingPrice, int maximumTargets){
         super(buyingPrice * rarity.rarityStatMultiplier, 20, rarity);
@@ -68,6 +72,10 @@ public class Upgrade extends Item implements Cloneable{
             clonedUpgrade.effect = ((RepairTower) this.effect).clone();
         }
         return clonedUpgrade;
+    }
+
+    public String toString(){
+        return effect.getEffectName() + effect.toString() + " up to "+maximumTargets+" Towers";
     }
 
 }

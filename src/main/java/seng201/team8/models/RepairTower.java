@@ -20,5 +20,13 @@ public class RepairTower implements Effect, Cloneable{
         }
     }
 
+    @Override
+    public String getEffectName(){
+        return "Repair Tower";
+    }
+
+    public String toString(){
+        return "Repairs broken towers";
+    }
 
 }

@@ -31,4 +31,12 @@ public class ResourceAmountBoost implements Effect, Cloneable{
         return boostAmount;
     }
     public void setBoostAmount(int boostAmount){this.boostAmount = boostAmount;}
+
+    public String getEffectName(){
+        return "Resource Amount Boost";
+    }
+
+    public String toString(){
+        return "Increases the resource production amount of towers by " + boostAmount;
+    }
 }

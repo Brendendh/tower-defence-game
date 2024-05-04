@@ -4,4 +4,6 @@ import java.util.ArrayList;
 
 public interface Effect {
     public void affects(ArrayList<Tower> towers);
+
+    public String getEffectName();
 }

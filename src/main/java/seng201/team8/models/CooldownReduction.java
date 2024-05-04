@@ -31,4 +31,11 @@ public class CooldownReduction implements Effect, Cloneable{
         return reductionAmount;
     }
     public void setReductionAmount(int reductionAmount){this.reductionAmount = reductionAmount;}
+
+    public String getEffectName(){
+        return "Cooldown Reduction";
+    }
+    public String toString(){
+        return "Reduces cooldown of towers by "+reductionAmount;
+    }
 }

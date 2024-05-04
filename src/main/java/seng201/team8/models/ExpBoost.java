@@ -37,4 +37,12 @@ public class ExpBoost implements Effect, Cloneable{
         this.boostAmount = boostAmount;
     }
 
+
+    public String getEffectName(){
+        return "ExpBoost";
+    }
+    public String toString() {
+        return "Adds "+ boostAmount + " exp";
+    }
+
 }
