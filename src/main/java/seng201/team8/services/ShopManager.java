@@ -2,6 +2,7 @@ package seng201.team8.services;
 
 import seng201.team8.exceptions.NoSpaceException;
 import seng201.team8.exceptions.NotEnoughCurrencyException;
+import seng201.team8.exceptions.SellingNullError;
 import seng201.team8.models.*;
 
 import java.util.Random;
@@ -105,21 +106,36 @@ public class ShopManager {
             shopData.getUpgradesSold()[upgradeIndex] = null;
         }
     }
-    public void sellMainTower(int towerIndex){
-        Tower towerSold = inventoryManager.getInventoryData().getMainTowers()[towerIndex];
-        gameManager.getGameData().setMoney(gameManager.getGameData().getMoney() + towerSold.getSellingPrice());
-        inventoryManager.getInventoryData().getMainTowers()[towerIndex] = null;
+    public void sellMainTower(int towerIndex) throws SellingNullError {
+        if (inventoryManager.getInventoryData().getMainTowers()[towerIndex] == null){
+            throw new SellingNullError("Why are you trying to sell air...?");
+        }
+        else{
+            Tower towerSold = inventoryManager.getInventoryData().getMainTowers()[towerIndex];
+            gameManager.getGameData().setMoney(gameManager.getGameData().getMoney() + towerSold.getSellingPrice());
+            inventoryManager.getInventoryData().getMainTowers()[towerIndex] = null;
+        }
     }
-    public void sellReserveTower(int towerIndex){
-        Tower towerSold = inventoryManager.getInventoryData().getReserveTowers()[towerIndex];
-        gameManager.getGameData().setMoney(gameManager.getGameData().getMoney() + towerSold.getSellingPrice());
-        inventoryManager.getInventoryData().getReserveTowers()[towerIndex] = null;
+    public void sellReserveTower(int towerIndex) throws SellingNullError {
+        if (inventoryManager.getInventoryData().getReserveTowers()[towerIndex] == null){
+            throw new SellingNullError("Why are you trying to sell air...?");
+        }
+        else{
+            Tower towerSold = inventoryManager.getInventoryData().getReserveTowers()[towerIndex];
+            gameManager.getGameData().setMoney(gameManager.getGameData().getMoney() + towerSold.getSellingPrice());
+            inventoryManager.getInventoryData().getReserveTowers()[towerIndex] = null;
+        }
     }
 
-    public void sellUpgrade(int upgradeIndex){
-        Upgrade upgradeSold = inventoryManager.getInventoryData().getUpgrades().get(upgradeIndex);
-        gameManager.getGameData().setPoint(gameManager.getGameData().getPoint() + upgradeSold.getSellingPrice());
-        inventoryManager.getInventoryData().getUpgrades().remove(upgradeIndex);
+    public void sellUpgrade(int upgradeIndex) throws SellingNullError {
+        if (inventoryManager.getInventoryData().getUpgrades().get(upgradeIndex) == null){
+            throw new SellingNullError("Why are you trying to sell air...?");
+        }
+        else{
+            Upgrade upgradeSold = inventoryManager.getInventoryData().getUpgrades().get(upgradeIndex);
+            gameManager.getGameData().setPoint(gameManager.getGameData().getPoint() + upgradeSold.getSellingPrice());
+            inventoryManager.getInventoryData().getUpgrades().remove(upgradeIndex);
+        }
     }
 
     public ShopData getShopData() {
