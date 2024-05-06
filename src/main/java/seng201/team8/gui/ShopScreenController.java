@@ -19,76 +19,29 @@ import seng201.team8.services.ShopManager;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 
 public class ShopScreenController {
 
     @FXML
-    private Button buyButton;
+    private Button buyButton, refreshButton, returnButton, sellButton;
 
     @FXML
-    private Button firstTowerOnSale;
+    private Button firstTowerOnSale, secondTowerOnSale, thirdTowerOnSale;
 
     @FXML
-    private Button firstUpgradeOnSale;
+    private Button firstUpgradeOnSale, secondUpgradeOnSale, thirdUpgradeOnSale;
 
     @FXML
-    private Button mainTower1;
+    private Button mainTower1, mainTower2, mainTower3, mainTower4, mainTower5;
 
     @FXML
-    private Button mainTower2;
+    private Button reserveTower1, reserveTower2, reserveTower3, reserveTower4, reserveTower5;
 
     @FXML
-    private Button mainTower3;
-
-    @FXML
-    private Button mainTower4;
-
-    @FXML
-    private Button mainTower5;
-
-    @FXML
-    private Button refreshButton;
-
-    @FXML
-    private Button reserveTower1;
-
-    @FXML
-    private Button reserveTower2;
-
-    @FXML
-    private Button reserveTower3;
-
-    @FXML
-    private Button reserveTower4;
-
-    @FXML
-    private Button reserveTower5;
-
-    @FXML
-    private Button returnButton;
-
-    @FXML
-    private Button secondTowerOnSale;
-
-    @FXML
-    private Button secondUpgradeOnSale;
-
-    @FXML
-    private Button sellButton;
-
-    @FXML
-    private Button thirdTowerOnSale;
-
-    @FXML
-    private Button thirdUpgradeOnSale;
-
-    @FXML
-    private Label moneyAmountDisplay;
-
-    @FXML
-    private Label pointAmountDisplay;
+    private Label moneyAmountDisplay, pointAmountDisplay;
 
     @FXML
     private ListView<Upgrade> upgradesListView;
@@ -133,11 +86,8 @@ public class ShopScreenController {
         try{
             shopManager.buyTower(towerIndex);
         }
-        catch (NoSpaceException noSpaceException){
+        catch (NoSpaceException | NotEnoughCurrencyException noSpaceException){
             errorPopUp(noSpaceException.getMessage());
-        }
-        catch (NotEnoughCurrencyException notEnoughCurrencyException){
-            errorPopUp(notEnoughCurrencyException.getMessage());
         }
         updateMainTowers();
         updateReserveTowers();
@@ -172,10 +122,10 @@ public class ShopScreenController {
     @FXML
     void sellSelectedItem(ActionEvent event) {
         try{
-            if (selectedInventoryItemType == "Tower"){
+            if (Objects.equals(selectedInventoryItemType, "Tower")){
                 sellTower(selectedInventoryItemIndex);
             }
-            else if (selectedInventoryItemType == "Upgrade") {
+            else if (Objects.equals(selectedInventoryItemType, "Upgrade")) {
                 sellUpgrade(selectedInventoryItemIndex);
             }
         } catch (SellingNullError e) {
