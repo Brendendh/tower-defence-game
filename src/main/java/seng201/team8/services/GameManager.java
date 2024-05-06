@@ -27,7 +27,7 @@ public class GameManager {
 
     public GameManager(Consumer<GameManager> screenLauncher, Runnable clearPane){
         this.gameGUIManager = new GameGUIManager(screenLauncher, clearPane, this);
-        gameGUIManager.launchScreen("Shop Screen");
+        gameGUIManager.launchScreen("Game Start");
     }
 
     public GameManager(GameData gameData, InventoryManager inventoryManager){
