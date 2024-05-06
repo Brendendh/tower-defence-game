@@ -11,6 +11,7 @@ public class GameStartController {
 
     @FXML
     private void onStartClicked(){
+        gameManager.getGameGUIManager().launchScreen("Game Setup");
     }
 
     @FXML
