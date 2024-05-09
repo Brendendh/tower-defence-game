@@ -11,11 +11,16 @@ public class GameMenuController {
 
     @FXML
     private void onShopClicked(){
+        gameManager.getGameGUIManager().launchScreen("Shop Screen");
     }
 
     @FXML
-    private void onNextClicked(){}
+    private void onNextClicked(){
+        gameManager.getGameGUIManager().launchScreen("Round Selector");
+    }
 
     @FXML
-    private void onInventoryClicked(){}
+    private void onInventoryClicked(){
+
+    }
 }
