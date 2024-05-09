@@ -58,13 +58,17 @@ public class RoundSelectorService {
         InventoryData inventoryData = gameManager.getInventoryManager().getInventoryData();
         ArrayList<Resource> ownedResourceTypes = new ArrayList<Resource>();
         for (Tower mainTower: inventoryData.getMainTowers()){
-            if (!ownedResourceTypes.contains(mainTower.getTowerStats().getResourceType())){
-                ownedResourceTypes.add(mainTower.getTowerStats().getResourceType());
+            if (mainTower != null){
+                if (!ownedResourceTypes.contains(mainTower.getTowerStats().getResourceType())){
+                    ownedResourceTypes.add(mainTower.getTowerStats().getResourceType());
+                }
             }
         }
         for (Tower reserveTower: inventoryData.getReserveTowers()){
-            if (!ownedResourceTypes.contains(reserveTower.getTowerStats().getResourceType())){
-                ownedResourceTypes.add(reserveTower.getTowerStats().getResourceType());
+            if (reserveTower != null) {
+                if (!ownedResourceTypes.contains(reserveTower.getTowerStats().getResourceType())) {
+                    ownedResourceTypes.add(reserveTower.getTowerStats().getResourceType());
+                }
             }
         }
         return ownedResourceTypes;
