@@ -62,4 +62,8 @@ public class GameManager {
         return this.gameGUIManager;
     }
 
+    public void setGameData(GameData gameData){
+        this.gameData = new GameData();
+    }
+
 }
