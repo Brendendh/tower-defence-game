@@ -151,7 +151,7 @@ public class ShopScreenController {
 
 
     public ShopScreenController(GameManager gameManager) {
-        //test case
+        //TODO: remove this test case and make this.gameManager = gameManager instead!!
         inventoryManager = new InventoryManager(new InventoryData());
         ArrayList<Upgrade> upgrades = new ArrayList<>();
         upgrades.add(new Upgrade(new ExpBoost(10), Rarity.COMMON, 10, 1));

@@ -20,6 +20,22 @@ public class RandomEventsService {
         random = new Random();
     }
 
+    //this is stupid ugly code, I should've just made random events its own class like upgrade which implements
+    //events, but hey, it works and unfortunately 262 and 261 is knocking on my door.
+    public void executeRandomEvent(int i){
+        if (i == 0){
+            levelUpRandomTower();
+        }
+        if (i == 1){
+            destroyRandomTower();
+        }
+        if (i == 2){
+            boostRandomTower();
+        }
+        if (i == 3){
+            switchRssOfRandomTower();
+        }
+    }
     public void levelUpRandomTower(){
         Tower randomTower = playerTowers.get(random.nextInt(playerTowers.size()));
         towerStatsManager.levelUp(randomTower);
@@ -38,6 +54,6 @@ public class RandomEventsService {
     public void switchRssOfRandomTower(){
         Tower randomTower = playerTowers.get(random.nextInt(playerTowers.size()));
         //this may cause a glitch which could affect the list in GameManager itself...but we'll see :>
-        randomTower.getTowerStats().setResourceType(gameManager.getDefaultResources()[random.nextInt(5)]);
+        randomTower.getTowerStats().setResourceType(gameManager.getDefaultResources()[random.nextInt(3)]);
     }
 }

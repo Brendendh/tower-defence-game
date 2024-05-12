@@ -38,24 +38,7 @@ public class RoundSelectorScreenController {
     }
 
     public RoundSelectorScreenController(GameManager gameManager){
-        InventoryManager inventoryManager = new InventoryManager(new InventoryData());
-        ArrayList<Upgrade> upgrades = new ArrayList<>();
-        upgrades.add(new Upgrade(new ExpBoost(10), Rarity.COMMON, 10, 1));
-        upgrades.add(new Upgrade(new CooldownReduction(10), Rarity.COMMON, 10, 1));
-        upgrades.add(new Upgrade(new ResourceAmountBoost(10), Rarity.RARE, 10, 1));
-        upgrades.add(new Upgrade(new RepairTower(), Rarity.EPIC, 10, 1));
-        inventoryManager.getInventoryData().setUpgrades(upgrades);
-        Tower[] mainTowers = new Tower[]{new Tower("Hi", new TowerStats(10, Resource.CORN, 1 ), 10, Rarity.COMMON),null,
-                new Tower("Brenden", new TowerStats(35, Resource.CORN, 3), 15, Rarity.EPIC),null,null};
-        Tower[] reserveTowers = new Tower[]{null,null,null,
-                new Tower("Firefly is a good dps", new TowerStats(35, Resource.CORN, 3), 15, Rarity.RARE),null};
-        GameData gameData = new GameData();
-        gameData.setRound(13);
-        gameData.setMoney(50);
-        gameData.setPoint(150);
-        inventoryManager.getInventoryData().setMainTowers(mainTowers);
-        inventoryManager.getInventoryData().setReserveTowers(reserveTowers);
-        this.gameManager = new GameManager(gameData,inventoryManager);
+        this.gameManager = gameManager;
         this.roundSelectorService = new RoundSelectorService(this.gameManager);
         this.possibleRounds = this.roundSelectorService.getPossibleRounds();
     }
