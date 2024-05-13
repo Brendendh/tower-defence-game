@@ -36,7 +36,7 @@ class InventoryManagerTest {
         inventoryManager.getInventoryData().getReserveTowers()[2] = testReserveTower;
         assertEquals(inventoryManager.getInventoryData().getMainTowers()[3],testMainTower);
         assertEquals(inventoryManager.getInventoryData().getReserveTowers()[2], testReserveTower);
-        inventoryManager.swapTowers(3, 6);
+        inventoryManager.swapTowers(3, 7);
         assertEquals(inventoryManager.getInventoryData().getMainTowers()[3].getTowerStats().getResourceAmount(),15);
         assertEquals(inventoryManager.getInventoryData().getMainTowers()[3], testReserveTower);
         assertEquals(inventoryManager.getInventoryData().getReserveTowers()[2], testMainTower);
