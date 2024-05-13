@@ -5,9 +5,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import seng201.team8.exceptions.NoSpaceException;
+import seng201.team8.models.InventoryData;
 import seng201.team8.models.Tower;
 import seng201.team8.services.GameManager;
 import seng201.team8.services.GameSetupService;
+import seng201.team8.services.InventoryManager;
 
 import java.util.List;
 
@@ -99,6 +102,16 @@ public class GameSetupController {
     private void onStartGameClicked() {
         gameSetupService.setName(playerNameTextField.getText());
         gameManager.setGameData(gameSetupService.getGameData());
+        InventoryData inventoryData = new InventoryData();
+        InventoryManager inventoryManager = new InventoryManager(inventoryData);
+        for(Tower tower : AddedTowers){
+            try {
+                inventoryManager.moveToMain(tower);
+            } catch (NoSpaceException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        gameManager.setInventoryManager(inventoryManager);
         gameManager.getGameGUIManager().launchScreen("Game Menu");
     }
     @FXML

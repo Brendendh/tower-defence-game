@@ -21,6 +21,6 @@ public class GameMenuController {
 
     @FXML
     private void onInventoryClicked(){
-
+        gameManager.getGameGUIManager().launchScreen("Inventory Screen");
     }
 }
