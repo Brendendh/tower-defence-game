@@ -13,6 +13,7 @@ import seng201.team8.services.InventoryManager;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class InventoryController {
     InventoryManager inventoryManager;
@@ -45,8 +46,13 @@ public class InventoryController {
 
     private List<Button> towerButtons;
 
+    private boolean movingTowers;
+    private int fromTowerIndex;
+
     public void initialize(){
         // TODO: Remove Duplicated Code
+        movingTowers = false;
+        fromTowerIndex = -1;
         upgradesListView.setCellFactory(new UpgradeCellFactory());
         upgradesListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         upgradesListView.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
@@ -58,18 +64,7 @@ public class InventoryController {
         });
         updateUpgradeViewList();
         towerButtons = List.of(mainTower1Button, mainTower2Button, mainTower3Button, mainTower4Button, mainTower5Button, reserveTower1Button, reserveTower2Button, reserveTower3Button, reserveTower4Button, reserveTower5Button);
-        for (int i = 0; i < towerButtons.size(); i++){
-            int finalI = i;
-            towerButtons.get(i).setOnAction(event ->{
-                if (finalI >= 5){
-                    updateStats(inventoryManager.getInventoryData().getReserveTowers()[finalI-5]);
-                } else {
-                    updateStats(inventoryManager.getInventoryData().getMainTowers()[finalI]);
-                }
-                selectedInventoryItemType = "Tower";
-                selectedInventoryItemIndex = finalI;
-            });
-        }
+        initializeTowerButtons();
     }
 
     private void updateUpgradeViewList(){
@@ -87,6 +82,25 @@ public class InventoryController {
         }
     }
 
+    private void initializeTowerButtons(){
+        for (int i = 0; i < towerButtons.size(); i++){
+            int finalI = i;
+            towerButtons.get(i).setOnAction(event ->{
+                selectedInventoryItemType = "Tower";
+                selectedInventoryItemIndex = finalI;
+                if(!movingTowers) {
+                    if (finalI >= 5) {
+                        updateStats(inventoryManager.getInventoryData().getReserveTowers()[finalI - 5]);
+                    } else {
+                        updateStats(inventoryManager.getInventoryData().getMainTowers()[finalI]);
+                    }
+                } else {
+                    moveTower();
+                }
+            });
+        }
+    }
+
     private void displayNull() {
         resourceAmountLabel.setText("None");
         cooldownLabel.setText("None");
@@ -101,7 +115,21 @@ public class InventoryController {
 
     @FXML
     private void onMoveClicked(){
+        movingTowers = true;
+        selectedInventoryItemIndex = -1;
+        fromTowerIndex = -1;
+    }
 
+    private void moveTower(){
+        if (fromTowerIndex != -1) {
+            if (selectedInventoryItemIndex != fromTowerIndex) {
+                inventoryManager.swapTowers(selectedInventoryItemIndex, fromTowerIndex);
+                displayNull();
+            }
+            movingTowers = false;
+        } else {
+            fromTowerIndex = selectedInventoryItemIndex;
+        }
     }
 
 }
