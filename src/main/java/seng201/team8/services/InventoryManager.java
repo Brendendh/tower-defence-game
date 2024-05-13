@@ -34,11 +34,11 @@ public class InventoryManager {
         Tower[] tower2Array = inventoryData.getMainTowers();
         if (tower1Index > 4){
             tower1Array = inventoryData.getReserveTowers();
-            tower1Index -= 4;
+            tower1Index -= 5;
         }
         if (tower2Index > 4){
             tower2Array= inventoryData.getReserveTowers();
-            tower2Index -=4;
+            tower2Index -=5;
         }
         Tower tower1 = tower1Array[tower1Index];
         Tower tower2 = tower2Array[tower2Index];
