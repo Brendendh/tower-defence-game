@@ -120,6 +120,11 @@ public class InventoryController {
         fromTowerIndex = -1;
     }
 
+    @FXML
+    private void onReturnClicked(){
+        gameManager.getGameGUIManager().launchScreen("Game Menu");
+    }
+
     private void moveTower(){
         if (fromTowerIndex != -1) {
             if (selectedInventoryItemIndex != fromTowerIndex) {
