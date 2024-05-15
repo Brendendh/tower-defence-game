@@ -46,11 +46,13 @@ public class RoundSelectorService {
         ArrayList<Resource> ownedResourceTypes = getPlayerOwnedResourceTypes();
         if (numOfCartsSoFar == 0){
             int randomOwnedResourceIndex = randomGenerator.nextInt(ownedResourceTypes.size());
-            return new Cart(generateTargetAmount(), ownedResourceTypes.get(randomOwnedResourceIndex),generateSpeed());
+            Resource chosenResource = ownedResourceTypes.get(randomOwnedResourceIndex);
+            return new Cart(generateTargetAmount(chosenResource), chosenResource,generateSpeed());
         }
         else{
             int randomResourceIndex = randomGenerator.nextInt(gameManager.getDefaultResources().length);
-            return new Cart(generateTargetAmount(), gameManager.getDefaultResources()[randomResourceIndex],generateSpeed());
+            Resource chosenResource = gameManager.getDefaultResources()[randomResourceIndex];
+            return new Cart(generateTargetAmount(chosenResource), chosenResource,generateSpeed());
         }
     }
 
@@ -73,11 +75,11 @@ public class RoundSelectorService {
         }
         return ownedResourceTypes;
     }
-    private int generateTargetAmount(){
+    private int generateTargetAmount(Resource resource){
         int targetAmount;
         int lowerBound = 30 + (currentRoundNumber*5);
         int upperBound = 40 + (currentRoundNumber*5);
-        targetAmount = randomGenerator.nextInt(lowerBound, upperBound + 1);
+        targetAmount = randomGenerator.nextInt(lowerBound/resource.getResourceValue(), (upperBound/resource.getResourceValue()) + 1);
         return targetAmount;
     }
 
