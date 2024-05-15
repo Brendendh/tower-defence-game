@@ -9,7 +9,7 @@ public class Tower extends Item implements Cloneable{
     private String name;
 
     public Tower(String name, TowerStats towerStats, int buyingPrice, Rarity rarity){
-        super(buyingPrice * rarity.getRarityStatMultiplier(), 10, rarity);
+        super(buyingPrice * rarity.getRarityStatMultiplier(), 5 * rarity.getRarityStatMultiplier(), rarity);
 
         this.level = 0;
         this.experiencePoints = 0;

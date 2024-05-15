@@ -1,9 +1,6 @@
 package seng201.team8.services;
 
-import seng201.team8.models.InventoryData;
-import seng201.team8.models.Rarity;
-import seng201.team8.models.Tower;
-import seng201.team8.models.TowerStats;
+import seng201.team8.models.*;
 
 import java.util.ArrayList;
 
@@ -51,7 +48,9 @@ public class TowerStatsManager {
     public void levelUp(Tower tower){
         if (tower.getLevel() < 15){
             tower.setLevel(tower.getLevel() + 1);
-            tower.getTowerStats().setResourceAmount(tower.getTowerStats().getResourceAmount() + 5);
+            Resource towerResource = tower.getTowerStats().getResourceType();
+            tower.getTowerStats().setResourceAmount(tower.getTowerStats().getResourceAmount() + (10/towerResource.getResourceValue()));
+            tower.setSellingPrice(tower.getSellingPrice() + (5 * tower.getRarity().getRarityStatMultiplier()));
         }
     }
 
