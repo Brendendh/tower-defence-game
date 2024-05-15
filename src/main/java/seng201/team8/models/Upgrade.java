@@ -8,7 +8,7 @@ public class Upgrade extends Item implements Cloneable{
     private String effectName;
 
     public Upgrade(Effect effect, Rarity rarity, int buyingPrice, int maximumTargets){
-        super(buyingPrice * rarity.getRarityStatMultiplier(), 20, rarity);
+        super(buyingPrice * rarity.getRarityStatMultiplier(), 5 * rarity.getRarityStatMultiplier(), rarity);
         if (effect.getClass() == RepairTower.class){
             this.maximumTargets = maximumTargets * rarity.getRarityStatMultiplier();
         }
