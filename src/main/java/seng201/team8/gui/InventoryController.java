@@ -6,8 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
-import seng201.team8.models.Tower;
-import seng201.team8.models.Upgrade;
+import seng201.team8.models.*;
 import seng201.team8.services.GameManager;
 import seng201.team8.services.InventoryManager;
 
@@ -21,6 +20,7 @@ public class InventoryController {
     public InventoryController(GameManager gameManager){
         this.gameManager = gameManager;
         inventoryManager = gameManager.getInventoryManager();
+        inventoryManager.getInventoryData().getUpgrades().add(new Upgrade(new ResourceAmountBoost(10), Rarity.COMMON, 10, 2));
     }
 
     @FXML
@@ -31,6 +31,9 @@ public class InventoryController {
 
     @FXML
     private Label resourceAmountLabel, cooldownLabel, resourceTypeLabel;
+
+    @FXML
+    private Button useItemButton, moveTowerButton;
 
     @FXML
     private TextField towerNameTextField;
@@ -46,13 +49,22 @@ public class InventoryController {
 
     private List<Button> towerButtons;
 
-    private boolean movingTowers;
+    private boolean isMovingTowers;
     private int fromTowerIndex;
+    private boolean isApplyingUpgrade;
+
+    private int upgradeToApplyIndex;
+    private ArrayList<Tower> towersToApply;
+    private int maximumTargets;
 
     public void initialize(){
         // TODO: Remove Duplicated Code
-        movingTowers = false;
+        isMovingTowers = false;
+        isApplyingUpgrade = false;
         fromTowerIndex = -1;
+        upgradeToApplyIndex = -1;
+        maximumTargets = -1;
+        towersToApply = new ArrayList<>();
         upgradesListView.setCellFactory(new UpgradeCellFactory());
         upgradesListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         upgradesListView.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
@@ -88,14 +100,20 @@ public class InventoryController {
             towerButtons.get(i).setOnAction(event ->{
                 selectedInventoryItemType = "Tower";
                 selectedInventoryItemIndex = finalI;
-                if(!movingTowers) {
+                if(isMovingTowers) {
+                    moveTower();
+                } else if(isApplyingUpgrade){
+                    if (finalI >= 5) {
+                        applyUpgrade(inventoryManager.getInventoryData().getReserveTowers()[finalI - 5]);
+                    } else {
+                        applyUpgrade(inventoryManager.getInventoryData().getMainTowers()[finalI]);
+                    }
+                }else {
                     if (finalI >= 5) {
                         updateStats(inventoryManager.getInventoryData().getReserveTowers()[finalI - 5]);
                     } else {
                         updateStats(inventoryManager.getInventoryData().getMainTowers()[finalI]);
                     }
-                } else {
-                    moveTower();
                 }
             });
         }
@@ -108,16 +126,43 @@ public class InventoryController {
         towerNameTextField.setText("None");
     }
 
-    @FXML
-    private void onUseItemClicked(){
+    private void applyUpgrade(Tower tower){
+        if(tower != null) {
+            if (towersToApply.contains(tower)) {
+                towersToApply.remove(tower);
+            } else {
+                if (towersToApply.size() < maximumTargets) {
+                    towersToApply.add(tower);
+                }
+            }
+        }
+    }
 
+    @FXML
+    private void onUseItemClicked() {
+        if (Objects.equals(selectedInventoryItemType, "Upgrade") && !isApplyingUpgrade) {
+            isApplyingUpgrade = true;
+            moveTowerButton.setDisable(true);
+            upgradeToApplyIndex = selectedInventoryItemIndex;
+            maximumTargets = inventoryManager.getInventoryData().getUpgrades().get(upgradeToApplyIndex).getMaximumTargets();
+        } else {
+            if (!towersToApply.isEmpty()) {
+                inventoryManager.applyUpgradeTo(upgradeToApplyIndex, towersToApply);
+                upgradeToApplyIndex = -1;
+                updateUpgradeViewList();
+            }
+            isApplyingUpgrade = false;
+            towersToApply.clear();
+            moveTowerButton.setDisable(false);
+        }
     }
 
     @FXML
     private void onMoveClicked(){
-        movingTowers = true;
+        isMovingTowers = true;
         selectedInventoryItemIndex = -1;
         fromTowerIndex = -1;
+        useItemButton.setDisable(true);
     }
 
     @FXML
@@ -131,7 +176,8 @@ public class InventoryController {
                 inventoryManager.swapTowers(selectedInventoryItemIndex, fromTowerIndex);
                 displayNull();
             }
-            movingTowers = false;
+            isMovingTowers = false;
+            useItemButton.setDisable(false);
         } else {
             fromTowerIndex = selectedInventoryItemIndex;
         }
