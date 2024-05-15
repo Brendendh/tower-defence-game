@@ -29,6 +29,7 @@ public class GameGUIManager {
             scenes.put("Shop Screen", new Scene("Shop Screen", "ShopScreen.fxml", ShopScreenController.class.getConstructor(GameManager.class)));
             scenes.put("Round Selector", new Scene("Round Selector", "RoundSelectorScreen.fxml",RoundSelectorScreenController.class.getConstructor(GameManager.class)));
             scenes.put("Random Event", new Scene("Random Event","RandomEventScreen.fxml",RandomEventScreenController.class.getConstructor(GameManager.class)));
+            scenes.put("Loading Screen", new Scene("Loading Screen","LoadingScreen.fxml",LoadingScreenController.class.getConstructor(GameManager.class)));
         } catch (NoSuchMethodException e) {
             throw new RuntimeException(e);
         }
