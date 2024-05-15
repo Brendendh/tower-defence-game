@@ -27,7 +27,7 @@ public class GameManager {
 
     public GameManager(Consumer<GameManager> screenLauncher, Runnable clearPane){
         this.gameGUIManager = new GameGUIManager(screenLauncher, clearPane, this);
-        gameGUIManager.launchScreen("Random Event");
+        gameGUIManager.launchScreen("Loading Screen");
     }
 
     public GameManager(GameData gameData, InventoryManager inventoryManager){
