@@ -9,7 +9,7 @@ public class Upgrade extends Item implements Cloneable{
 
     public Upgrade(Effect effect, Rarity rarity, int buyingPrice, int maximumTargets){
         super(buyingPrice * rarity.getRarityStatMultiplier(), 5 * rarity.getRarityStatMultiplier(), rarity);
-        if (effect.getClass() == RepairTower.class){
+        if (effect.getClass() == RepairTower.class || effect.getClass() == CooldownReduction.class){
             this.maximumTargets = maximumTargets * rarity.getRarityStatMultiplier();
         }
         else{
@@ -26,9 +26,6 @@ public class Upgrade extends Item implements Cloneable{
     private void updateValues(Effect effect, Rarity rarity){
         if (effect.getClass() == ExpBoost.class){
             ((ExpBoost) effect).setBoostAmount(((ExpBoost) effect).getBoostAmount() * rarity.getRarityStatMultiplier());
-        }
-        if (effect.getClass() == CooldownReduction.class){
-            ((CooldownReduction) effect).setReductionAmount(((CooldownReduction) effect).getReductionAmount() * rarity.getRarityStatMultiplier());
         }
         if (effect.getClass() == ResourceAmountBoost.class){
             ((ResourceAmountBoost) effect).setBoostAmount(((ResourceAmountBoost) effect).getBoostAmount() * rarity.getRarityStatMultiplier());
