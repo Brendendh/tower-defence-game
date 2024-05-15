@@ -1,14 +1,19 @@
 package seng201.team8.models;
 
 /**
- * The model for the Cart objects. Used to create the Round class in the form of a list of carts.
+ * The model for the Cart objects.
+ * <p></p>
+ * Used as a part of Round where a list of carts is added and stored in the Round class object.
+ * <p></p>
  * Once a cart travels a certain amount of distance without being filled up completely, the
  * round is considered lost.
+ * @see Round
  */
 
 public class Cart {
     /**
      * An Integer value that determines the cart's capacity.
+     * <p></p>
      * The cart is considered filled once its amount reaches or exceeds the targetAmount.
      */
     private int targetAmount;
@@ -35,9 +40,12 @@ public class Cart {
     private int distance;
 
     /**
-     * The constructor for a cart.
+     * The constructor for a Cart object.
+     * <p></p>
+     * Takes in the number of resources needed to fill up the cart, the resource type that
+     * the cart accepts and the speed value of the cart
      * @param targetAmount the Integer number of resources needed to fill up the cart.
-     * @param resourceType the Resource type that the cart accepts
+     * @param resourceType the Resource Enum resource type that the cart accepts
      * @param speed the Integer value of how much the cart's distance increases per turn
      */
     public Cart(int targetAmount, Resource resourceType, int speed){
