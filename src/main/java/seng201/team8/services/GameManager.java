@@ -66,4 +66,7 @@ public class GameManager {
         this.gameData = new GameData();
     }
 
+    public void setInventoryManager(InventoryManager inventoryManager) {
+        this.inventoryManager = inventoryManager;
+    }
 }
