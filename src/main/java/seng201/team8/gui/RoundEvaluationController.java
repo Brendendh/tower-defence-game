@@ -27,7 +27,11 @@ public class RoundEvaluationController {
     }
 
     public void initialize() {
-        result = roundEvaluationService.evaluateRound();
+        try {
+            result = roundEvaluationService.evaluateRound();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         if(result){
             setupVictoryScreen();
         } else {

@@ -23,6 +23,7 @@ public class RoundEvaluationService {
         this.roundData = gameManager.getRound();
         this.resourcesProduced = createResourcesProduced(gameManager.getDefaultResources());
         this.carts = roundData.getCarts();
+        this.mainTowers = gameManager.getInventoryManager().getInventoryData().getMainTowers();
         Arrays.sort(carts, Comparator.comparing(Cart::getSpeed).reversed());
     }
 
@@ -35,9 +36,10 @@ public class RoundEvaluationService {
     }
 
     public boolean evaluateRound(){
-        while(didCartReach()) {
+        while(!didCartReach()) {
             counter += 1;
             produceResources();
+            System.out.println(resourcesProduced);
             fillCarts();
             if (areAllCartsFull()) {
                 return true;
@@ -49,8 +51,10 @@ public class RoundEvaluationService {
 
     private void produceResources(){
         for(Tower maintower:mainTowers){
-            if(counter % maintower.getTowerStats().getCooldown() == 0){
-                resourcesProduced.put(maintower.getTowerStats().getResourceType(), maintower.getTowerStats().getResourceAmount());
+            if(maintower != null) {
+                if ((counter % maintower.getTowerStats().getCooldown()) == 0) {
+                    resourcesProduced.put(maintower.getTowerStats().getResourceType(), resourcesProduced.get(maintower.getTowerStats().getResourceType()) + maintower.getTowerStats().getResourceAmount());
+                }
             }
         }
     }
@@ -70,7 +74,7 @@ public class RoundEvaluationService {
             resourcesProduced.put(cart.getResourceType(), 0);
         }
         else{
-            cart.setAmount(0);
+            cart.setAmount(cart.getTargetAmount());
             resourcesProduced.put(cart.getResourceType(), resourcesProduced.get(cart.getResourceType()) - cartAmountDifference);
         }
     }
