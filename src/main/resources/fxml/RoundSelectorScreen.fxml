@@ -31,6 +31,6 @@
             </Label>
          </children>
       </GridPane>
-      <Button fx:id="selectRoundButton" layoutX="521.0" layoutY="608.0" mnemonicParsing="false" onAction="#proceedToRoundLoadingScreen" prefHeight="80.0" prefWidth="237.0" text="Button" />
+      <Button fx:id="selectRoundButton" layoutX="521.0" layoutY="608.0" mnemonicParsing="false" onAction="#proceedToGameMenuScreen" prefHeight="80.0" prefWidth="237.0" text="Button" />
    </children>
 </AnchorPane>

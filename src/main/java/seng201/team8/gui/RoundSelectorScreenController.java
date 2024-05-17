@@ -4,6 +4,8 @@ package seng201.team8.gui;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
 import seng201.team8.models.*;
 import seng201.team8.services.GameManager;
 import seng201.team8.services.InventoryManager;
@@ -31,16 +33,31 @@ public class RoundSelectorScreenController {
     private List<Button> roundButtons;
     private Round[] possibleRounds;
 
+    private boolean roundNotChosen;
+
     @FXML
-    void proceedToRoundMenuScreen(ActionEvent event) {
-        gameManager.setRound(possibleRounds[chosenRoundIndex]);
-        gameManager.getGameGUIManager().launchScreen("Game Menu");
+    void proceedToGameMenuScreen(ActionEvent event) {
+        if (roundNotChosen){
+            errorPopUp("Please select a round first");
+        }
+        else{
+            gameManager.setRound(possibleRounds[chosenRoundIndex]);
+            gameManager.getGameGUIManager().launchScreen("Game Menu");
+        }
     }
 
     public RoundSelectorScreenController(GameManager gameManager){
+        roundNotChosen = true;
         this.gameManager = gameManager;
         this.roundSelectorService = new RoundSelectorService(this.gameManager);
         this.possibleRounds = this.roundSelectorService.getPossibleRounds();
+    }
+
+    private void errorPopUp(String errorMessage){
+        Dialog errorPane = new Dialog();
+        errorPane.setContentText(errorMessage);
+        errorPane.getDialogPane().getButtonTypes().addAll(ButtonType.CANCEL);
+        errorPane.show();
     }
 
     private ArrayList<Resource> calculateResourceRatio(Round round){
@@ -87,6 +104,7 @@ public class RoundSelectorScreenController {
             int finalI = i;
             updateButtonDisplay(roundButtons.get(i),possibleRounds[i], i + 1);
             roundButtons.get(i).setOnAction(event ->{
+                roundNotChosen = false;
                 chosenRoundIndex = finalI;
             });
         }
