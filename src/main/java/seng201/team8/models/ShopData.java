@@ -4,6 +4,14 @@ public class ShopData {
     private Tower[] towersSold;
     private Upgrade[] upgradesSold;
 
+    private int initializedRoundNumber;
+
+    public void setInitializedRoundNumber(int i){
+        this.initializedRoundNumber = i;
+    }
+    public int getInitializedRoundNumber(){
+        return initializedRoundNumber;
+    }
     public Tower[] getTowersSold() {
         return towersSold;
     }

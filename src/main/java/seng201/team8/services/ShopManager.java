@@ -21,7 +21,12 @@ public class ShopManager {
         defaultTowersToPick = gameManager.getDefaultTowers();
         defaultUpgrades = gameManager.getDefaultUpgrades();
         this.inventoryManager = this.gameManager.getInventoryManager();
-        this.shopData = new ShopData();
+        if (gameManager.getShopData() == null){
+            this.shopData = new ShopData();
+        }
+        else{
+            this.shopData = gameManager.getShopData();
+        }
         updateTowers();
         updateUpgrades();
     }
@@ -37,7 +42,7 @@ public class ShopManager {
         }
     }
 
-    private void updateTowers(){
+    public void updateTowers(){
         Tower[] towersToBeSold = new Tower[3];
         for (int i = 0; i < 3; i++){
             int randomTowerIndex = randomGenerator.nextInt(defaultTowersToPick.length);
@@ -47,7 +52,7 @@ public class ShopManager {
         shopData.setTowersSold(towersToBeSold);
     }
 
-    private void updateUpgrades(){
+    public void updateUpgrades(){
         Upgrade[] upgradesToBeSold = new Upgrade[3];
         for (int i = 0; i < 3; i++){
             int randomUpgradeIndex = randomGenerator.nextInt(defaultUpgrades.length);

@@ -9,6 +9,7 @@ public class GameManager {
     private InventoryManager inventoryManager;
     private GameData gameData;
     private Round round;
+    private ShopData shopData;
     private RarityData rarityData = new RarityData();
     private GameGUIManager gameGUIManager;
     final private Resource[] defaultResources = new Resource[]{Resource.CORN, Resource.WOOD, Resource.IRON};
@@ -34,7 +35,9 @@ public class GameManager {
         this.gameData = gameData;
         this.inventoryManager = inventoryManager;
     }
+    public ShopData getShopData(){return shopData;}
 
+    public void setShopData(ShopData shopData){this.shopData = shopData;}
     public Round getRound(){return round;}
 
     public void setRound(Round round){this.round = round;}
