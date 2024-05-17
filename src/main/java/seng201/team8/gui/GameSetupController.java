@@ -112,7 +112,7 @@ public class GameSetupController {
             }
         }
         gameManager.setInventoryManager(inventoryManager);
-        gameManager.getGameGUIManager().launchScreen("Game Menu");
+        gameManager.getGameGUIManager().launchScreen("Round Selector");
     }
     @FXML
     private void onAddTowerClicked() {
