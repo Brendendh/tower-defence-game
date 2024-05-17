@@ -21,14 +21,20 @@ public class ShopManager {
         defaultTowersToPick = gameManager.getDefaultTowers();
         defaultUpgrades = gameManager.getDefaultUpgrades();
         this.inventoryManager = this.gameManager.getInventoryManager();
-        if (gameManager.getShopData() == null){
-            this.shopData = new ShopData();
-        }
-        else{
+        if (gameManager.getShopData() != null){
             this.shopData = gameManager.getShopData();
         }
-        updateTowers();
-        updateUpgrades();
+        else{
+            this.shopData = new ShopData();
+            updateTowers();
+            updateUpgrades();
+        }
+        if (this.shopData.getInitializedRoundNumber() != gameManager.getGameData().getRound()){
+            updateTowers();
+            updateUpgrades();
+            this.shopData.setInitializedRoundNumber(gameManager.getGameData().getRound());
+        }
+        gameManager.setShopData(this.shopData);
     }
 
     public void refresh() throws NotEnoughCurrencyException {

@@ -263,12 +263,7 @@ public class ShopScreenController {
         //displays the player currencies
         updatePlayerCurrencyLabels();
         //creates new shopManager
-        shopManager = new ShopManager(gameManager);
-        if (shopManager.getShopData().getInitializedRoundNumber() != gameManager.getGameData().getRound()){
-            shopManager.updateTowers();
-            shopManager.updateUpgrades();
-            shopManager.getShopData().setInitializedRoundNumber(gameManager.getGameData().getRound());
-        }
+        shopManager = new ShopManager(this.gameManager);
         //update the shop display
         updateShopDisplay();
         //set the on action event of the shop buttons to change the selected shop item index
