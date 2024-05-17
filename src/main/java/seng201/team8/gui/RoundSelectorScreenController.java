@@ -32,9 +32,9 @@ public class RoundSelectorScreenController {
     private Round[] possibleRounds;
 
     @FXML
-    void proceedToRoundEvaluation(ActionEvent event) {
+    void proceedToRoundMenuScreen(ActionEvent event) {
         gameManager.setRound(possibleRounds[chosenRoundIndex]);
-        gameManager.getGameGUIManager().launchScreen("Shop Screen");
+        gameManager.getGameGUIManager().launchScreen("Game Menu");
     }
 
     public RoundSelectorScreenController(GameManager gameManager){
