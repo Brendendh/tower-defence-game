@@ -13,7 +13,9 @@ public class RoundEvaluationController {
 
     @FXML
     private Button nextButton;
+    @FXML
     private Label xpGainedLabel, pointsGainedLabel, moneyGainedLabel;
+    @FXML
     private Label resultLabel;
 
     private boolean result;
@@ -21,6 +23,10 @@ public class RoundEvaluationController {
     public RoundEvaluationController(GameManager gameManager) {
         this.gameManager = gameManager;
         roundEvaluationService = new RoundEvaluationService(gameManager);
+
+    }
+
+    public void initialize() {
         result = roundEvaluationService.evaluateRound();
         if(result){
             setupVictoryScreen();
@@ -54,7 +60,7 @@ public class RoundEvaluationController {
     private void onNextClicked(){
         if(result){
             gameManager.getGameData().setRound(gameManager.getGameData().getRound() + 1);
-            gameManager.getGameGUIManager().launchScreen("Game Menu");
+            gameManager.getGameGUIManager().launchScreen("Round Selector");
         } else {
             // gameManager.getGameData().launchScreen("Game Result");
         }
