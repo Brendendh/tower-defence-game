@@ -57,22 +57,6 @@ public class Cart {
     }
 
     /**
-     * Adds an Integer value to the cart's current resource amount
-     * @param amountToAdd An Integer amount to be added to the cart's current amount value
-     */
-    public void increaseAmount(int amountToAdd){
-        amount += amountToAdd;
-    }
-
-    /**
-     * Increases the cart's distance travelled by an integer amount
-     * @param distanceToAdd An Integer amount to be added to the cart's distance travelled
-     */
-    public void increaseDistance(int distanceToAdd){
-        distance += distanceToAdd;
-    }
-
-    /**
      * Returns the cart's target amount of resources
      * @return Integer
      */
