@@ -48,10 +48,10 @@ public class Tower extends Item implements Cloneable {
      * Takes in the name of the tower, the tower stats which contains the resource amount, resource type and cooldown,
      * buying price for the shop and rarity for different tiers of a certain tower.
      *
-     * @param name        the String for the towers name.
-     * @param towerStats  the TowerStats object for the tower attributes necessary for rounds.
-     * @param buyingPrice the Integer value of how much the tower costs in shops.
-     * @param rarity      the Rarity Enum rarity type that the tower is.
+     * @param name        the String for the towers name
+     * @param towerStats  the TowerStats object for the tower attributes necessary for rounds
+     * @param buyingPrice the Integer value of how much the tower costs in shops
+     * @param rarity      the Rarity Enum rarity type that the tower is
      */
     public Tower(String name, TowerStats towerStats, int buyingPrice, Rarity rarity) {
         super(buyingPrice * rarity.getRarityStatMultiplier(), 5 * rarity.getRarityStatMultiplier(), rarity);
