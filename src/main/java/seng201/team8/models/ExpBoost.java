@@ -4,11 +4,10 @@ import seng201.team8.services.TowerStatsManager;
 
 import java.util.ArrayList;
 /**
- * Increases the exp value of a Tower by a flat integer amount
+ * Increases the exp value of a {@link Tower} by a flat integer amount
  * <p></p>
- * One of the possible effects an Upgrade can have. The added exp value
- * scales based on Rarity.
- * @see Upgrade
+ * One of the possible effects an {@link Upgrade} can have. The added exp value
+ * scales based on {@link Rarity}.
  */
 public class ExpBoost implements Effect, Cloneable{
     /**
@@ -68,14 +67,14 @@ public class ExpBoost implements Effect, Cloneable{
 
     /**
      * Returns the boostAmount value
-     * @return the Integer value of exp to be added
+     * @return {@link ExpBoost#boostAmount}
      */
     public int getBoostAmount(){
         return boostAmount;
     }
 
     /**
-     * Sets the boostAmount value to the specified amount
+     * Sets the {@link ExpBoost#boostAmount} value to the specified amount
      * @param boostAmount the specified Integer value to set the boostAmount to
      */
     public void setBoostAmount(int boostAmount){

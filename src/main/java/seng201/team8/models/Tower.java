@@ -2,6 +2,8 @@ package seng201.team8.models;
 
 /**
  * The model for the Tower objects.
+ * <p>
+ * Extends the Item class as it is considered a type of Item
  * <p></p>
  * Used as a part of InventoryData where an array of towers is added and stored for rounds.
  * <p></p>
@@ -9,6 +11,7 @@ package seng201.team8.models;
  * every time the cooldown time ends before the carts reach the end of the track.
  *
  * @see InventoryData
+ * @see Item
  */
 
 public class Tower extends Item implements Cloneable {
@@ -45,13 +48,19 @@ public class Tower extends Item implements Cloneable {
     /**
      * The constructor for a Tower object.
      * <p></p>
-     * Takes in the name of the tower, the tower stats which contains the resource amount, resource type and cooldown,
+     * Takes in the name of the tower, the {@link TowerStats} (which contains the resource amount, resource type and cooldown),
      * buying price for the shop and rarity for different tiers of a certain tower.
-     *
-     * @param name        the String for the towers name
-     * @param towerStats  the TowerStats object for the tower attributes necessary for rounds
-     * @param buyingPrice the Integer value of how much the tower costs in shops
-     * @param rarity      the Rarity Enum rarity type that the tower is
+     * <p></p>
+     * The initial selling price is set based on the buying price of the tower.
+     * The value of the selling price will then increase further when the tower levels up.
+     * <p></p>
+     * Calls the {@link Item} super constructor to set the Tower's rarity, selling price and buying price based on the values
+     * taken in.
+     * @param name        the String for the towers name.
+     * @param towerStats  the TowerStats object for the tower attributes necessary for rounds.
+     * @param buyingPrice the Integer value of how much the tower costs in shops.
+     * @param rarity      the Rarity Enum rarity type that the tower is.
+     * @see Item
      */
     public Tower(String name, TowerStats towerStats, int buyingPrice, Rarity rarity) {
         super(buyingPrice * rarity.getRarityStatMultiplier(), 5 * rarity.getRarityStatMultiplier(), rarity);

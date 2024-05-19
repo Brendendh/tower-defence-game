@@ -1,8 +1,19 @@
 package seng201.team8.models;
 
 import java.util.ArrayList;
-
+/**
+ * Repairs a destroyed {@link Tower}.
+ * <p></p>
+ * One of the possible effects an {@link Upgrade} can have. The number of
+ * towers targetable scales based on {@link Rarity}.
+ */
 public class RepairTower implements Effect, Cloneable{
+    /**
+     * Repairs each tower in towers. If the tower is already
+     * repaired then it does nothing, but is still consumed.
+     * @param towers an ArrayList of Towers to apply the effect to
+     * @see Tower
+     */
 
     @Override
     public void affects(ArrayList<Tower> towers){
@@ -10,6 +21,10 @@ public class RepairTower implements Effect, Cloneable{
             tower.setBroken(false);
         }
     }
+    /**
+     * Creates and returns a deep copy of this effect.
+     * @return a deep copy of this effect
+     */
     @Override
     public RepairTower clone(){
         try{
@@ -20,10 +35,19 @@ public class RepairTower implements Effect, Cloneable{
         }
     }
 
+    /**
+     * Getter for the effect name
+     * @return The string "Repair Tower"
+     */
     @Override
     public String getEffectName(){
         return "Repair Tower";
     }
+
+    /**
+     * Getter for the string description of the effect
+     * @return The string "Repairs broken towers"
+     */
 
     public String toString(){
         return "Repairs broken towers";

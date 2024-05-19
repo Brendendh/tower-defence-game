@@ -58,7 +58,7 @@ public class Cart {
 
     /**
      * Returns the cart's target amount of resources
-     * @return Integer
+     * @return {@link Cart#targetAmount}
      */
     public int getTargetAmount() {
         return targetAmount;
@@ -66,7 +66,7 @@ public class Cart {
 
     /**
      * returns the Resource type of the cart
-     * @return Resource Enumerator
+     * @return {@link Cart#resourceType}
      */
     public Resource getResourceType() {
         return resourceType;
@@ -74,7 +74,7 @@ public class Cart {
 
     /**
      * returns the speed of the cart
-     * @return Integer
+     * @return {@link Cart#speed}
      */
     public int getSpeed() {
         return speed;
@@ -82,7 +82,7 @@ public class Cart {
 
     /**
      * returns the current distance of the cart
-     * @return Integer
+     * @return {@link Cart#distance}
      */
     public int getDistance() {
         return distance;
@@ -90,7 +90,7 @@ public class Cart {
 
     /**
      * returns the current resource amount of the cart
-     * @return Integer
+     * @return {@link Cart#amount}
      */
     public int getAmount() {
         return amount;
@@ -112,6 +112,13 @@ public class Cart {
         this.distance = distance;
     }
 
+    /**
+     * Returns the string representation of the cart.
+     * Used by GamePlayController to display the cart's information in the
+     * keyframes.
+     * @return {@link String}
+     * @see seng201.team8.gui.GamePlayController
+     */
     @Override
     public String toString() {
         return "S:" + getSpeed() + "  A:" + getAmount() + "  T:" + getTargetAmount();
