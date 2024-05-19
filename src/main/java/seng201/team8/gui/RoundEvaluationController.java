@@ -18,8 +18,6 @@ public class RoundEvaluationController {
     @FXML
     private Label resultLabel;
 
-    private boolean result;
-
     public RoundEvaluationController(GameManager gameManager) {
         this.gameManager = gameManager;
         roundEvaluationService = new RoundEvaluationService(gameManager);
@@ -57,7 +55,7 @@ public class RoundEvaluationController {
 
     @FXML
     private void onNextClicked(){
-        if(result){
+        if(gameManager.getGameWon()){
             gameManager.getGameData().setRound(gameManager.getGameData().getRound() + 1);
             gameManager.getGameGUIManager().launchScreen("Round Selector");
         } else {
