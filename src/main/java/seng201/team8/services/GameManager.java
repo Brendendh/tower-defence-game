@@ -11,6 +11,7 @@ public class GameManager {
     private Round round;
     private RarityData rarityData = new RarityData();
     private GameGUIManager gameGUIManager;
+    private boolean gameWon = false;
     final private Resource[] defaultResources = new Resource[]{Resource.CORN, Resource.WOOD, Resource.IRON};
     final private Tower[] defaultTowers = new Tower[]{
             new Tower("Corn Farm", new TowerStats(10, Resource.CORN, 1 ), 10, Rarity.COMMON),
@@ -68,5 +69,13 @@ public class GameManager {
 
     public void setInventoryManager(InventoryManager inventoryManager) {
         this.inventoryManager = inventoryManager;
+    }
+
+    public boolean getGameWon(){
+        return gameWon;
+    }
+
+    public void setGameWon(boolean gameWon) {
+        this.gameWon = gameWon;
     }
 }
