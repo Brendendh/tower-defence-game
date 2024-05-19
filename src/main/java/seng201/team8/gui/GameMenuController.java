@@ -16,7 +16,7 @@ public class GameMenuController {
 
     @FXML
     private void onNextClicked(){
-        gameManager.getGameGUIManager().launchScreen("Loading Screen");
+        gameManager.getGameGUIManager().launchScreen("Game Play");
     }
 
     @FXML

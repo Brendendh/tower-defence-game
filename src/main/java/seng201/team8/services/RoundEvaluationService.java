@@ -8,6 +8,7 @@ import seng201.team8.models.Tower;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.EnumMap;
+import java.util.HashMap;
 
 public class RoundEvaluationService {
 
@@ -39,7 +40,6 @@ public class RoundEvaluationService {
         while(!didCartReach()) {
             counter += 1;
             produceResources();
-            System.out.println(resourcesProduced);
             fillCarts();
             if (areAllCartsFull()) {
                 return true;
@@ -49,7 +49,7 @@ public class RoundEvaluationService {
         return false;
     }
 
-    private void produceResources(){
+    public void produceResources(){
         for(Tower maintower:mainTowers){
             if(maintower != null) {
                 if ((counter % maintower.getTowerStats().getCooldown()) == 0) {
@@ -59,7 +59,7 @@ public class RoundEvaluationService {
         }
     }
 
-    private void fillCarts(){
+    public void fillCarts(){
         for(Cart cart:carts){
             if(isCartNotFull(cart)){
                 fillCart(cart);
@@ -67,10 +67,10 @@ public class RoundEvaluationService {
         }
     }
 
-    private void fillCart(Cart cart){
+    public void fillCart(Cart cart){
         int cartAmountDifference = cart.getTargetAmount() - cart.getAmount();
         if(cartAmountDifference > resourcesProduced.get(cart.getResourceType())){
-            cart.setAmount(cart.getAmount() - resourcesProduced.get(cart.getResourceType()));
+            cart.setAmount(cart.getAmount() + resourcesProduced.get(cart.getResourceType()));
             resourcesProduced.put(cart.getResourceType(), 0);
         }
         else{
@@ -79,7 +79,7 @@ public class RoundEvaluationService {
         }
     }
 
-    private void advanceCarts(){
+    public void advanceCarts(){
         for(Cart cart:carts){
             if(isCartNotFull(cart)){
                 cart.setDistance(cart.getDistance() + cart.getSpeed());
@@ -91,7 +91,7 @@ public class RoundEvaluationService {
         return cart.getAmount() < cart.getTargetAmount();
     }
 
-    private boolean didCartReach(){
+    public boolean didCartReach(){
         for(Cart cart:carts){
             if(cart.getDistance() > roundData.getDistanceAllowed()){
                 return true;
@@ -100,7 +100,7 @@ public class RoundEvaluationService {
         return false;
     }
 
-    private boolean areAllCartsFull(){
+    public boolean areAllCartsFull(){
         for(Cart cart:carts){
             if(isCartNotFull(cart)){
                 return false;
@@ -109,5 +109,15 @@ public class RoundEvaluationService {
         return true;
     }
 
+    public Cart[] getCarts() {
+        return carts;
+    }
 
+    public EnumMap<Resource, Integer> getResourcesProduced() {
+        return resourcesProduced;
+    }
+
+    public void incrementCounter() {
+        counter += 1;
+    }
 }

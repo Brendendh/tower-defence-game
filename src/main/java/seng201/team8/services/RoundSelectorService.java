@@ -77,8 +77,8 @@ public class RoundSelectorService {
     }
     private int generateTargetAmount(Resource resource){
         int targetAmount;
-        int lowerBound = 0 + (currentRoundNumber*5);
-        int upperBound = 0 + (currentRoundNumber*5);
+        int lowerBound = 200 + (currentRoundNumber*5);
+        int upperBound = 210 + (currentRoundNumber*5);
         targetAmount = randomGenerator.nextInt(lowerBound/resource.getResourceValue(), (upperBound/resource.getResourceValue()) + 1);
         return targetAmount;
     }

@@ -111,4 +111,9 @@ public class Cart {
     public void setDistance(int distance) {
         this.distance = distance;
     }
+
+    @Override
+    public String toString() {
+        return "S:" + getSpeed() + "  A:" + getAmount() + "  T:" + getTargetAmount();
+    }
 }
