@@ -88,7 +88,7 @@ public class Item {
 
     /**
      * The getter for the item's buying price
-     * @return An Integer
+     * @return {@link Item#buyingPrice}
      */
     public int getBuyingPrice() {
         return buyingPrice;
@@ -96,7 +96,7 @@ public class Item {
 
     /**
      * The getter for the item's selling price
-     * @return An Integer
+     * @return {@link Item#sellingPrice}
      */
     public int getSellingPrice() {
         return sellingPrice;
@@ -104,7 +104,7 @@ public class Item {
 
     /**
      * The getter for the item's Rarity
-     * @return Rarity Enum
+     * @return {@link Item#rarity}
      */
     public Rarity getRarity(){ return rarity;}
 }

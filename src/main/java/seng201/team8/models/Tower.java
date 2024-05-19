@@ -63,6 +63,7 @@ public class Tower extends Item implements Cloneable {
      * @see Item
      */
     public Tower(String name, TowerStats towerStats, int buyingPrice, Rarity rarity) {
+        //Item constructor is called to set the tower's buying, selling price and rarity.
         super(buyingPrice * rarity.getRarityStatMultiplier(), 5 * rarity.getRarityStatMultiplier(), rarity);
         this.level = 0;
         this.experiencePoints = 0;
@@ -160,6 +161,12 @@ public class Tower extends Item implements Cloneable {
     public void setBroken(boolean isBroken) {
         this.isBroken = isBroken;
     }
+
+    /**
+     * Returns a deep copy of the tower.
+     * @return {@link Tower}
+     * @see Cloneable
+     */
 
     public Tower clone() {
         Tower clonedTower = null;

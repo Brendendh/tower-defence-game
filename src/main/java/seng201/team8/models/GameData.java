@@ -84,7 +84,7 @@ public class GameData {
 
     /**
      * Returns the player's current money count
-     * @return Integer
+     * @return {@link GameData#money}
      */
     public int getMoney() {
         return money;

@@ -17,7 +17,7 @@ public class ResourceAmountBoost implements Effect, Cloneable{
 
     /**
      * Constructor for the ResourceAmountBoost {@link Effect}
-     * @param boostAmount
+     * @param boostAmount An Integer value to set {@link ResourceAmountBoost#boostAmount} to
      */
     public ResourceAmountBoost(int boostAmount){
         this.boostAmount = boostAmount;
@@ -36,7 +36,8 @@ public class ResourceAmountBoost implements Effect, Cloneable{
 
     /**
      * Creates and returns a deep copy of this effect.
-     * @return a deep copy of this effect
+     * @return {@link ResourceAmountBoost}
+     * @see Cloneable
      */
     @Override
     public ResourceAmountBoost clone(){
@@ -58,7 +59,7 @@ public class ResourceAmountBoost implements Effect, Cloneable{
 
     /**
      * Sets the boost amount to the inputted Integer boostAmount
-     * @param boostAmount
+     * @param boostAmount An Integer value to set {@link ResourceAmountBoost#boostAmount} to
      */
     public void setBoostAmount(int boostAmount){this.boostAmount = boostAmount;}
 

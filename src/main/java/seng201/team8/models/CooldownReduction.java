@@ -43,7 +43,8 @@ public class CooldownReduction implements Effect, Cloneable{
 
     /**
      * Creates and returns a deep copy of this effect.
-     * @return a deep copy of this effect
+     * @return {@link CooldownReduction}
+     * @see Cloneable
      */
     @Override
     public CooldownReduction clone(){

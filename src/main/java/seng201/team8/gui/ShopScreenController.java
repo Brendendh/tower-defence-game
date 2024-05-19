@@ -235,6 +235,7 @@ public class ShopScreenController {
         itemsOnSale = new Item[6];
         //Displays the upgrades in the upgrade list view
         upgradesListView.setCellFactory(new UpgradeCellFactory());
+        //Makes the player only able to select one upgrade an a time
         upgradesListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         //sets the list view to update the selected upgrade index
         upgradesListView.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {

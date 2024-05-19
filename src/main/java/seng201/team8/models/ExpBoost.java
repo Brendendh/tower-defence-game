@@ -53,7 +53,8 @@ public class ExpBoost implements Effect, Cloneable{
 
     /**
      * Creates and returns a deep copy of this effect.
-     * @return a deep copy of this effect
+     * @return {@link ExpBoost}
+     * @see Cloneable
      */
     @Override
     public ExpBoost clone(){

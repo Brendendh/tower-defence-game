@@ -51,7 +51,7 @@ public class InventoryData {
 
     /**
      * Returns the array of reserve towers
-     * @return Array of size 5
+     * @return {@link InventoryData#reserveTowers}
      */
     public Tower[] getReserveTowers() {
         return reserveTowers;
@@ -59,7 +59,7 @@ public class InventoryData {
 
     /**
      * Returns the array of main towers
-     * @return Array of size 5
+     * @return {@link InventoryData#mainTowers}
      */
     public Tower[] getMainTowers() {
         return mainTowers;
@@ -67,7 +67,7 @@ public class InventoryData {
 
     /**
      * Returns the ArrayList of upgrades
-     * @return ArrayList containing upgrades
+     * @return {@link InventoryData#upgrades}
      */
     public ArrayList<Upgrade> getUpgrades() {
         return upgrades;

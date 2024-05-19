@@ -52,7 +52,7 @@ public enum Resource {
 
     /**
      * Getter for the resource's resourceValue
-     * @return an Integer
+     * @return {@link Resource#resourceValue}
      */
     public int getResourceValue(){
         return resourceValue;
