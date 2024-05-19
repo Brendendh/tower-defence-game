@@ -9,7 +9,7 @@ public class App {
 
     /**
      * Entry point which runs the JavaFX application.
-     * @param args program arguments from command line
+     * @param args String[]
      */
     public static void main(String[] args) {
         FXWindow.launchWrapper(args);
