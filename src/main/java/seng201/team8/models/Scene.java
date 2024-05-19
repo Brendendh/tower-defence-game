@@ -6,7 +6,7 @@ import java.lang.reflect.Constructor;
  * The model for the Scene objects.
  * <p></p>
  * Used as a part of GameGUIManager which stores the scenes in a HashMap and utilized for
- * launching into different scenes in the game.
+ * launching into different screens in the game.
  *
  * @see seng201.team8.services.GameGUIManager
  */
