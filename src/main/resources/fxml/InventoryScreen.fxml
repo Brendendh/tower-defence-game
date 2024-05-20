@@ -133,8 +133,8 @@
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints minHeight="10.0" percentHeight="45.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" percentHeight="45.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="411.0" minHeight="10.0" percentHeight="65.0" prefHeight="411.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="318.0" minHeight="10.0" percentHeight="25.0" prefHeight="237.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" percentHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
@@ -151,8 +151,11 @@
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
                   <Label text="Tower Name">
@@ -165,49 +168,74 @@
                         <Insets left="10.0" right="20.0" />
                      </GridPane.margin>
                   </TextField>
-                  <Label text="Resource Amount" GridPane.rowIndex="1">
+                  <Label text="Resource Amount" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets left="20.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label text="Cooldown" GridPane.rowIndex="2">
+                  <Label text="Cooldown" GridPane.rowIndex="3">
                      <GridPane.margin>
                         <Insets left="20.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label text="Resource Type" GridPane.rowIndex="3">
+                  <Label text="Resource Type" GridPane.rowIndex="4">
                      <GridPane.margin>
                         <Insets left="20.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="resourceAmountLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <Label fx:id="resourceAmountLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="cooldownLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <Label fx:id="cooldownLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <GridPane.margin>
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="resourceTypeLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                  <Label fx:id="resourceTypeLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Button fx:id="renameTowerButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onRenameTowerClicked" text="Rename Tower" GridPane.columnSpan="2" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Label text="Level" GridPane.rowIndex="5">
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label fx:id="levelLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label text="Experience Points" GridPane.rowIndex="6">
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label fx:id="expPointsLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="6">
                      <GridPane.margin>
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </Label>
                </children>
             </GridPane>
-            <ImageView fx:id="upgradeImageView" fitHeight="255.0" fitWidth="255.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+            <ImageView fx:id="upgradeImageView" fitHeight="175.0" fitWidth="175.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                <image>
                   <Image url="@../images/defaultTower.png" />
                </image>
             </ImageView>
-            <Button fx:id="useItemButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onUseItemClicked" text="Use Item" GridPane.rowIndex="2">
+            <Button fx:id="useItemButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onUseItemClicked" text="Use Item" wrapText="true" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                </GridPane.margin>
             </Button>
-            <Button fx:id="moveTowerButton" layoutX="25.0" layoutY="673.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onMoveClicked" text="Move Tower" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <Button fx:id="moveTowerButton" layoutX="25.0" layoutY="673.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onMoveClicked" text="Move Tower" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                </GridPane.margin>
@@ -227,7 +255,7 @@
                         <Insets left="20.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="upgradeNameLabel" text="Label" GridPane.columnIndex="1">
+                  <Label fx:id="upgradeNameLabel" text="Label" wrapText="true" GridPane.columnIndex="1">
                      <GridPane.margin>
                         <Insets left="10.0" />
                      </GridPane.margin>
@@ -237,7 +265,10 @@
                         <Insets left="20.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="upgradeDescription" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label fx:id="upgradeDescriptionLabel" text="Label" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin></Label>
                </children>
             </GridPane>
          </children>
