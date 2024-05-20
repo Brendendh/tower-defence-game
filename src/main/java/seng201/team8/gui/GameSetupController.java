@@ -44,13 +44,14 @@ public class GameSetupController {
     private int selectedTowerIndex = -1;
 
     private final Tower[] addedTowers = new Tower[3];
+    private List<Button> towerButtons;
 
     public void initialize() {
         initializeTowerButtons();
     }
 
     private void initializeTowerButtons(){
-        List<Button> towerButtons = List.of(tower1Button, tower2Button, tower3Button, tower4Button, tower5Button, selectedTower1Button, selectedTower2Button, selectedTower3Button);
+        this.towerButtons = List.of(tower1Button, tower2Button, tower3Button, tower4Button, tower5Button, selectedTower1Button, selectedTower2Button, selectedTower3Button);
 
         for (int i = 0; i < towerButtons.size(); i++) {
             int finalI = i;
@@ -179,6 +180,7 @@ public class GameSetupController {
                 Tower tempTower = gameManager.getDefaultTowers()[selectedTowerIndex].clone();
                 tempTower.setName(towerNameTextField.getText());
                 addedTowers[i] = tempTower;
+                towerButtons.get(i+5).setText(towerNameTextField.getText());
                 return;
             }
         }
@@ -201,6 +203,7 @@ public class GameSetupController {
     private void onRemoveTowerClicked() {
         if (selectedTowerIndex >= 5) {
             addedTowers[selectedTowerIndex-5] = null;
+            towerButtons.get(selectedTowerIndex).setText("");
             displayNull();
         } else {
             errorPopUp("You can not remove a default tower");
