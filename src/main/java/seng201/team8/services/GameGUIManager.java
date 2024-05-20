@@ -29,7 +29,6 @@ public class GameGUIManager {
             scenes.put("Shop Screen", new Scene("Shop Screen", "ShopScreen.fxml", ShopScreenController.class.getConstructor(GameManager.class)));
             scenes.put("Round Selector", new Scene("Round Selector", "RoundSelectorScreen.fxml",RoundSelectorScreenController.class.getConstructor(GameManager.class)));
             scenes.put("Random Event", new Scene("Random Event","RandomEventScreen.fxml",RandomEventScreenController.class.getConstructor(GameManager.class)));
-            scenes.put("Loading Screen", new Scene("Loading Screen","LoadingScreen.fxml",LoadingScreenController.class.getConstructor(GameManager.class)));
             scenes.put("Inventory Screen", new Scene("Inventory Screen", "InventoryScreen.fxml", InventoryController.class.getConstructor(GameManager.class)));
             scenes.put("Round Evaluation", new Scene("Round Evaluation", "RoundEvaluationScreen.fxml", RoundEvaluationController.class.getConstructor(GameManager.class)));
             scenes.put("Game Play", new Scene("Game Play", "GamePlayScreen.fxml", GamePlayController.class.getConstructor(GameManager.class)));
