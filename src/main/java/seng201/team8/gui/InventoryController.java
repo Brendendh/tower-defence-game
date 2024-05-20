@@ -65,9 +65,14 @@ public class InventoryController {
     }
 
     public void initialize(){
-        // TODO: Remove Duplicated Code
         initializeDefaultValues();
         renameTowerButton.setDisable(true);
+        initializeUpgradeListView();
+        updateUpgradeViewList();
+        initializeTowerButtons();
+    }
+
+    private void initializeUpgradeListView() {
         upgradesListView.setCellFactory(new UpgradeCellFactory());
         upgradesListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         upgradesListView.getSelectionModel().selectedIndexProperty().addListener((observableValue, oldIndex, newIndex) -> {
@@ -78,9 +83,6 @@ public class InventoryController {
                 updateUpgradeStats(inventoryManager.getInventoryData().getUpgrades().get(selectedInventoryUpgradeIndex));
             }
         });
-        updateUpgradeViewList();
-        
-        initializeTowerButtons();
     }
 
     private void initializeDefaultValues() {
@@ -194,6 +196,8 @@ public class InventoryController {
             }
             if(towersToApply.isEmpty()){
                 useItemButton.setText("Click here to cancel or select " + maximumTargets + " more towers");
+            } else if(towersToApply.size() == maximumTargets) {
+                useItemButton.setText("Click here to apply");
             } else {
                 useItemButton.setText("Click here to apply or select " + (maximumTargets - towersToApply.size()) + " more towers");
             }
