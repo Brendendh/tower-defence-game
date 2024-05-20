@@ -8,19 +8,16 @@ import seng201.team8.models.Tower;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.EnumMap;
-import java.util.HashMap;
 
 public class RoundEvaluationService {
 
-    private Round roundData;
-    private GameManager gameManager;
-    private Tower[] mainTowers;
-    private EnumMap<Resource, Integer> resourcesProduced;
+    private final Round roundData;
+    private final Tower[] mainTowers;
+    private final EnumMap<Resource, Integer> resourcesProduced;
     private int counter = 0;
-    private Cart[] carts;
+    private final Cart[] carts;
 
     public RoundEvaluationService(GameManager gameManager){
-        this.gameManager = gameManager;
         this.roundData = gameManager.getRound();
         this.resourcesProduced = createResourcesProduced(gameManager.getDefaultResources());
         this.carts = roundData.getCarts();
@@ -29,24 +26,11 @@ public class RoundEvaluationService {
     }
 
     private EnumMap<Resource, Integer> createResourcesProduced(Resource[] resources){
-        EnumMap<Resource, Integer> tempResourcesProduced = new EnumMap<Resource, Integer>(Resource.class);
+        EnumMap<Resource, Integer> tempResourcesProduced = new EnumMap<>(Resource.class);
         for(Resource resource:resources){
             tempResourcesProduced.put(resource, 0);
         }
         return tempResourcesProduced;
-    }
-
-    public boolean evaluateRound(){
-        while(!didCartReach()) {
-            counter += 1;
-            produceResources();
-            fillCarts();
-            if (areAllCartsFull()) {
-                return true;
-            }
-            advanceCarts();
-        }
-        return false;
     }
 
     public void produceResources(){
