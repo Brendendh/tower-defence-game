@@ -52,8 +52,9 @@ public class RoundEvaluationService {
     public void produceResources(){
         for(Tower maintower:mainTowers){
             if(maintower != null) {
-                if ((counter % maintower.getTowerStats().getCooldown()) == 0) {
-                    resourcesProduced.put(maintower.getTowerStats().getResourceType(), resourcesProduced.get(maintower.getTowerStats().getResourceType()) + maintower.getTowerStats().getResourceAmount());
+                if ((counter % maintower.getTowerStats().getCooldown()) == 0 || !maintower.isBroken()) {
+                    resourcesProduced.put(maintower.getTowerStats().getResourceType(),
+                            resourcesProduced.get(maintower.getTowerStats().getResourceType()) + maintower.getTowerStats().getResourceAmount());
                 }
             }
         }
