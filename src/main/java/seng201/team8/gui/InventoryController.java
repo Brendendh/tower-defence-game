@@ -178,6 +178,11 @@ public class InventoryController {
         expPointsLabel.setText("None");
     }
 
+    private void displayUpgradeNull(){
+        resourceAmountLabel.setText("None");
+        resourceTypeLabel.setText("None");
+    }
+
     private void applyUpgrade(Tower tower){
         if(tower != null) {
             if (towersToApply.contains(tower)) {
@@ -208,6 +213,8 @@ public class InventoryController {
                 inventoryManager.applyUpgradeTo(upgradeToApplyIndex, towersToApply);
                 upgradeToApplyIndex = -1;
                 updateUpgradeViewList();
+                displayUpgradeNull();
+                selectedInventoryUpgradeIndex = -1;
             }
             isApplyingUpgrade = false;
             towersToApply.clear();
