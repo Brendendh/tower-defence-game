@@ -50,7 +50,7 @@ public class RandomEventScreenController {
             "The Lord of the territory is pleased with the output of your facility. They have decided to support your efforts by upgrading one of your tower's level by one",
             "Over the night a drunk wizard wandered into your facility and in their drunkenness, accidentally casted a spell on your towers. One of your tower's resource type has been randomized",
             "An earthquake has struck your towers, and although your towers were built by the capable hands of civil engineers graduated from UC, it could not withstand the might of nature. One of your towers is now destroyed",
-            "Due to the success of today's work, your workers received a huge boost in morale and spent all night at the local tavern. This newfound morale made your workers more efficient when working. One of your tower's exp value has increased"};
+            "Due to the success of today's work, your workers received a huge boost in morale and spent all night at the local tavern. This newfound morale made your workers more efficient when working. One of your tower's resource produced per production has increased"};
     private final String[] imageURL = new String[]{
             "src/main/resources/images/randomEventsImages/generousDonation.jpg",
             "src/main/resources/images/randomEventsImages/drunkWizard.jpg",

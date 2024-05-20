@@ -27,13 +27,13 @@ public class RandomEventsService {
             levelUpRandomTower();
         }
         if (i == 1){
-            destroyRandomTower();
+            switchRssOfRandomTower();
         }
         if (i == 2){
-            boostRandomTower();
+            destroyRandomTower();
         }
         if (i == 3){
-            switchRssOfRandomTower();
+            boostRandomTower();
         }
     }
     public void levelUpRandomTower(){
