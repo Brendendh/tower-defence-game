@@ -5,12 +5,47 @@ import seng201.team8.models.*;
 import java.util.HashMap;
 import java.util.function.Consumer;
 
+/**
+ *The service class for GameManager. Created during the start
+ * of the game by the FxWrapper.
+ * <p></p>
+ * Serves as an information hub that keeps tracks and stores every information
+ * of the game. Such as the current game state, player information, and the default
+ * model {@link Item}s. Frequently accessed by other services in order to obtain the
+ * information they require to perform their respective logic operations.
+ * <p></p>
+ * @see seng201.team8.gui.FXWrapper
+ */
 public class GameManager {
+    /**
+     * The {@link InventoryManager} that handles
+     * the inventory of the player.
+     */
     private InventoryManager inventoryManager;
+    /**
+     * The {@link GameData} of the current game.
+     */
     private GameData gameData;
+    /**
+     * The {@link Round} that stores the information
+     * of the current Round.
+     */
     private Round round;
+    /**
+     * The {@link ShopData} of the shop throughout the
+     * duration of the game
+     */
     private ShopData shopData;
+    /**
+     * The {@link RarityData} for the game. Used to calculate
+     * item {@link Rarity} probabilities and accessed by other
+     * services via the GameManager.
+     * @see Item
+     */
     private RarityData rarityData = new RarityData();
+    /**
+     *
+     */
     private GameGUIManager gameGUIManager;
     private boolean gameWon = false;
     final private Resource[] defaultResources = new Resource[]{Resource.CORN, Resource.WOOD, Resource.IRON};

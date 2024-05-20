@@ -7,6 +7,9 @@ package seng201.team8.models;
  * the probability of an {@link Item}'s generated rarity at different stages of the game.
  * Accessed by the ShopManager when generating the items sold in the shop.
  * @see seng201.team8.services.ShopManager
+ * @see RarityData#earlyGameRarity
+ * @see RarityData#midGameRarity
+ * @see RarityData#lateGameRarity
  */
 
 public class RarityData {

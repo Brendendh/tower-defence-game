@@ -255,6 +255,13 @@ public class ShopScreenController {
             towerButtons.get(i).setOnAction(event ->{
                 selectedInventoryItemType = "Tower";
                 selectedInventoryItemIndex = finalI;
+                towerButtons.forEach(button -> {
+                    if (button == towerButtons.get(finalI)){
+                        button.setStyle("-fx-background-color: #b3b3b3; -fx-background-radius: 5;");
+                    } else {
+                        button.setStyle("");
+                    }
+                });
             });
         }
         //displays the player's main towers
@@ -272,6 +279,14 @@ public class ShopScreenController {
             int finalI = i;
             shopButtons.get(i).setOnAction(event -> {
                 selectedShopItemIndex = finalI;
+                shopButtons.forEach(button -> {
+                    if (button == shopButtons.get(finalI)){
+                        button.setStyle("-fx-background-color: #b3b3b3; -fx-background-radius: 5;");
+                    } else {
+                        button.setStyle("");
+                    }
+                });
+
             });
             //make the towers sold show detailed descriptions when mouse hovers over button
             if (finalI < 3){
