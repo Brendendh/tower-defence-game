@@ -169,7 +169,7 @@ public class GameSetupController {
             errorPopUp("Select 3 towers.");
         } else {
             gameData.setName(playerNameTextField.getText());
-            InventoryManager inventoryManager = createInventoryManager();
+            InventoryManager inventoryManager = gameSetupService.createInventoryManager(gameSetupService.createInventory(addedTowers));
             gameManager.setGameData(gameData);
             gameManager.setInventoryManager(inventoryManager);
             gameManager.getGameGUIManager().launchScreen("Round Selector");
@@ -183,19 +183,6 @@ public class GameSetupController {
             }
         }
         return true;
-    }
-
-    private InventoryManager createInventoryManager(){
-        InventoryData inventoryData = new InventoryData();
-        InventoryManager inventoryManager = new InventoryManager(inventoryData);
-        for(Tower tower : addedTowers){
-            try {
-                inventoryManager.moveToMain(tower);
-            } catch (NoSpaceException e) {
-                throw new RuntimeException(e);
-            }
-        }
-        return inventoryManager;
     }
 
     @FXML
