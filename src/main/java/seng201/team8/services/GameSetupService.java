@@ -14,14 +14,14 @@ public class GameSetupService {
         gameData = new GameData();
     }
 
-    public boolean setName(String name){
-        Pattern pattern = Pattern.compile("\\w{3,15}");
+    public void setName(String name){
+        gameData.setName(name);
+    }
+
+    public boolean checkName(String name){
+        Pattern pattern = Pattern.compile("\\w[\\w ]{2,14}");
         Matcher matcher = pattern.matcher(name);
-        if(matcher.matches()){
-            gameData.setName(name);
-            return true;
-        }
-        return false;
+        return matcher.matches();
     }
 
     public void setMoney(int money){

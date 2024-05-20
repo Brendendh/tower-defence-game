@@ -17,25 +17,25 @@ public class GameSetupServiceTest {
 
     @Test
     public void testSetNameShort(){
-        boolean result = gameSetupService.setName("My");
+        boolean result = gameSetupService.checkName("My");
         assertFalse(result);
     }
 
     @Test
     public void testSetNameMedium(){
-        boolean result = gameSetupService.setName("BobRoss");
+        boolean result = gameSetupService.checkName("BobRoss");
         assertTrue(result);
     }
 
     @Test
     public void testSetNameLong(){
-        boolean result = gameSetupService.setName("MyNameIsTOOLONGGG");
+        boolean result = gameSetupService.checkName("MyNameIsTOOLONGGG");
         assertFalse(result);
     }
 
     @Test
     public void testSetNameSpecial(){
-        boolean result = gameSetupService.setName("#ILOVECODING#");
+        boolean result = gameSetupService.checkName("#ILOVECODING#");
         assertFalse(result);
     }
 
