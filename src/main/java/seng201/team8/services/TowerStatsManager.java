@@ -6,17 +6,16 @@ import java.util.ArrayList;
 
 public class TowerStatsManager {
     private InventoryData inventoryData;
-    private int[] levelRequirements;
+                                                //lvl:0, 1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11,  12,  13,  14,  15(max)
+    private static final int[] levelRequirements = new int[]{-1, 5, 10, 15, 20, 25, 35, 45, 55, 65, 75, 90, 105, 120, 135, 150};
     private ArrayList<Tower> playerTowers;
 
     public TowerStatsManager(){
-        this.levelRequirements = new int[]{-1, 5, 10, 15, 20, 25, 35, 45, 55, 65, 75, 90, 105, 120, 135, 150};
     }
     public TowerStatsManager(InventoryData inventoryData){
         this.inventoryData = inventoryData;
-                                     //lvl:0, 1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11,  12,  13,  14,  15(max)
-        this.levelRequirements = new int[]{-1, 5, 10, 15, 20, 25, 35, 45, 55, 65, 75, 90, 105, 120, 135, 150};
-        this.playerTowers = new ArrayList<Tower>();
+
+        this.playerTowers = new ArrayList<>();
         findPlayerTower(this.playerTowers);
     }
 
@@ -54,7 +53,7 @@ public class TowerStatsManager {
         }
     }
 
-    public int[] getLevelRequirements(){
+    public static int[] getLevelRequirements(){
         return levelRequirements;
     }
 }
