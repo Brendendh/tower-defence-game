@@ -5,9 +5,11 @@ import seng201.team8.models.InventoryData;
 import seng201.team8.models.Tower;
 
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class InventoryManager {
-    private InventoryData inventoryData;
+    private final InventoryData inventoryData;
 
     public InventoryManager(){
         inventoryData = new InventoryData();
@@ -80,5 +82,11 @@ public class InventoryManager {
         }
 
         throw new NoSpaceException("There are no spaces left in the main towers");
+    }
+
+    public boolean checkName(String name){
+        Pattern pattern = Pattern.compile("\\w[\\w ]{2,14}");
+        Matcher matcher = pattern.matcher(name);
+        return matcher.matches();
     }
 }
