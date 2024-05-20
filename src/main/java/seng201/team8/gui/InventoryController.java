@@ -44,7 +44,8 @@ public class InventoryController {
     private ListView<Upgrade> upgradesListView;
 
     private String selectedInventoryItemType;
-    private int selectedInventoryItemIndex;
+    private int selectedInventoryUpgradeIndex;
+    private int selectedInventoryTowerIndex;
 
     private List<Button> towerButtons;
     private List<Button> utilityButtons;
@@ -64,20 +65,24 @@ public class InventoryController {
     }
 
     public void initialize(){
-        // TODO: Remove Duplicated Code
         initializeDefaultValues();
         renameTowerButton.setDisable(true);
+        initializeUpgradeListView();
+        updateUpgradeViewList();
+        initializeTowerButtons();
+    }
+
+    private void initializeUpgradeListView() {
         upgradesListView.setCellFactory(new UpgradeCellFactory());
         upgradesListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         upgradesListView.getSelectionModel().selectedIndexProperty().addListener((observableValue, oldIndex, newIndex) -> {
-            selectedInventoryItemIndex = newIndex.intValue();
+            selectedInventoryUpgradeIndex = newIndex.intValue();
             selectedInventoryItemType = "Upgrade";
             renameTowerButton.setDisable(true);
-            updateUpgradeStats(inventoryManager.getInventoryData().getUpgrades().get(selectedInventoryItemIndex));
+            if(!isApplyingUpgrade){
+                updateUpgradeStats(inventoryManager.getInventoryData().getUpgrades().get(selectedInventoryUpgradeIndex));
+            }
         });
-        updateUpgradeViewList();
-        
-        initializeTowerButtons();
     }
 
     private void initializeDefaultValues() {
@@ -85,6 +90,8 @@ public class InventoryController {
         isApplyingUpgrade = false;
         fromTowerIndex = -1;
         upgradeToApplyIndex = -1;
+        selectedInventoryTowerIndex = -1;
+        selectedInventoryUpgradeIndex = -1;
         maximumTargets = -1;
         towersToApply = new ArrayList<>();
         utilityButtons = List.of(useItemButton, moveTowerButton, renameTowerButton);
@@ -139,7 +146,7 @@ public class InventoryController {
             int finalI = i;
             towerButtons.get(i).setOnAction(event ->{
                 selectedInventoryItemType = "Tower";
-                selectedInventoryItemIndex = finalI;
+                selectedInventoryTowerIndex = finalI;
                 towerButtonClicked(finalI);
             });
         }
@@ -173,6 +180,11 @@ public class InventoryController {
         expPointsLabel.setText("None");
     }
 
+    private void displayUpgradeNull(){
+        upgradeNameLabel.setText("None");
+        upgradeDescriptionLabel.setText("None");
+    }
+
     private void applyUpgrade(Tower tower){
         if(tower != null) {
             if (towersToApply.contains(tower)) {
@@ -183,7 +195,9 @@ public class InventoryController {
                 }
             }
             if(towersToApply.isEmpty()){
-                useItemButton.setText("Click here to cancel or select" + maximumTargets + " more towers");
+                useItemButton.setText("Click here to cancel or select " + maximumTargets + " more towers");
+            } else if(towersToApply.size() == maximumTargets) {
+                useItemButton.setText("Click here to apply");
             } else {
                 useItemButton.setText("Click here to apply or select " + (maximumTargets - towersToApply.size()) + " more towers");
             }
@@ -192,10 +206,10 @@ public class InventoryController {
 
     @FXML
     private void onUseItemClicked() {
-        if (Objects.equals(selectedInventoryItemType, "Upgrade") && !isApplyingUpgrade) {
+        if (selectedInventoryUpgradeIndex != -1 && !isApplyingUpgrade) {
             isApplyingUpgrade = true;
             disableOtherButtons(useItemButton);
-            upgradeToApplyIndex = selectedInventoryItemIndex;
+            upgradeToApplyIndex = selectedInventoryUpgradeIndex;
             maximumTargets = inventoryManager.getInventoryData().getUpgrades().get(upgradeToApplyIndex).getMaximumTargets();
             useItemButton.setText("Click here to cancel or select" + maximumTargets + " more towers");
         } else {
@@ -203,6 +217,8 @@ public class InventoryController {
                 inventoryManager.applyUpgradeTo(upgradeToApplyIndex, towersToApply);
                 upgradeToApplyIndex = -1;
                 updateUpgradeViewList();
+                displayUpgradeNull();
+                selectedInventoryUpgradeIndex = -1;
             }
             isApplyingUpgrade = false;
             towersToApply.clear();
@@ -224,12 +240,12 @@ public class InventoryController {
             enableAllButtons();
         }
         fromTowerIndex = -1;
-        selectedInventoryItemIndex = -1;
+        selectedInventoryTowerIndex = -1;
     }
 
     @FXML
     private void onRenameTowerClicked() {
-        if (selectedInventoryItemIndex != -1 && Objects.equals(selectedInventoryItemType, "Tower")) {
+        if (selectedInventoryTowerIndex != -1 && Objects.equals(selectedInventoryItemType, "Tower")) {
             if(inventoryManager.checkName(towerNameTextField.getText())){
                 renameTower();
             } else {
@@ -241,10 +257,10 @@ public class InventoryController {
     }
 
     private void renameTower() {
-        if(selectedInventoryItemIndex >= 5){
-            inventoryManager.getInventoryData().getReserveTowers()[selectedInventoryItemIndex-5].setName(towerNameTextField.getText());
+        if(selectedInventoryTowerIndex >= 5){
+            inventoryManager.getInventoryData().getReserveTowers()[selectedInventoryTowerIndex-5].setName(towerNameTextField.getText());
         } else {
-            inventoryManager.getInventoryData().getMainTowers()[selectedInventoryItemIndex].setName(towerNameTextField.getText());
+            inventoryManager.getInventoryData().getMainTowers()[selectedInventoryTowerIndex].setName(towerNameTextField.getText());
         }
     }
 
@@ -262,15 +278,15 @@ public class InventoryController {
 
     private void moveTower(){
         if (fromTowerIndex != -1) {
-            if (selectedInventoryItemIndex != fromTowerIndex) {
-                inventoryManager.swapTowers(selectedInventoryItemIndex, fromTowerIndex);
+            if (selectedInventoryTowerIndex != fromTowerIndex) {
+                inventoryManager.swapTowers(selectedInventoryTowerIndex, fromTowerIndex);
                 displayTowerNull();
             }
             isMovingTowers = false;
             enableAllButtons();
             moveTowerButton.setText("Move Tower");
         } else {
-            fromTowerIndex = selectedInventoryItemIndex;
+            fromTowerIndex = selectedInventoryTowerIndex;
             moveTowerButton.setText("Click here to cancel or select a tower to move to");
         }
     }
