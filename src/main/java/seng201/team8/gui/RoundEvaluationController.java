@@ -4,12 +4,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import seng201.team8.services.GameManager;
-import seng201.team8.services.RoundEvaluationService;
+import seng201.team8.services.RoundEndService;
 
 public class RoundEvaluationController {
 
-    private GameManager gameManager;
-    private RoundEvaluationService roundEvaluationService;
+    private final GameManager gameManager;
+    private final RoundEndService roundEndService;
 
     @FXML
     private Button nextButton;
@@ -20,8 +20,7 @@ public class RoundEvaluationController {
 
     public RoundEvaluationController(GameManager gameManager) {
         this.gameManager = gameManager;
-        roundEvaluationService = new RoundEvaluationService(gameManager);
-
+        roundEndService = new RoundEndService();
     }
 
     public void initialize() {
@@ -57,7 +56,11 @@ public class RoundEvaluationController {
     private void onNextClicked(){
         if(gameManager.getGameWon()){
             gameManager.getGameData().setRound(gameManager.getGameData().getRound() + 1);
-            gameManager.getGameGUIManager().launchScreen("Round Selector");
+            if(roundEndService.isRandomEventPlayed()) {
+                gameManager.getGameGUIManager().launchScreen("Random Event");
+            } else{
+                gameManager.getGameGUIManager().launchScreen("Round Selector");
+            }
         } else {
             // gameManager.getGameData().launchScreen("Game Result");
         }
