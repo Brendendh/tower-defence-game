@@ -15,13 +15,8 @@ import java.util.List;
 import java.util.Objects;
 
 public class InventoryController {
-    InventoryManager inventoryManager;
-    GameManager gameManager;
-    public InventoryController(GameManager gameManager){
-        this.gameManager = gameManager;
-        inventoryManager = gameManager.getInventoryManager();
-        inventoryManager.getInventoryData().getUpgrades().add(new Upgrade(new ResourceAmountBoost(10), Rarity.COMMON, 10, 2));
-    }
+    final InventoryManager inventoryManager;
+    final GameManager gameManager;
 
     @FXML
     private Button mainTower1Button, mainTower2Button, mainTower3Button, mainTower4Button, mainTower5Button;
@@ -57,26 +52,43 @@ public class InventoryController {
     private ArrayList<Tower> towersToApply;
     private int maximumTargets;
 
+    public InventoryController(GameManager gameManager){
+        this.gameManager = gameManager;
+        inventoryManager = gameManager.getInventoryManager();
+        inventoryManager.getInventoryData().getUpgrades().add(new Upgrade(new ResourceAmountBoost(10), Rarity.COMMON, 10, 2));
+    }
+
     public void initialize(){
         // TODO: Remove Duplicated Code
+        initializeDefaultValues();
+        upgradesListView.setCellFactory(new UpgradeCellFactory());
+        upgradesListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        upgradesListView.getSelectionModel().selectedIndexProperty().addListener((observableValue, oldIndex, newIndex) -> {
+            selectedInventoryItemIndex = newIndex.intValue();
+            selectedInventoryItemType = "Upgrade";
+        });
+        updateUpgradeViewList();
+        
+        initializeTowerButtons();
+    }
+
+    private void initializeDefaultValues() {
         isMovingTowers = false;
         isApplyingUpgrade = false;
         fromTowerIndex = -1;
         upgradeToApplyIndex = -1;
         maximumTargets = -1;
         towersToApply = new ArrayList<>();
-        upgradesListView.setCellFactory(new UpgradeCellFactory());
-        upgradesListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-        upgradesListView.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
-            @Override
-            public void changed(ObservableValue<? extends Number> observableValue, Number oldIndex, Number newIndex) {
-                selectedInventoryItemIndex = newIndex.intValue();
-                selectedInventoryItemType = "Upgrade";
-            }
-        });
-        updateUpgradeViewList();
-        towerButtons = List.of(mainTower1Button, mainTower2Button, mainTower3Button, mainTower4Button, mainTower5Button, reserveTower1Button, reserveTower2Button, reserveTower3Button, reserveTower4Button, reserveTower5Button);
-        initializeTowerButtons();
+        towerButtons = List.of(mainTower1Button,
+                mainTower2Button,
+                mainTower3Button,
+                mainTower4Button,
+                mainTower5Button,
+                reserveTower1Button,
+                reserveTower2Button,
+                reserveTower3Button,
+                reserveTower4Button,
+                reserveTower5Button);
     }
 
     private void updateUpgradeViewList(){
@@ -100,22 +112,26 @@ public class InventoryController {
             towerButtons.get(i).setOnAction(event ->{
                 selectedInventoryItemType = "Tower";
                 selectedInventoryItemIndex = finalI;
-                if(isMovingTowers) {
-                    moveTower();
-                } else if(isApplyingUpgrade){
-                    if (finalI >= 5) {
-                        applyUpgrade(inventoryManager.getInventoryData().getReserveTowers()[finalI - 5]);
-                    } else {
-                        applyUpgrade(inventoryManager.getInventoryData().getMainTowers()[finalI]);
-                    }
-                }else {
-                    if (finalI >= 5) {
-                        updateStats(inventoryManager.getInventoryData().getReserveTowers()[finalI - 5]);
-                    } else {
-                        updateStats(inventoryManager.getInventoryData().getMainTowers()[finalI]);
-                    }
-                }
+                towerButtonClicked(finalI);
             });
+        }
+    }
+
+    private void towerButtonClicked(int finalI) {
+        if(isMovingTowers) {
+            moveTower();
+        } else if(isApplyingUpgrade){
+            if (finalI >= 5) {
+                applyUpgrade(inventoryManager.getInventoryData().getReserveTowers()[finalI - 5]);
+            } else {
+                applyUpgrade(inventoryManager.getInventoryData().getMainTowers()[finalI]);
+            }
+        }else {
+            if (finalI >= 5) {
+                updateStats(inventoryManager.getInventoryData().getReserveTowers()[finalI - 5]);
+            } else {
+                updateStats(inventoryManager.getInventoryData().getMainTowers()[finalI]);
+            }
         }
     }
 
@@ -141,16 +157,20 @@ public class InventoryController {
     @FXML
     private void onUseItemClicked() {
         if (Objects.equals(selectedInventoryItemType, "Upgrade") && !isApplyingUpgrade) {
+
             isApplyingUpgrade = true;
             moveTowerButton.setDisable(true);
             upgradeToApplyIndex = selectedInventoryItemIndex;
             maximumTargets = inventoryManager.getInventoryData().getUpgrades().get(upgradeToApplyIndex).getMaximumTargets();
+
         } else {
+
             if (!towersToApply.isEmpty()) {
                 inventoryManager.applyUpgradeTo(upgradeToApplyIndex, towersToApply);
                 upgradeToApplyIndex = -1;
                 updateUpgradeViewList();
             }
+
             isApplyingUpgrade = false;
             towersToApply.clear();
             moveTowerButton.setDisable(false);
