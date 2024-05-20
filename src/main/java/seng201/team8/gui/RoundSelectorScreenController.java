@@ -23,10 +23,6 @@ public class RoundSelectorScreenController {
 
     @FXML
     private Button roundOption3;
-
-    @FXML
-    private Button selectRoundButton;
-
     private int chosenRoundIndex;
     private GameManager gameManager;
     private RoundSelectorService roundSelectorService;
@@ -42,6 +38,7 @@ public class RoundSelectorScreenController {
         }
         else{
             gameManager.setRound(possibleRounds[chosenRoundIndex]);
+            gameManager.setRoundResourceDisplay(calculateResourceRatio(possibleRounds[chosenRoundIndex]));
             gameManager.getGameGUIManager().launchScreen("Game Menu");
         }
     }
@@ -100,14 +97,24 @@ public class RoundSelectorScreenController {
 
     public void initialize(){
         roundButtons = List.of(roundOption1,roundOption2,roundOption3);
+        updateRoundButtonsOnActionEvent();
+    }
+
+    private void updateRoundButtonsOnActionEvent() {
         for (int i = 0; i < roundButtons.size(); i++){
             int finalI = i;
             updateButtonDisplay(roundButtons.get(i),possibleRounds[i], i + 1);
             roundButtons.get(i).setOnAction(event ->{
                 roundNotChosen = false;
                 chosenRoundIndex = finalI;
+                roundButtons.forEach(button -> {
+                    if (button == roundButtons.get(finalI)) {
+                        button.setStyle("-fx-background-color: #b3b3b3; -fx-background-radius: 5;");
+                    } else {
+                        button.setStyle("");
+                    }
+                });
             });
         }
     }
-
 }

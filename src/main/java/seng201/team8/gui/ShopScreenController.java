@@ -158,7 +158,8 @@ public class ShopScreenController {
         Tower[] mainTowers = inventoryManager.getInventoryData().getMainTowers();
         for (int i = 0; i < mainTowers.length; i++){
             if (mainTowers[i] != null){
-                towerButtons.get(i).setText(mainTowers[i].getName() +"\n" + "Lvl: "+ mainTowers[i].getLevel());
+                towerButtons.get(i).setText(mainTowers[i].getName() +"\n" + "Lvl: "+ mainTowers[i].getLevel()+"" +
+                        "\n"+ "Sells for: "+mainTowers[i].getSellingPrice()+"money");
                 towerButtons.get(i).setTextFill(mainTowers[i].getRarity().getRarityTextColor());
             }
             else{
@@ -172,7 +173,8 @@ public class ShopScreenController {
         Tower[] reserveTowers = inventoryManager.getInventoryData().getReserveTowers();
         for (int i = 0; i < reserveTowers.length; i++){
             if (reserveTowers[i] != null){
-                towerButtons.get(i+5).setText(reserveTowers[i].getName()+ "\n" + "Lvl: " + reserveTowers[i].getLevel());
+                towerButtons.get(i+5).setText(reserveTowers[i].getName()+ "\n" + "Lvl: " + reserveTowers[i].getLevel()+
+                        "\n"+ "Sells for: "+reserveTowers[i].getSellingPrice()+"money");
                 towerButtons.get(i+5).setTextFill(reserveTowers[i].getRarity().getRarityTextColor());
             }
             else{
@@ -230,6 +232,48 @@ public class ShopScreenController {
         }
     }
 
+    private void updateTowerButtonsOnActionEvent() {
+        for (int i = 0; i < towerButtons.size(); i++){
+            int finalI = i;
+            towerButtons.get(i).setOnAction(event ->{
+                selectedInventoryItemType = "Tower";
+                selectedInventoryItemIndex = finalI;
+                towerButtons.forEach(button -> {
+                    if (button == towerButtons.get(finalI)){
+                        button.setStyle("-fx-background-color: #b3b3b3; -fx-background-radius: 5;");
+                    } else {
+                        button.setStyle("");
+                    }
+                });
+            });
+        }
+    }
+
+    private void updateShopButtonOnActionEvent() {
+        for (int i = 0; i < shopButtons.size(); i++) {
+            int finalI = i;
+            shopButtons.get(i).setOnAction(event -> {
+                selectedShopItemIndex = finalI;
+                shopButtons.forEach(button -> {
+                    if (button == shopButtons.get(finalI)){
+                        button.setStyle("-fx-background-color: #b3b3b3; -fx-background-radius: 5;");
+                    } else {
+                        button.setStyle("");
+                    }
+                });
+            });
+            //make the towers sold show detailed descriptions when mouse hovers over button
+            if (finalI < 3){
+                shopButtons.get(i).setOnMouseEntered(event -> {
+                    setTowerDetailedDescription(shopButtons.get(finalI), (Tower) itemsOnSale[finalI]);
+                });
+                shopButtons.get(i).setOnMouseExited(event -> {
+                    setTowerSimpleDescription(shopButtons.get(finalI), (Tower) itemsOnSale[finalI]);
+                });
+            }
+        }
+    }
+
 
     public void initialize(){
         itemsOnSale = new Item[6];
@@ -250,20 +294,7 @@ public class ShopScreenController {
         shopButtons = List.of(firstTowerOnSale,secondTowerOnSale,thirdTowerOnSale,firstUpgradeOnSale,secondUpgradeOnSale,thirdUpgradeOnSale);
         towerButtons = List.of(mainTower1,mainTower2,mainTower3,mainTower4,mainTower5,reserveTower1,reserveTower2,reserveTower3,reserveTower4,reserveTower5);
         //sets the on action event of the inventory tower buttons to change the selected inven item type and index
-        for (int i = 0; i < towerButtons.size(); i++){
-            int finalI = i;
-            towerButtons.get(i).setOnAction(event ->{
-                selectedInventoryItemType = "Tower";
-                selectedInventoryItemIndex = finalI;
-                towerButtons.forEach(button -> {
-                    if (button == towerButtons.get(finalI)){
-                        button.setStyle("-fx-background-color: #b3b3b3; -fx-background-radius: 5;");
-                    } else {
-                        button.setStyle("");
-                    }
-                });
-            });
-        }
+        updateTowerButtonsOnActionEvent();
         //displays the player's main towers
         updateMainTowers();
         //displays the player's reserve towers
@@ -274,31 +305,8 @@ public class ShopScreenController {
         shopManager = new ShopManager(this.gameManager);
         //update the shop display
         updateShopDisplay();
-        //set the on action event of the shop buttons to change the selected shop item index
-        for (int i = 0; i < shopButtons.size(); i++) {
-            int finalI = i;
-            shopButtons.get(i).setOnAction(event -> {
-                selectedShopItemIndex = finalI;
-                shopButtons.forEach(button -> {
-                    if (button == shopButtons.get(finalI)){
-                        button.setStyle("-fx-background-color: #b3b3b3; -fx-background-radius: 5;");
-                    } else {
-                        button.setStyle("");
-                    }
-                });
-
-            });
-            //make the towers sold show detailed descriptions when mouse hovers over button
-            if (finalI < 3){
-                shopButtons.get(i).setOnMouseEntered(event -> {
-                    setTowerDetailedDescription(shopButtons.get(finalI), (Tower) itemsOnSale[finalI]);
-                });
-                shopButtons.get(i).setOnMouseExited(event -> {
-                    setTowerSimpleDescription(shopButtons.get(finalI), (Tower) itemsOnSale[finalI]);
-                });
-            }
-        }
+        //set the on action event of the shop buttons
+        updateShopButtonOnActionEvent();
 
     }
-
 }

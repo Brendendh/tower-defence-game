@@ -2,6 +2,7 @@ package seng201.team8.services;
 
 import seng201.team8.models.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.function.Consumer;
 
@@ -47,6 +48,16 @@ public class GameManager {
      *
      */
     private GameGUIManager gameGUIManager;
+    /**
+     * An ArrayList that represents the proportions of the current
+     * round's {@link Cart} {@link Resource} types.
+     * <p></p>
+     * Used by the GameMenuController to display a simplified representation
+     * of the upcoming round's cart resource types to the player.
+     * <p></p>
+     * @see seng201.team8.gui.GameMenuController
+     */
+    private ArrayList<Resource> roundResourceDisplay;
     private boolean gameWon = false;
     final private Resource[] defaultResources = new Resource[]{Resource.CORN, Resource.WOOD, Resource.IRON};
     final private Tower[] defaultTowers = new Tower[]{
@@ -102,7 +113,7 @@ public class GameManager {
     }
 
     public void setGameData(GameData gameData){
-        this.gameData = new GameData();
+        this.gameData = gameData;
     }
 
     public void setInventoryManager(InventoryManager inventoryManager) {
@@ -116,4 +127,8 @@ public class GameManager {
     public void setGameWon(boolean gameWon) {
         this.gameWon = gameWon;
     }
+    public void setRoundResourceDisplay(ArrayList<Resource> resourceDisplay){
+        this.roundResourceDisplay = resourceDisplay;
+    }
+    public ArrayList<Resource> getRoundResourceDisplay(){return roundResourceDisplay;}
 }

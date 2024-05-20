@@ -79,7 +79,7 @@ public class GameData {
      * @return {@link GameData#playerName}
      */
     public String getPlayerName() {
-        return playerName;
+        return this.playerName;
     }
 
     /**
