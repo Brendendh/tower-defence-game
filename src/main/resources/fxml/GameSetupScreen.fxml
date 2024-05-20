@@ -76,17 +76,17 @@
                         <Insets left="20.0" />
                      </GridPane.margin>
                   </Label>
-                  <Button fx:id="setTargetRoundTo5" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#on5RoundsClicked" text="5" GridPane.columnIndex="1">
+                  <Button fx:id="round5Button" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#on5RoundsClicked" text="5" GridPane.columnIndex="1">
                      <GridPane.margin>
                         <Insets bottom="15.0" left="20.0" right="20.0" top="15.0" />
                      </GridPane.margin>
                   </Button>
-                  <Button fx:id="setTargetRoundTo10" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#on10RoundsClicked" text="10" GridPane.columnIndex="2">
+                  <Button fx:id="round10Button" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#on10RoundsClicked" text="10" GridPane.columnIndex="2">
                      <GridPane.margin>
                         <Insets bottom="15.0" left="20.0" right="20.0" top="15.0" />
                      </GridPane.margin>
                   </Button>
-                  <Button fx:id="setTargetRoundTo15" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#on15RoundsClicked" text="15" GridPane.columnIndex="3">
+                  <Button fx:id="round15Button" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#on15RoundsClicked" text="15" GridPane.columnIndex="3">
                      <GridPane.margin>
                         <Insets bottom="15.0" left="20.0" right="20.0" top="15.0" />
                      </GridPane.margin>
@@ -125,7 +125,14 @@
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </GridPane.margin>
             </Button>
-            <Label text="Label" GridPane.rowIndex="3" />
+            <Label fx:id="difficultyLabel" prefHeight="79.0" prefWidth="382.0" text="Please select a difficulty" wrapText="true" GridPane.rowIndex="3">
+               <GridPane.margin>
+                  <Insets bottom="400.0" />
+               </GridPane.margin>
+               <padding>
+                  <Insets left="18.0" />
+               </padding>
+            </Label>
          </children>
       </GridPane>
       <GridPane GridPane.columnIndex="1">

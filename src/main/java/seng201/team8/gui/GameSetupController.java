@@ -16,12 +16,20 @@ import java.util.List;
 public class GameSetupController {
     private final GameManager gameManager;
     private final GameSetupService gameSetupService;
+    private boolean selectedRound;
+    private boolean selectedDifficulty;
     public GameSetupController(GameManager gameManager) {
         this.gameManager = gameManager;
         this.gameSetupService = new GameSetupService();
         this.gameSetupService.setTargetRound(-1);
         this.gameSetupService.setDifficulty(-1);
     }
+    @FXML
+    private Label difficultyLabel;
+    @FXML
+    private Button normalDifficultyButton, hardDifficultyButton;
+    @FXML
+    private Button round5Button, round10Button,round15Button;
 
     @FXML
     private Button tower1Button, tower2Button, tower3Button, tower4Button, tower5Button;
@@ -45,6 +53,7 @@ public class GameSetupController {
 
     private final Tower[] addedTowers = new Tower[3];
     private List<Button> towerButtons;
+    private List<Button> roundButtons;
 
     public void initialize() {
         initializeTowerButtons();
@@ -52,7 +61,7 @@ public class GameSetupController {
 
     private void initializeTowerButtons(){
         this.towerButtons = List.of(tower1Button, tower2Button, tower3Button, tower4Button, tower5Button, selectedTower1Button, selectedTower2Button, selectedTower3Button);
-
+        this.roundButtons = List.of(round5Button,round10Button,round15Button);
         for (int i = 0; i < towerButtons.size(); i++) {
             int finalI = i;
             towerButtons.get(i).setOnAction(event -> {
@@ -107,17 +116,45 @@ public class GameSetupController {
         errorPane.getDialogPane().getButtonTypes().addAll(ButtonType.OK);
         errorPane.show();
     }
-
+    private void updateRoundButton(Button roundButton){ //yes I know this is stupid ugly code, but we are in a hurry
+        for (Button button : roundButtons){
+            if (button == roundButton){
+                button.setStyle("-fx-background-color: #b3b3b3; -fx-background-radius: 5;");
+            }
+            else{
+                button.setStyle("");
+            }
+        }
+    }
     @FXML
-    private void on5RoundsClicked() {gameSetupService.setTargetRound(5);}
+    private void on5RoundsClicked() {
+        gameSetupService.setTargetRound(5);
+        updateRoundButton(round5Button);
+    }
     @FXML
-    private void on10RoundsClicked() {gameSetupService.setTargetRound(10);}
+    private void on10RoundsClicked() {
+        gameSetupService.setTargetRound(10);
+        updateRoundButton(round10Button);
+    }
     @FXML
-    private void on15RoundsClicked() {gameSetupService.setTargetRound(15);}
+    private void on15RoundsClicked() {
+        gameSetupService.setTargetRound(15);
+        updateRoundButton(round15Button);
+    }
     @FXML
-    private void onNormalClicked() {gameSetupService.setDifficulty(0);}
+    private void onNormalClicked() {
+        gameSetupService.setDifficulty(0);
+        normalDifficultyButton.setStyle("-fx-background-color: #b3b3b3; -fx-background-radius: 5;");
+        hardDifficultyButton.setStyle("");
+        difficultyLabel.setText("Normal difficulty: Carts resource type is based on player's tower's resource type");
+    }
     @FXML
-    private void onHardClicked() {gameSetupService.setDifficulty(1);}
+    private void onHardClicked() {
+        gameSetupService.setDifficulty(1);
+        hardDifficultyButton.setStyle("-fx-background-color: #b3b3b3; -fx-background-radius: 5;");
+        normalDifficultyButton.setStyle("");
+        difficultyLabel.setText("Hard difficulty: Half of the carts resource type is based on player's tower's resource type");
+    }
     @FXML
     private void onStartGameClicked() {
         GameData gameData = gameSetupService.getGameData();
