@@ -45,8 +45,8 @@ public class GamePlayController {
         gamePane = new GridPane();
         gamePane.getStyleClass().add("grid");
         gamePane.prefWidthProperty().bind(mainLayout.widthProperty());
-        cartLabels = new ArrayList<Label>();
-        resourceLabels = new ArrayList<Label>();
+        cartLabels = new ArrayList<>();
+        resourceLabels = new ArrayList<>();
 
         createTableConstraints();
         createGameTable();
