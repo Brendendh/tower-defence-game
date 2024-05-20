@@ -7,7 +7,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 import seng201.team8.exceptions.NoSpaceException;
 import seng201.team8.exceptions.NotEnoughCurrencyException;
 import seng201.team8.exceptions.SellingNullError;
