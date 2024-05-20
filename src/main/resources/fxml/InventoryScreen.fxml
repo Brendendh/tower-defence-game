@@ -235,7 +235,7 @@
                   <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                </GridPane.margin>
             </Button>
-            <Button fx:id="moveTowerButton" layoutX="25.0" layoutY="673.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onMoveClicked" text="Move Tower" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <Button fx:id="moveTowerButton" layoutX="25.0" layoutY="673.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onMoveClicked" text="Move Tower" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                </GridPane.margin>

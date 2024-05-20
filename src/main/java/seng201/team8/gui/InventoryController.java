@@ -135,7 +135,6 @@ public class InventoryController {
             towerButtons.get(i).setOnAction(event ->{
                 selectedInventoryItemType = "Tower";
                 selectedInventoryItemIndex = finalI;
-                renameTowerButton.setDisable(false);
                 towerButtonClicked(finalI);
             });
         }
@@ -212,6 +211,7 @@ public class InventoryController {
         if(!isMovingTowers) {
             isMovingTowers = true;
             disableOtherButtons(moveTowerButton);
+            displayTowerNull();
             moveTowerButton.setText("Click here to cancel or select a tower to move");
         } else {
             moveTowerButton.setText("Move Tower");
