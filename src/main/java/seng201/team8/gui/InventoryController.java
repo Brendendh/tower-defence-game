@@ -179,8 +179,8 @@ public class InventoryController {
     }
 
     private void displayUpgradeNull(){
-        resourceAmountLabel.setText("None");
-        resourceTypeLabel.setText("None");
+        upgradeNameLabel.setText("None");
+        upgradeDescriptionLabel.setText("None");
     }
 
     private void applyUpgrade(Tower tower){
