@@ -20,7 +20,7 @@ public class RoundEndController {
 
     public RoundEndController(GameManager gameManager) {
         this.gameManager = gameManager;
-        roundEndService = new RoundEndService();
+        roundEndService = new RoundEndService(gameManager);
     }
 
     public void initialize() {
@@ -29,9 +29,11 @@ public class RoundEndController {
         } else {
             setupDefeatScreen();
         }
-
-        setupStats();
-        applyStats();
+        int money = roundEndService.getMoney();
+        int points = roundEndService.getPoints();
+        int expPoints = roundEndService.getExpPoints();
+        displayStats(money, points, expPoints);
+        applyStats(money, points, expPoints);
     }
 
     private void setupVictoryScreen(){
@@ -44,12 +46,16 @@ public class RoundEndController {
         nextButton.setText("Show Results");
     }
 
-    private void setupStats(){
+    private void displayStats(int money, int points, int expPoints){
         // Change values on the screen
+        xpGainedLabel.setText(String.valueOf(expPoints));
+        pointsGainedLabel.setText(String.valueOf(points));
+        moneyGainedLabel.setText(String.valueOf(money));
     }
 
-    private void applyStats(){
+    private void applyStats(int money, int points, int expPoints){
         // Add stats to player and towers
+        roundEndService.applyStats(money, points, expPoints);
     }
 
     @FXML
