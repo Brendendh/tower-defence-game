@@ -1,5 +1,6 @@
 package seng201.team8.gui;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import seng201.team8.services.GameManager;
 
@@ -15,5 +16,7 @@ public class GameStartController {
     }
 
     @FXML
-    private void onExitClicked(){}
+    private void onExitClicked(){
+        Platform.exit();
+    }
 }
