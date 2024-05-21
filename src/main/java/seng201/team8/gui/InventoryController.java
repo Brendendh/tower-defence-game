@@ -70,6 +70,8 @@ public class InventoryController {
         initializeUpgradeListView();
         updateUpgradeViewList();
         initializeTowerButtons();
+        displayTowerNull();
+        displayUpgradeNull();
     }
 
     private void initializeUpgradeListView() {
