@@ -16,7 +16,7 @@ import seng201.team8.services.RoundEvaluationService;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GamePlayController {
+public class RoundEvaluationController {
 
     @FXML
     private GridPane mainLayout;
@@ -35,7 +35,7 @@ public class GamePlayController {
     private int numCols;
     private int numRows;
 
-    public GamePlayController(GameManager gameManager) {
+    public RoundEvaluationController(GameManager gameManager) {
         this.gameManager = gameManager;
         round = gameManager.getRound();
         this.roundEvaluationService = new RoundEvaluationService(gameManager);

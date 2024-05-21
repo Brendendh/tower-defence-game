@@ -10,7 +10,7 @@ import java.util.ArrayList;
 /**
  * The Controller for the Game Menu Screen.
  * <p></p>
- * Used to set the buttons functionality to navigate to the Shop Screen, Inventory Screen or Game Play Screen.
+ * Used to set the buttons functionality to navigate to the Shop Screen, Inventory Screen or Round Evaluation Screen.
  */
 
 public class GameMenuController {
@@ -56,11 +56,11 @@ public class GameMenuController {
     }
 
     /**
-     * launches to the Game Play Screen. Linked to a Button onAction event.
+     * launches to the Round Evaluation Screen. Linked to a Button onAction event.
      */
     @FXML
     private void onNextClicked(){
-        gameManager.getGameGUIManager().launchScreen("Game Play");
+        gameManager.getGameGUIManager().launchScreen("Round Evaluation");
     }
 
     /**

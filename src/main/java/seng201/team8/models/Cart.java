@@ -1,5 +1,7 @@
 package seng201.team8.models;
 
+import seng201.team8.gui.RoundEvaluationController;
+
 /**
  * The model for the Cart objects.
  * <p></p>
@@ -114,10 +116,10 @@ public class Cart {
 
     /**
      * Returns the string representation of the cart.
-     * Used by GamePlayController to display the cart's information in the
+     * Used by RoundEvaluationController to display the cart's information in the
      * keyframes.
      * @return {@link String}
-     * @see seng201.team8.gui.GamePlayController
+     * @see seng201.team8.gui.RoundEvaluationController
      */
     @Override
     public String toString() {
