@@ -125,13 +125,13 @@
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </GridPane.margin>
             </Button>
-            <Label fx:id="difficultyLabel" prefHeight="79.0" prefWidth="382.0" text="Please select a difficulty" wrapText="true" GridPane.rowIndex="3">
+            <Label fx:id="difficultyLabel" alignment="TOP_LEFT" prefHeight="427.0" prefWidth="352.0" text="Please select a difficulty" wrapText="true" GridPane.hgrow="NEVER" GridPane.rowIndex="3" GridPane.vgrow="NEVER">
                <GridPane.margin>
-                  <Insets bottom="400.0" />
-               </GridPane.margin>
-               <padding>
                   <Insets left="18.0" />
-               </padding>
+               </GridPane.margin>
+               <font>
+                  <Font name="Arial" size="12.0" />
+               </font>
             </Label>
          </children>
       </GridPane>
