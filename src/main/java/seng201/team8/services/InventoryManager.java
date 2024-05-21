@@ -3,6 +3,7 @@ package seng201.team8.services;
 import seng201.team8.exceptions.NoSpaceException;
 import seng201.team8.models.InventoryData;
 import seng201.team8.models.Tower;
+import seng201.team8.models.Upgrade;
 
 import java.util.ArrayList;
 import java.util.regex.Matcher;
@@ -88,5 +89,9 @@ public class InventoryManager {
         Pattern pattern = Pattern.compile("\\w[\\w ]{2,14}");
         Matcher matcher = pattern.matcher(name);
         return matcher.matches();
+    }
+
+    public void addUpgrade(Upgrade upgrade){
+        inventoryData.getUpgrades().add(upgrade);
     }
 }

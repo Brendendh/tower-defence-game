@@ -118,7 +118,7 @@ public class ShopManager {
             throw new NotEnoughCurrencyException("Not enough points to purchase upgrade!");
         }
         else{
-            inventoryManager.getInventoryData().getUpgrades().add(upgradeBought);
+            inventoryManager.addUpgrade(upgradeBought);
             gameManager.getGameData().setPoint(gameManager.getGameData().getPoint() - upgradeBought.getBuyingPrice());
             shopData.getUpgradesSold()[upgradeIndex] = null;
         }

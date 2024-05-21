@@ -28,7 +28,7 @@ public class ShopManagerTest {
         GameData gameData = new GameData();
         gameManager = new GameManager(gameData,inventoryManager);
         shopManager = new ShopManager(gameManager);
-        gameManager.getInventoryManager().getInventoryData().getUpgrades().add(new Upgrade(new ResourceAmountBoost(10),Rarity.COMMON,10,3));
+        gameManager.getInventoryManager().addUpgrade(new Upgrade(new ResourceAmountBoost(10),Rarity.COMMON,10,3));
     }
 
     @Test
