@@ -9,6 +9,8 @@ import seng201.team8.services.InventoryManager;
 import seng201.team8.services.ShopManager;
 
 public class ShopManagerGenerateTest {
+    //Just a test to make sure the shop items generated do not interfere with the default values in GameManager
+    //also makes sure the clone implementation for items is working.
     public static void main(String[] args) {
         Tower[] testTowers = new Tower[]{new Tower("Starting Tower", new TowerStats(10, Resource.CORN, 10), 10, Rarity.COMMON), null, null, null, null};
         InventoryData inventoryData = new InventoryData();
