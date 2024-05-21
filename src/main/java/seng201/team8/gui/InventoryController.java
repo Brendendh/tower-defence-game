@@ -26,7 +26,7 @@ public class InventoryController {
     private Button reserveTower1Button, reserveTower2Button, reserveTower3Button, reserveTower4Button, reserveTower5Button;
 
     @FXML
-    private Label resourceAmountLabel, cooldownLabel, resourceTypeLabel, levelLabel, expPointsLabel;
+    private Label rarityLabel,resourceAmountLabel, cooldownLabel, resourceTypeLabel, levelLabel, expPointsLabel;
 
     @FXML
     private Button useItemButton, moveTowerButton, renameTowerButton;
@@ -113,6 +113,7 @@ public class InventoryController {
 
     private void updateTowerStats(Tower tower) {
         if (tower != null) {
+            rarityLabel.setText(String.valueOf(tower.getRarity()));
             resourceAmountLabel.setText(String.valueOf(tower.getTowerStats().getResourceAmount()));
             cooldownLabel.setText(String.valueOf(tower.getTowerStats().getCooldown()));
             resourceTypeLabel.setText(String.valueOf(tower.getTowerStats().getResourceType()));
@@ -172,6 +173,7 @@ public class InventoryController {
     }
 
     private void displayTowerNull() {
+        rarityLabel.setText("None");
         resourceAmountLabel.setText("None");
         cooldownLabel.setText("None");
         resourceTypeLabel.setText("None");
