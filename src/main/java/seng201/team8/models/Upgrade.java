@@ -1,6 +1,6 @@
 package seng201.team8.models;
 
-import javax.print.DocFlavor;
+import seng201.team8.models.effects.*;
 
 /**
  * The model for Upgrade class
@@ -31,7 +31,7 @@ public class Upgrade extends Item implements Cloneable{
      * For some effect types, this can scale with the Upgrade's
      * {@link Rarity}
      */
-    private int maximumTargets;
+    private final int maximumTargets;
 
     /**
      * The constructor for an Upgrade

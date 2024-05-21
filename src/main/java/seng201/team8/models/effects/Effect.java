@@ -1,4 +1,6 @@
-package seng201.team8.models;
+package seng201.team8.models.effects;
+
+import seng201.team8.models.*;
 
 import java.util.ArrayList;
 

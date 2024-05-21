@@ -1,9 +1,12 @@
 package seng201.team8.services;
 
 import seng201.team8.models.*;
+import seng201.team8.models.effects.CooldownReduction;
+import seng201.team8.models.effects.ExpBoost;
+import seng201.team8.models.effects.RepairTower;
+import seng201.team8.models.effects.ResourceAmountBoost;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.function.Consumer;
 
 /**
@@ -43,7 +46,7 @@ public class GameManager {
      * services via the GameManager.
      * @see Item
      */
-    private RarityData rarityData = new RarityData();
+    private final RarityData rarityData = new RarityData();
     /**
      *
      */

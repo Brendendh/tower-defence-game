@@ -1,5 +1,7 @@
 package seng201.team8.models;
 
+import seng201.team8.models.effects.Effect;
+
 /**
  * A model for the different items in the game such as Tower and Upgrade
  * <p></p>
@@ -48,7 +50,7 @@ public class Item {
      * The rarity of the item.
      * @see Rarity
      */
-    private Rarity rarity;
+    private final Rarity rarity;
 
     /**
      * The constructor for an Item.

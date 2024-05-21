@@ -6,11 +6,10 @@ import seng201.team8.exceptions.BuyingNullError;
 import seng201.team8.exceptions.NoSpaceException;
 import seng201.team8.exceptions.NotEnoughCurrencyException;
 import seng201.team8.models.*;
+import seng201.team8.models.effects.ResourceAmountBoost;
 import seng201.team8.services.GameManager;
 import seng201.team8.services.InventoryManager;
 import seng201.team8.services.ShopManager;
-
-import java.util.Dictionary;
 
 import static org.junit.jupiter.api.Assertions.*;
 

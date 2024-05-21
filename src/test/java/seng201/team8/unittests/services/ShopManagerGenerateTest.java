@@ -1,6 +1,7 @@
 package seng201.team8.unittests.services;
 
 import seng201.team8.models.*;
+import seng201.team8.models.effects.ResourceAmountBoost;
 import seng201.team8.services.GameManager;
 import seng201.team8.services.InventoryManager;
 import seng201.team8.services.ShopManager;
