@@ -246,7 +246,7 @@ public class ShopScreenController {
     }
 
     private void setStyleToRarity(Button button, Rarity rarity){
-        button.setStyle("-fx-border-color: "+rarity.getRarityTextColor()+"; -fx-border-radius: 5");
+        button.setStyle("-fx-border-color: "+rarity.getRarityTextColor()+"; -fx-border-radius: 5; -fx-border-width: 5");
     }
 
     private void updateTowerButtonsOnActionEvent() {
@@ -277,6 +277,9 @@ public class ShopScreenController {
                 });
                 shopButtons.get(i).setOnMouseExited(event -> {
                     setTowerSimpleDescription(shopButtons.get(finalI), (Tower) itemsOnSale[finalI]);
+                    if (finalI == selectedShopItemIndex){
+                        shopButtons.get(finalI).setStyle("-fx-background-color: #b3b3b3; -fx-background-radius: 5;");
+                    }
                 });
             }
         }
