@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import seng201.team8.models.*;
+import seng201.team8.models.effects.ResourceAmountBoost;
 import seng201.team8.services.GameManager;
 import seng201.team8.services.InventoryManager;
 import seng201.team8.services.TowerStatsManager;
@@ -46,6 +47,7 @@ public class InventoryController {
     private String selectedInventoryItemType;
     private int selectedInventoryUpgradeIndex;
     private int selectedInventoryTowerIndex;
+    private boolean[] selectedTowerButtons;
 
     private List<Button> towerButtons;
     private List<Button> utilityButtons;
@@ -55,22 +57,25 @@ public class InventoryController {
 
     private boolean isApplyingUpgrade;
     private int upgradeToApplyIndex;
-    private ArrayList<Tower> towersToApply;
+    private List<Tower> towersToApply;
     private int maximumTargets;
+
 
     public InventoryController(GameManager gameManager){
         this.gameManager = gameManager;
         inventoryManager = gameManager.getInventoryManager();
+        inventoryManager.addUpgrade(new Upgrade(new ResourceAmountBoost(10),Rarity.COMMON, 10, 2));
     }
 
     public void initialize(){
-        initializeDefaultValues();
-        renameTowerButton.setDisable(true);
+        initializeTowerButtons();
         initializeUpgradeListView();
         updateUpgradeViewList();
-        initializeTowerButtons();
+        initializeDefaultValues();
+        renameTowerButton.setDisable(true);
         displayTowerNull();
         displayUpgradeNull();
+        styleTowerButtons();
     }
 
     private void initializeUpgradeListView() {
@@ -96,16 +101,7 @@ public class InventoryController {
         maximumTargets = -1;
         towersToApply = new ArrayList<>();
         utilityButtons = List.of(useItemButton, moveTowerButton, renameTowerButton);
-        towerButtons = List.of(mainTower1Button,
-                mainTower2Button,
-                mainTower3Button,
-                mainTower4Button,
-                mainTower5Button,
-                reserveTower1Button,
-                reserveTower2Button,
-                reserveTower3Button,
-                reserveTower4Button,
-                reserveTower5Button);
+        selectedTowerButtons = new boolean[towerButtons.size()];
     }
 
     private void updateUpgradeViewList(){
@@ -144,6 +140,8 @@ public class InventoryController {
     }
 
     private void initializeTowerButtons(){
+        towerButtons = List.of(mainTower1Button, mainTower2Button, mainTower3Button, mainTower4Button, mainTower5Button,
+                reserveTower1Button, reserveTower2Button, reserveTower3Button, reserveTower4Button, reserveTower5Button);
         for (int i = 0; i < towerButtons.size(); i++){
             int finalI = i;
             towerButtons.get(i).setOnAction(event ->{
@@ -151,6 +149,25 @@ public class InventoryController {
                 selectedInventoryTowerIndex = finalI;
                 towerButtonClicked(finalI);
             });
+        }
+    }
+
+    private void styleTowerButtons(){
+        Tower tower;
+        for (int i = 0; i < towerButtons.size(); i++){
+            if(i < 5){
+                tower = inventoryManager.getInventoryData().getMainTowers()[i];
+            } else {
+                tower = inventoryManager.getInventoryData().getReserveTowers()[i-5];
+            }
+            String style = "-fx-border-radius: 5;";
+            if(tower != null) {
+                style += "-fx-border-color: " + tower.getRarity().getRarityTextColor() + ";  -fx-border-width: 5;";
+            }
+            if (selectedTowerButtons[i]) {
+                style += "-fx-background-color: #b3b3b3; -fx-background-radius: 5;";
+            }
+            towerButtons.get(i).setStyle(style);
         }
     }
 
@@ -165,14 +182,30 @@ public class InventoryController {
         if(isMovingTowers) {
             moveTower();
         } else if(isApplyingUpgrade){
-            applyUpgrade(tower);
+            selectedTowerButtons[finalI] = applyUpgrade(tower);
+            updateUseItemButton();
         } else {
             updateTowerStats(tower);
+            clearSelectedTowerButtons();
+            selectedTowerButtons[finalI] = true;
             renameTowerButton.setDisable(tower == null);
         }
+        styleTowerButtons();
 
     }
 
+    private void updateUseItemButton(){
+        if(towersToApply.isEmpty()){
+            useItemButton.setText("Click here to cancel or select " + maximumTargets + " more towers");
+        } else if(towersToApply.size() == maximumTargets) {
+            useItemButton.setText("Click here to apply");
+        } else {
+            useItemButton.setText("Click here to apply or select " + (maximumTargets - towersToApply.size()) + " more towers");
+        }
+    }
+    private void clearSelectedTowerButtons(){
+        selectedTowerButtons = new boolean[towerButtons.size()];
+    }
     private void displayTowerNull() {
         rarityLabel.setText("None");
         resourceAmountLabel.setText("None");
@@ -188,23 +221,19 @@ public class InventoryController {
         upgradeDescriptionLabel.setText("None");
     }
 
-    private void applyUpgrade(Tower tower){
+    private boolean applyUpgrade(Tower tower){
         if(tower != null) {
             if (towersToApply.contains(tower)) {
                 towersToApply.remove(tower);
+                return false;
             } else {
                 if (towersToApply.size() < maximumTargets) {
                     towersToApply.add(tower);
+                    return true;
                 }
             }
-            if(towersToApply.isEmpty()){
-                useItemButton.setText("Click here to cancel or select " + maximumTargets + " more towers");
-            } else if(towersToApply.size() == maximumTargets) {
-                useItemButton.setText("Click here to apply");
-            } else {
-                useItemButton.setText("Click here to apply or select " + (maximumTargets - towersToApply.size()) + " more towers");
-            }
         }
+        return false;
     }
 
     @FXML
@@ -214,16 +243,18 @@ public class InventoryController {
             disableOtherButtons(useItemButton);
             upgradeToApplyIndex = selectedInventoryUpgradeIndex;
             maximumTargets = inventoryManager.getInventoryData().getUpgrades().get(upgradeToApplyIndex).getMaximumTargets();
-            useItemButton.setText("Click here to cancel or select " + maximumTargets + " more towers");
+            updateUseItemButton();
         } else {
             if (!towersToApply.isEmpty()) {
                 applyUpgrades();
             }
             isApplyingUpgrade = false;
             towersToApply.clear();
-            enableAllButtons();
+            moveTowerButton.setDisable(false);
             useItemButton.setText("Use Item");
         }
+        clearSelectedTowerButtons();
+        styleTowerButtons();
     }
 
     private void applyUpgrades() {
@@ -241,12 +272,14 @@ public class InventoryController {
             isMovingTowers = true;
             disableOtherButtons(moveTowerButton);
             displayTowerNull();
+            clearSelectedTowerButtons();
             moveTowerButton.setText("Click here to cancel or select a tower to move");
         } else {
             moveTowerButton.setText("Move Tower");
             isMovingTowers = false;
-            enableAllButtons();
+            useItemButton.setDisable(false);
         }
+        styleTowerButtons();
         fromTowerIndex = -1;
         selectedInventoryTowerIndex = -1;
     }
@@ -291,10 +324,12 @@ public class InventoryController {
                 displayTowerNull();
             }
             isMovingTowers = false;
-            enableAllButtons();
+            useItemButton.setDisable(false);
             moveTowerButton.setText("Move Tower");
+            clearSelectedTowerButtons();
         } else {
             fromTowerIndex = selectedInventoryTowerIndex;
+            selectedTowerButtons[fromTowerIndex] = true;
             moveTowerButton.setText("Click here to cancel or select a tower to move to");
         }
     }
@@ -304,12 +339,6 @@ public class InventoryController {
             if(b != button){
                 b.setDisable(true);
             }
-        }
-    }
-
-    private void enableAllButtons(){
-        for (Button b : utilityButtons) {
-            b.setDisable(false);
         }
     }
 
