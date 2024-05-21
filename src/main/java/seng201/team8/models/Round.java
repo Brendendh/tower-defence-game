@@ -27,11 +27,11 @@ public class Round {
      * </p>
      * The set value is 15 and is set upon creation.
      */
-    private int distanceAllowed;
+    private final int distanceAllowed;
     /**
      * An array containing the different {@link Cart} in the round.
      */
-    private Cart[] carts;
+    private final Cart[] carts;
 
     /**
      * The constructor for a Round
@@ -74,22 +74,19 @@ public class Round {
      * Takes in a parameter cart which is the Cart object to be added to the
      * array of carts present in the round.
      * <p>
-     *     Returns a Boolean whether is there any space left in the array
-     *     {@link Round#carts}
+     * Returns a Boolean whether is there any space left in the array
+     * {@link Round#carts}
      * </p>
+     *
      * @param cart {@link Cart} to be added to the round
-     * @return True if cart is successfully added.
-     * <p></p>False is there is no more space
-     * to add anymore carts
      */
-    public boolean addCart(Cart cart){
+    public void addCart(Cart cart){
         for(int i = 0; i < carts.length; i++){
             if(carts[i] == null){
                 carts[i] = cart;
-                return true;
+                return;
             }
         }
-        return false;
     }
 
 }

@@ -8,7 +8,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class GameSetupService {
-    private GameData gameData;
+    private final GameData gameData;
 
     public GameSetupService(){
         gameData = new GameData();

@@ -39,10 +39,8 @@ public class RandomEventScreenController {
     @FXML
     private Button proceedButton;
 
-    private GameManager gameManager;
-    private RandomEventsService randomEventsService;
-    private Random random;
-    private int randomEventNum;
+    private final GameManager gameManager;
+    private final RandomEventsService randomEventsService;
     private boolean finishedTyping;
     private  final String[] eventNames = new String[]{"Generous Donation","The Wandering Drunk Wizard","Force of Nature", "Morale Boost"};
 
@@ -86,8 +84,8 @@ public class RandomEventScreenController {
     }
 
     public void initialize() throws FileNotFoundException {
-        random = new Random();
-        randomEventNum = random.nextInt(4);
+        Random random = new Random();
+        int randomEventNum = random.nextInt(4);
         randomEventsService.executeRandomEvent(randomEventNum);
         setImageDisplay(randomEventNum);
         setEventName(randomEventNum);

@@ -9,12 +9,12 @@ import seng201.team8.models.*;
 import java.util.Random;
 
 public class ShopManager {
-    private ShopData shopData;
-    private InventoryManager inventoryManager;
-    private GameManager gameManager;
-    private Random randomGenerator;
-    private Tower[] defaultTowersToPick;
-    private Upgrade[] defaultUpgrades;
+    private final ShopData shopData;
+    private final InventoryManager inventoryManager;
+    private final GameManager gameManager;
+    private final Random randomGenerator;
+    private final Tower[] defaultTowersToPick;
+    private final Upgrade[] defaultUpgrades;
 
     public ShopManager(GameManager gameManager){
         this.gameManager = gameManager;

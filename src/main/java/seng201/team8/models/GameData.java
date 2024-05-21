@@ -125,14 +125,14 @@ public class GameData {
 
     /**
      * Sets the player money to the specified integer
-     * @param money The Intger amount to set the player money to
+     * @param money The Integer amount to set the player money to
      */
     public void setMoney(int money) {
         this.money = money;
     }
     /**
      * Sets the player points to the specified integer
-     * @param point The Intger amount to set the player points to
+     * @param point The Integer amount to set the player points to
      */
     public void setPoint(int point) {
         this.point = point;

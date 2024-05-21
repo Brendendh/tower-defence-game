@@ -18,17 +18,17 @@ public class Cart {
      * <p></p>
      * The cart is considered filled once its amount reaches or exceeds the targetAmount.
      */
-    private int targetAmount;
+    private final int targetAmount;
     /**
      * A Resource value that determines which type of resource the cart will accept.
      * Only towers of the same resource type fill up the cart of said resource type.
      */
-    private Resource resourceType;
+    private final Resource resourceType;
     /**
      * An Integer value representing the cart's speed. Determines how much distance the cart
      * traverses each turn.
      */
-    private int speed;
+    private final int speed;
     /**
      * An Integer value representing the cart's current resource amount. Once it reaches/exceeds
      * targetAmount, the cart is considered filled

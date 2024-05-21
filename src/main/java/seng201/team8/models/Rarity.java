@@ -11,7 +11,7 @@ import javafx.scene.paint.Color;
  *         <p>
  *             -{@link Rarity#rarityStatMultiplier}
  *             <p>
- *                 -{@link Rarity#rarityTextColor}
+ *                 -{@link Rarity#rarityTextColorHex}
  *             </p>
  *         </p>
  *     </p>

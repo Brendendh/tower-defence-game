@@ -9,9 +9,9 @@ import java.util.function.Consumer;
 public class GameGUIManager {
     private Scene currentScene;
     private HashMap<String, Scene> scenes;
-    private Consumer<GameManager> screenLauncher;
-    private Runnable clearPane;
-    private GameManager gameManager;
+    private final Consumer<GameManager> screenLauncher;
+    private final Runnable clearPane;
+    private final GameManager gameManager;
 
     public GameGUIManager(Consumer<GameManager> screenLauncher, Runnable clearPane, GameManager gameManager){
         this.screenLauncher = screenLauncher;

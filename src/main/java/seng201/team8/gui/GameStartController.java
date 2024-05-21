@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import seng201.team8.services.GameManager;
 
 public class GameStartController {
-    private GameManager gameManager;
+    private final GameManager gameManager;
     public GameStartController(GameManager gameManager) {
         this.gameManager = gameManager;
     }

@@ -46,8 +46,8 @@ public class ShopScreenController {
     @FXML
     private ListView<Upgrade> upgradesListView;
 
-    private InventoryManager inventoryManager;
-    private GameManager gameManager;
+    private final InventoryManager inventoryManager;
+    private final GameManager gameManager;
     private List<Button> towerButtons;
     private List<Button> shopButtons;
     private ShopManager shopManager;
@@ -103,7 +103,7 @@ public class ShopScreenController {
     }
 
     private void errorPopUp(String errorMessage){
-        Dialog errorPane = new Dialog();
+        Dialog<?> errorPane = new Dialog<>();
         errorPane.setContentText(errorMessage);
         errorPane.getDialogPane().getButtonTypes().addAll(ButtonType.CANCEL);
         errorPane.show();

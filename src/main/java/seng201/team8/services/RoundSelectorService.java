@@ -6,11 +6,11 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class RoundSelectorService {
-    private GameManager gameManager;
+    private final GameManager gameManager;
     private Round[] possibleRounds;
-    private Random randomGenerator;
-    private int currentRoundNumber;
-    private int gameDifficulty; //0 = normal, 1 = hard
+    private final Random randomGenerator;
+    private final int currentRoundNumber;
+    private final int gameDifficulty; //0 = normal, 1 = hard
 
     public RoundSelectorService(GameManager gameManager){
         this.gameManager = gameManager;
