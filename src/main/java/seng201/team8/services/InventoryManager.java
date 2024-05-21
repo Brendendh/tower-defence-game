@@ -5,7 +5,7 @@ import seng201.team8.models.dataRecords.InventoryData;
 import seng201.team8.models.Tower;
 import seng201.team8.models.Upgrade;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -49,7 +49,7 @@ public class InventoryManager {
         tower2Array[tower2Index] = tower1;
     }
 
-    public void applyUpgradeTo(int upgradeIndex, ArrayList<Tower> towers){
+    public void applyUpgradeTo(int upgradeIndex, List<Tower> towers){
         inventoryData.getUpgrades().get(upgradeIndex).getEffect().affects(towers);
         inventoryData.getUpgrades().remove(upgradeIndex);
     }
