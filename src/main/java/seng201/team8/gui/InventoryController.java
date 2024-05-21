@@ -216,17 +216,22 @@ public class InventoryController {
             useItemButton.setText("Click here to cancel or select " + maximumTargets + " more towers");
         } else {
             if (!towersToApply.isEmpty()) {
-                inventoryManager.applyUpgradeTo(upgradeToApplyIndex, towersToApply);
-                upgradeToApplyIndex = -1;
-                updateUpgradeViewList();
-                displayUpgradeNull();
-                selectedInventoryUpgradeIndex = -1;
+                applyUpgrades();
             }
             isApplyingUpgrade = false;
             towersToApply.clear();
             enableAllButtons();
             useItemButton.setText("Use Item");
         }
+    }
+
+    private void applyUpgrades() {
+        inventoryManager.applyUpgradeTo(upgradeToApplyIndex, towersToApply);
+        upgradeToApplyIndex = -1;
+        updateUpgradeViewList();
+        displayUpgradeNull();
+        displayTowerNull();
+        selectedInventoryUpgradeIndex = -1;
     }
 
     @FXML
