@@ -11,7 +11,6 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng201.team8.gui.RandomEventScreenController">
    <children>
       <GridPane layoutY="-5.0" prefHeight="725.0" prefWidth="1282.0">
@@ -24,7 +23,7 @@
           <RowConstraints maxHeight="351.8666748046875" minHeight="10.0" prefHeight="206.46672973632815" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label fx:id="loreTextField" prefHeight="474.0" prefWidth="368.0" text="Lore text" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.hgrow="NEVER" GridPane.valignment="TOP" GridPane.vgrow="NEVER">
+            <Label fx:id="loreTextField" alignment="TOP_LEFT" prefHeight="474.0" prefWidth="368.0" text="Lore text" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.hgrow="NEVER" GridPane.valignment="TOP" GridPane.vgrow="NEVER">
                <font>
                   <Font name="Arial" size="18.0" />
                </font>
