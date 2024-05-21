@@ -89,7 +89,7 @@ public class RoundSelectorScreenController {
                 "Cart speed range: "+(1+(gameManager.getGameData().getRound())/6)+" to "+(2+(gameManager.getGameData().getRound())/6)+"\n"+
                 "Estimated resources: ";
         for (Resource resource:listOfResourceToDisplay){
-            buttonText = buttonText + resource+"\n"+"                   ";
+            buttonText = buttonText + resource+"\n"+"                                  ";
         }
         button.setText(buttonText);
 
