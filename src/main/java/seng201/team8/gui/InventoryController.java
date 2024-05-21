@@ -61,7 +61,7 @@ public class InventoryController {
     public InventoryController(GameManager gameManager){
         this.gameManager = gameManager;
         inventoryManager = gameManager.getInventoryManager();
-        inventoryManager.getInventoryData().getUpgrades().add(new Upgrade(new ResourceAmountBoost(10), Rarity.COMMON, 10, 2));
+        inventoryManager.addUpgrade(new Upgrade(new ResourceAmountBoost(10), Rarity.COMMON, 10, 2));
     }
 
     public void initialize(){

@@ -13,7 +13,7 @@ public class ShopManagerGenerateTest {
         InventoryManager inventoryManager = new InventoryManager(inventoryData);
         GameData gameData = new GameData();
         GameManager gameManager = new GameManager(gameData, inventoryManager);
-        gameManager.getInventoryManager().getInventoryData().getUpgrades().add(new Upgrade(new ResourceAmountBoost(10), Rarity.COMMON, 10, 3));
+        gameManager.getInventoryManager().addUpgrade(new Upgrade(new ResourceAmountBoost(10), Rarity.COMMON, 10, 3));
         gameManager.getGameData().setRound(14);
         ShopManager shopManager = new ShopManager(gameManager);
         for (Tower tower : shopManager.getTowersSold()) {
