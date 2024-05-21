@@ -130,7 +130,7 @@ public class GamePlayController {
 
     private void finishGame(boolean gameResult) {
         gameManager.setGameWon(gameResult);
-        gameManager.getGameGUIManager().launchScreen("Round Evaluation");
+        gameManager.getGameGUIManager().launchScreen("Round End");
     }
 
     private void updateGamePane(){

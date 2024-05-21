@@ -6,7 +6,7 @@ import javafx.scene.control.Label;
 import seng201.team8.services.GameManager;
 import seng201.team8.services.RoundEndService;
 
-public class RoundEvaluationController {
+public class RoundEndController {
 
     private final GameManager gameManager;
     private final RoundEndService roundEndService;
@@ -18,7 +18,7 @@ public class RoundEvaluationController {
     @FXML
     private Label resultLabel;
 
-    public RoundEvaluationController(GameManager gameManager) {
+    public RoundEndController(GameManager gameManager) {
         this.gameManager = gameManager;
         roundEndService = new RoundEndService();
     }

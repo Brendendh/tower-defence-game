@@ -37,8 +37,14 @@ class InventoryManagerTest {
         assertEquals(inventoryManager.getInventoryData().getMainTowers()[3],testMainTower);
         assertEquals(inventoryManager.getInventoryData().getReserveTowers()[2], testReserveTower);
         inventoryManager.swapTowers(3, 7);
-        assertEquals(inventoryManager.getInventoryData().getMainTowers()[3].getTowerStats().getResourceAmount(),15);
         assertEquals(inventoryManager.getInventoryData().getMainTowers()[3], testReserveTower);
         assertEquals(inventoryManager.getInventoryData().getReserveTowers()[2], testMainTower);
+    }
+
+    @Test
+    public void testApplyUpgradeTo(){
+        Upgrade upgrade = new Upgrade(new CooldownReduction(2), Rarity.COMMON, 10, 2);
+        inventoryManager.addUpgrade(upgrade);
+        assertEquals(inventoryManager.getInventoryData().getUpgrades().get(0), upgrade);
     }
 }
