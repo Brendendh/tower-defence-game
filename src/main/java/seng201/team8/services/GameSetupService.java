@@ -1,7 +1,7 @@
 package seng201.team8.services;
 
-import seng201.team8.models.GameData;
-import seng201.team8.models.InventoryData;
+import seng201.team8.models.dataRecords.GameData;
+import seng201.team8.models.dataRecords.InventoryData;
 import seng201.team8.models.Tower;
 
 import java.util.regex.Matcher;

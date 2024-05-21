@@ -1,6 +1,7 @@
 package seng201.team8.services;
 
 import seng201.team8.models.*;
+import seng201.team8.models.dataRecords.InventoryData;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -60,7 +61,7 @@ public class RoundSelectorService {
 
     private ArrayList<Resource> getPlayerOwnedResourceTypes(){
         InventoryData inventoryData = gameManager.getInventoryManager().getInventoryData();
-        ArrayList<Resource> ownedResourceTypes = new ArrayList<Resource>();
+        ArrayList<Resource> ownedResourceTypes = new ArrayList<>();
         for (Tower mainTower: inventoryData.getMainTowers()){
             if (mainTower != null){
                 if (!ownedResourceTypes.contains(mainTower.getTowerStats().getResourceType())){

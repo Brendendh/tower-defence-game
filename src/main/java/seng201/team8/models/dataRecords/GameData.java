@@ -1,4 +1,4 @@
-package seng201.team8.models;
+package seng201.team8.models.dataRecords;
 
 /**
  * A model that stores the game data such as the player name, target round

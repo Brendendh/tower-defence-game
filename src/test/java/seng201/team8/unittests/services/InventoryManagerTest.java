@@ -3,6 +3,7 @@ package seng201.team8.unittests.services;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import seng201.team8.models.*;
+import seng201.team8.models.dataRecords.InventoryData;
 import seng201.team8.models.effects.CooldownReduction;
 import seng201.team8.services.InventoryManager;
 

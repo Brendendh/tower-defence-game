@@ -1,5 +1,6 @@
 package seng201.team8.models;
 
+import seng201.team8.models.dataRecords.InventoryData;
 import seng201.team8.models.effects.*;
 
 /**

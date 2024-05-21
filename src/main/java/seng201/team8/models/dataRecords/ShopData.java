@@ -1,4 +1,7 @@
-package seng201.team8.models;
+package seng201.team8.models.dataRecords;
+
+import seng201.team8.models.Tower;
+import seng201.team8.models.Upgrade;
 
 /**
  * The model for the ShopData class.

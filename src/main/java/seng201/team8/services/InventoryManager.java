@@ -1,7 +1,7 @@
 package seng201.team8.services;
 
 import seng201.team8.exceptions.NoSpaceException;
-import seng201.team8.models.InventoryData;
+import seng201.team8.models.dataRecords.InventoryData;
 import seng201.team8.models.Tower;
 import seng201.team8.models.Upgrade;
 

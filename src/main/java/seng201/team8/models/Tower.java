@@ -1,5 +1,7 @@
 package seng201.team8.models;
 
+import seng201.team8.models.dataRecords.InventoryData;
+
 /**
  * The model for the Tower objects.
  * <p>
@@ -169,13 +171,13 @@ public class Tower extends Item implements Cloneable {
      */
 
     public Tower clone() {
-        Tower clonedTower = null;
+        Tower clonedTower;
         try {
             clonedTower = (Tower) super.clone();
         } catch (CloneNotSupportedException e) {
             clonedTower = new Tower(this.getName(), this.getTowerStats(), this.getBuyingPrice(), this.getRarity());
         }
-        clonedTower.towerStats = (TowerStats) this.towerStats.clone();
+        clonedTower.towerStats = this.towerStats.clone();
         return clonedTower;
     }
 

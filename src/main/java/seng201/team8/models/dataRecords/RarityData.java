@@ -1,4 +1,7 @@
-package seng201.team8.models;
+package seng201.team8.models.dataRecords;
+
+import seng201.team8.models.Item;
+import seng201.team8.models.Rarity;
 
 /**
  * A model class for RarityData.

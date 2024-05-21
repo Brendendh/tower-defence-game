@@ -1,6 +1,7 @@
 package seng201.team8.unittests.services;
 
 import seng201.team8.models.*;
+import seng201.team8.models.dataRecords.InventoryData;
 import seng201.team8.services.TowerStatsManager;
 
 public class TowerStatsManagerTest {

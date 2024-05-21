@@ -1,5 +1,7 @@
-package seng201.team8.models;
+package seng201.team8.models.dataRecords;
 
+import seng201.team8.models.Tower;
+import seng201.team8.models.Upgrade;
 import seng201.team8.services.InventoryManager;
 
 import java.util.ArrayList;

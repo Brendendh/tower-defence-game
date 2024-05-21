@@ -5,6 +5,7 @@ import seng201.team8.exceptions.NoSpaceException;
 import seng201.team8.exceptions.NotEnoughCurrencyException;
 import seng201.team8.exceptions.SellingNullError;
 import seng201.team8.models.*;
+import seng201.team8.models.dataRecords.ShopData;
 
 import java.util.Random;
 
