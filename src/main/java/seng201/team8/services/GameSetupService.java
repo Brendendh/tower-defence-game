@@ -40,7 +40,13 @@ public class GameSetupService {
         gameData.setTargetRound(targetRound);
     }
 
-    public GameData getGameData() {
+    public GameData createGameData() {
+        if(gameData.getDifficulty() == 1){
+            setMoney(40);
+        } else {
+            setMoney(20);
+        }
+        setPoint(0);
         return gameData;
     }
 

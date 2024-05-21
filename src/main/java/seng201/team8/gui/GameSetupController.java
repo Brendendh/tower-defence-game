@@ -14,8 +14,6 @@ import java.util.List;
 public class GameSetupController {
     private final GameManager gameManager;
     private final GameSetupService gameSetupService;
-    private boolean selectedRound;
-    private boolean selectedDifficulty;
     public GameSetupController(GameManager gameManager) {
         this.gameManager = gameManager;
         this.gameSetupService = new GameSetupService();
@@ -155,7 +153,7 @@ public class GameSetupController {
     }
     @FXML
     private void onStartGameClicked() {
-        GameData gameData = gameSetupService.getGameData();
+        GameData gameData = gameSetupService.createGameData();
 
         if(!gameSetupService.checkName(playerNameTextField.getText())){
             errorPopUp("Type a player name between 3 to 15 characters with no special characters.");
