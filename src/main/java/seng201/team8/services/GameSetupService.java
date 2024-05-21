@@ -51,4 +51,8 @@ public class GameSetupService {
         inventoryData.setMainTowers(mainTowers);
         return inventoryData;
     }
+
+    public InventoryManager createInventoryManager(InventoryData inventoryData){
+        return new InventoryManager(inventoryData);
+    }
 }
