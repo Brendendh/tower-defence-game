@@ -24,7 +24,7 @@ public class RoundEndController {
     }
 
     public void initialize() {
-        if(gameManager.getGameWon()){
+        if(gameManager.getRoundWon()){
             setupVictoryScreen();
         } else {
             setupDefeatScreen();
@@ -60,7 +60,7 @@ public class RoundEndController {
 
     @FXML
     private void onNextClicked(){
-        if(gameManager.getGameWon()){
+        if(gameManager.getRoundWon()){
             gameManager.getGameData().setRound(gameManager.getGameData().getRound() + 1);
             if(roundEndService.isRandomEventPlayed()) {
                 gameManager.getGameGUIManager().launchScreen("Random Event");

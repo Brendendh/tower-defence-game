@@ -64,7 +64,7 @@ public class GameManager {
      * @see seng201.team8.gui.GameMenuController
      */
     private ArrayList<Resource> roundResourceDisplay;
-    private boolean gameWon = false;
+    private boolean roundWon = false;
     final private Resource[] defaultResources = new Resource[]{Resource.CORN, Resource.WOOD, Resource.IRON};
     final private Tower[] defaultTowers = new Tower[]{
             new Tower("Corn Farm", new TowerStats(10, Resource.CORN, 1 ), 10, Rarity.COMMON),
@@ -126,12 +126,12 @@ public class GameManager {
         this.inventoryManager = inventoryManager;
     }
 
-    public boolean getGameWon(){
-        return gameWon;
+    public boolean getRoundWon(){
+        return roundWon;
     }
 
-    public void setGameWon(boolean gameWon) {
-        this.gameWon = gameWon;
+    public void setRoundWon(boolean roundWon) {
+        this.roundWon = roundWon;
     }
     public void setRoundResourceDisplay(ArrayList<Resource> resourceDisplay){
         this.roundResourceDisplay = resourceDisplay;
