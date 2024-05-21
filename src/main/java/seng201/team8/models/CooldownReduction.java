@@ -35,9 +35,7 @@ public class CooldownReduction implements Effect, Cloneable{
     @Override
     public void affects(ArrayList<Tower> towers) {
         for(Tower tower: towers){
-            if (tower.getTowerStats().getCooldown() > 1){
-                tower.getTowerStats().setCooldown(tower.getTowerStats().getCooldown() - reductionAmount);
-            }
+            tower.getTowerStats().setCooldown(Math.max(tower.getTowerStats().getCooldown() - reductionAmount, 1));
         }
     }
 
