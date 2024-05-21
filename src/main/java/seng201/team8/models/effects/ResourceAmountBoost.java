@@ -4,7 +4,7 @@ import seng201.team8.models.Rarity;
 import seng201.team8.models.Tower;
 import seng201.team8.models.Upgrade;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Increases the resource produced by a {@link Tower} by a flat integer amount
@@ -29,10 +29,10 @@ public class ResourceAmountBoost implements Effect, Cloneable{
     /**
      * Increase the resource production amount
      * of each {@link Tower} in towers by {@link ResourceAmountBoost#boostAmount}.
-     * @param towers an ArrayList of Towers to apply the effect to
+     * @param towers a List of Towers to apply the effect to
      */
     @Override
-    public void affects(ArrayList<Tower> towers) {
+    public void affects(List<Tower> towers) {
         for (Tower tower: towers){
             tower.getTowerStats().setResourceAmount(tower.getTowerStats().getResourceAmount() + boostAmount);
         }

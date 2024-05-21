@@ -3,7 +3,7 @@ package seng201.team8.models.effects;
 import seng201.team8.models.Tower;
 import seng201.team8.models.Upgrade;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Reduces the cooldown of tower's resource production
@@ -16,7 +16,7 @@ public class CooldownReduction implements Effect, Cloneable{
     /**
      * An Integer amount to reduce the tower's cooldown by
      */
-    private int reductionAmount;
+    private final int reductionAmount;
 
     /**
      * The constructor for the CooldownReduction effect. Takes in a specified reduction amount
@@ -32,11 +32,11 @@ public class CooldownReduction implements Effect, Cloneable{
      * Reduces the cooldown of each tower by the reductionAmount
      * <p>
      * Does not reduce the tower's cooldown below 1.
-     * @param towers an ArrayList of Towers to apply the effect to
+     * @param towers a List of Towers to apply the effect to
      * @see Tower
      */
     @Override
-    public void affects(ArrayList<Tower> towers) {
+    public void affects(List<Tower> towers) {
         for(Tower tower: towers){
             tower.getTowerStats().setCooldown(Math.max(tower.getTowerStats().getCooldown() - reductionAmount, 1));
         }

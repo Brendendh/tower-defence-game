@@ -2,7 +2,7 @@ package seng201.team8.models.effects;
 
 import seng201.team8.models.*;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * An interface for the different effects used in the construction of Upgrade class objects.
@@ -14,10 +14,10 @@ import java.util.ArrayList;
  */
 public interface Effect {
     /**
-     * Applies the effect to each tower in an ArrayList of towers
-     * @param towers an ArrayList of towers to be affected
+     * Applies the effect to each tower in an List of towers
+     * @param towers a List of towers to be affected
      */
-    void affects(ArrayList<Tower> towers);
+    void affects(List<Tower> towers);
 
     /**
      * Returns the name of the effect

@@ -4,7 +4,8 @@ import seng201.team8.models.Rarity;
 import seng201.team8.models.Tower;
 import seng201.team8.models.Upgrade;
 
-import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Repairs a destroyed {@link Tower}.
  * <p></p>
@@ -15,12 +16,12 @@ public class RepairTower implements Effect, Cloneable{
     /**
      * Repairs each tower in towers. If the tower is already
      * repaired then it does nothing, but is still consumed.
-     * @param towers an ArrayList of Towers to apply the effect to
+     * @param towers a List of Towers to apply the effect to
      * @see Tower
      */
 
     @Override
-    public void affects(ArrayList<Tower> towers){
+    public void affects(List<Tower> towers){
         for (Tower tower: towers){
             tower.setBroken(false);
         }

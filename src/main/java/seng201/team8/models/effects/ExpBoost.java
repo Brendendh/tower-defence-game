@@ -5,7 +5,8 @@ import seng201.team8.models.Tower;
 import seng201.team8.models.Upgrade;
 import seng201.team8.services.TowerStatsManager;
 
-import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Increases the exp value of a {@link Tower} by a flat integer amount
  * <p></p>
@@ -20,12 +21,12 @@ public class ExpBoost implements Effect, Cloneable{
     /**
      * A service used to handle all things tower levelling related.
      * <p>
-     *     Nessecary since adding exp to a tower could result in the tower
+     *     Necessary since adding exp to a tower could result in the tower
      *     levelling up
      * </p>
      * @see TowerStatsManager
      */
-    private TowerStatsManager towerStatsManager;
+    private final TowerStatsManager towerStatsManager;
 
     /**
      * The constructor for ExpBoost.
@@ -44,11 +45,11 @@ public class ExpBoost implements Effect, Cloneable{
 
     /**
      * Increase the exp value of each tower by boostAmount.
-     * @param towers an ArrayList of Towers to apply the effect to
+     * @param towers a List of Towers to apply the effect to
      * @see Tower
      */
     @Override
-    public void affects(ArrayList<Tower> towers) {
+    public void affects(List<Tower> towers) {
         for(Tower tower: towers){
             towerStatsManager.addExp(tower, boostAmount);
         }
