@@ -167,12 +167,13 @@ public class ShopScreenController {
         for (int i = 0; i < mainTowers.length; i++){
             if (mainTowers[i] != null){
                 towerButtons.get(i).setText(mainTowers[i].getName() +"\n" + "Lvl: "+ mainTowers[i].getLevel()+"" +
-                        "\n"+ "Sells for: "+mainTowers[i].getSellingPrice()+"money");
-                towerButtons.get(i).setTextFill(mainTowers[i].getRarity().getRarityTextColor());
+                        "\n"+ "Sells for: "+mainTowers[i].getSellingPrice()+" money");
+                setStyleToRarity(towerButtons.get(i), mainTowers[i].getRarity());
             }
             else{
                 towerButtons.get(i).setText("Empty");
                 towerButtons.get(i).setTextFill(Color.color(0,0,0));
+                towerButtons.get(i).setStyle("");
             }
         }
     }
@@ -182,12 +183,13 @@ public class ShopScreenController {
         for (int i = 0; i < reserveTowers.length; i++){
             if (reserveTowers[i] != null){
                 towerButtons.get(i+5).setText(reserveTowers[i].getName()+ "\n" + "Lvl: " + reserveTowers[i].getLevel()+
-                        "\n"+ "Sells for: "+reserveTowers[i].getSellingPrice()+"money");
-                towerButtons.get(i+5).setTextFill(reserveTowers[i].getRarity().getRarityTextColor());
+                        "\n"+ "Sells for: "+reserveTowers[i].getSellingPrice()+" money");
+                setStyleToRarity(towerButtons.get(i+5),reserveTowers[i].getRarity());
             }
             else{
                 towerButtons.get(i+5).setText("Empty");
                 towerButtons.get(i+5).setTextFill(Color.color(0,0,0));
+                towerButtons.get(i+5).setStyle("");
             }
         }
     }
@@ -200,20 +202,19 @@ public class ShopScreenController {
         pointAmountDisplay.setText(""+gameManager.getGameData().getPoint());
     }
     private void setTowerSimpleDescription(Button button, Tower tower){
-        button.setText(tower.getName()+ "\n" + tower.getBuyingPrice() + "money");
-        button.setTextFill(tower.getRarity().getRarityTextColor());
+        button.setText(tower.getName()+ "\n" + tower.getBuyingPrice() + " money");
+        setStyleToRarity(button,tower.getRarity());
     }
 
     private void setUpgradeSimpleDescription(Button button, Upgrade upgrade){
         button.setText(upgrade.getEffect().getEffectName()+"\n"+upgrade.getBuyingPrice()+" points");
-        button.setTextFill(upgrade.getRarity().getRarityTextColor());
+        setStyleToRarity(button,upgrade.getRarity());
     }
 
     private void setTowerDetailedDescription(Button button, Tower tower){
         button.setText(tower.getName()+ "\n" + "Produces: "+tower.getTowerStats().getResourceAmount()+" "+tower.getTowerStats().getResourceType()
-                +"\n"+"Cooldown: "+tower.getTowerStats().getCooldown()+"\n"+ tower.getBuyingPrice() + "money");
-        button.setTextFill(tower.getRarity().getRarityTextColor());
-
+                +"\n"+"Cooldown: "+tower.getTowerStats().getCooldown()+"\n"+ tower.getBuyingPrice() + " money");
+        setStyleToRarity(button,tower.getRarity());
     }
     private void updateShopDisplay(){
         Tower[] towersSold = shopManager.getTowersSold();
@@ -221,23 +222,31 @@ public class ShopScreenController {
         for (int i = 0; i < towersSold.length; i++){
             itemsOnSale[i] = towersSold[i];
             if (towersSold[i] != null){
+                shopButtons.get(i).setTextFill(Color.color(0,0,0));
                 setTowerSimpleDescription(shopButtons.get(i),towersSold[i]);
             }
             else{
                 shopButtons.get(i).setText("Sold");
                 shopButtons.get(i).setTextFill(Color.color(1,0,0));
+                shopButtons.get(i).setStyle("");
             }
         }
         for (int i = 0; i < upgradesSold.length; i++){
             itemsOnSale[i+3] = upgradesSold[i];
             if (upgradesSold[i] != null){
+                shopButtons.get(i+3).setTextFill(Color.color(0,0,0));
                 setUpgradeSimpleDescription(shopButtons.get(i+3), upgradesSold[i]);
             }
             else{
                 shopButtons.get(i+3).setText("Sold");
                 shopButtons.get(i+3).setTextFill(Color.color(1,0,0));
+                shopButtons.get(i+3).setStyle("");
             }
         }
+    }
+
+    private void setStyleToRarity(Button button, Rarity rarity){
+        button.setStyle("-fx-border-color: "+rarity.getRarityTextColor()+"; -fx-border-radius: 5");
     }
 
     private void updateTowerButtonsOnActionEvent() {
@@ -246,13 +255,9 @@ public class ShopScreenController {
             towerButtons.get(i).setOnAction(event ->{
                 selectedInventoryItemType = "Tower";
                 selectedInventoryItemIndex = finalI;
-                towerButtons.forEach(button -> {
-                    if (button == towerButtons.get(finalI)){
-                        button.setStyle("-fx-background-color: #b3b3b3; -fx-background-radius: 5;");
-                    } else {
-                        button.setStyle("");
-                    }
-                });
+                updateMainTowers();
+                updateReserveTowers();
+                towerButtons.get(finalI).setStyle("-fx-background-color: #b3b3b3; -fx-background-radius: 5;");
             });
         }
     }
@@ -262,13 +267,8 @@ public class ShopScreenController {
             int finalI = i;
             shopButtons.get(i).setOnAction(event -> {
                 selectedShopItemIndex = finalI;
-                shopButtons.forEach(button -> {
-                    if (button == shopButtons.get(finalI)){
-                        button.setStyle("-fx-background-color: #b3b3b3; -fx-background-radius: 5;");
-                    } else {
-                        button.setStyle("");
-                    }
-                });
+                updateShopDisplay();
+                shopButtons.get(finalI).setStyle("-fx-background-color: #b3b3b3; -fx-background-radius: 5;");
             });
             //make the towers sold show detailed descriptions when mouse hovers over button
             if (finalI < 3){
