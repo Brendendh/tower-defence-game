@@ -163,6 +163,9 @@ public class InventoryController {
             String style = "-fx-border-radius: 5;";
             if(tower != null) {
                 style += "-fx-border-color: " + tower.getRarity().getRarityTextColor() + ";  -fx-border-width: 5;";
+                towerButtons.get(i).setText(tower.getName());
+            } else {
+                towerButtons.get(i).setText("Empty");
             }
             if (selectedTowerButtons[i]) {
                 style += "-fx-background-color: #b3b3b3; -fx-background-radius: 5;";
@@ -295,6 +298,7 @@ public class InventoryController {
         } else {
             errorPopUp("Please select a tower");
         }
+        styleTowerButtons();
     }
 
     private void renameTower() {
