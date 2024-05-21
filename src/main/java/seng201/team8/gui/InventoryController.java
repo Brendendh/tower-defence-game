@@ -213,7 +213,7 @@ public class InventoryController {
             disableOtherButtons(useItemButton);
             upgradeToApplyIndex = selectedInventoryUpgradeIndex;
             maximumTargets = inventoryManager.getInventoryData().getUpgrades().get(upgradeToApplyIndex).getMaximumTargets();
-            useItemButton.setText("Click here to cancel or select" + maximumTargets + " more towers");
+            useItemButton.setText("Click here to cancel or select " + maximumTargets + " more towers");
         } else {
             if (!towersToApply.isEmpty()) {
                 inventoryManager.applyUpgradeTo(upgradeToApplyIndex, towersToApply);
