@@ -4,6 +4,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.util.Callback;
@@ -30,7 +31,7 @@ public class UpgradeCellFactory implements Callback<ListView<Upgrade>, ListCell<
                     Label upgradeNameLabel = new Label(upgrade.getEffect().getEffectName());
                     Font font = Font.font("Arial", FontWeight.BOLD, 20);
                     upgradeNameLabel.setFont(font);
-                    upgradeNameLabel.setTextFill(upgrade.getRarity().getRarityTextColor());
+                    upgradeNameLabel.setTextFill(Color.web(upgrade.getRarity().getRarityTextColor()));
                     // Add effect description and selling price to the VBox
                     vBox.getChildren().addAll(
                             upgradeNameLabel,
