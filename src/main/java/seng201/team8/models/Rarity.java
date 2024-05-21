@@ -29,7 +29,7 @@ public enum Rarity {
      *     </p>
      * </p>
      */
-    COMMON(1, Color.color(0,0,0)),
+    COMMON(1, "#000000"),
     /**
      * Rare rarity of an item
      * <p>
@@ -39,7 +39,7 @@ public enum Rarity {
      *     </p>
      * </p>
      */
-    RARE(2, Color.color(1,0.6470588235,0)),
+    RARE(2, "#FFA500"),
     /**
      * Epic rarity of an item
      * <p>
@@ -49,7 +49,7 @@ public enum Rarity {
      *     </p>
      * </p>
      */
-    EPIC(3, Color.color(0.6274509804,0.1254901961,0.9411764706));
+    EPIC(3, "#A020F0");
 
     /**
      * An integer stat multiplier used when calculating item attributes
@@ -57,10 +57,10 @@ public enum Rarity {
      */
     private final int rarityStatMultiplier;
     /**
-     * The color of the text that will be displayed when an
+     * The color hexcode of the text that will be displayed when an
      * item is of a specific rarity.
      */
-    private final Color rarityTextColor;
+    private final String rarityTextColorHex;
 
     /**
      * The constructor for Rarity
@@ -69,20 +69,20 @@ public enum Rarity {
      *     Color rarityTextColor
      * </p>
      * @param rarityStatMultiplier An integer
-     * @param rarityTextColor A Color
+     * @param rarityTextColor A Color Hex Code
      */
-    Rarity(int rarityStatMultiplier, Color rarityTextColor){
+    Rarity(int rarityStatMultiplier, String rarityTextColor){
         this.rarityStatMultiplier = rarityStatMultiplier;
-        this.rarityTextColor = rarityTextColor;
+        this.rarityTextColorHex = rarityTextColor;
     }
 
     /**
-     * Getter for the rarity's text color
+     * Getter for the rarity's text color hex code
      * @return Color object
      */
 
-    public Color getRarityTextColor() {
-        return rarityTextColor;
+    public String getRarityTextColor() {
+        return rarityTextColorHex;
     }
 
     /**
