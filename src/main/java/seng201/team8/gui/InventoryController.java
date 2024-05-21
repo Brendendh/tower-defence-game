@@ -163,7 +163,11 @@ public class InventoryController {
             String style = "-fx-border-radius: 5;";
             if(tower != null) {
                 style += "-fx-border-color: " + tower.getRarity().getRarityTextColor() + ";  -fx-border-width: 5;";
-                towerButtons.get(i).setText(tower.getName());
+                if(tower.isBroken()) {
+                    towerButtons.get(i).setText("Destroyed");
+                } else {
+                    towerButtons.get(i).setText(tower.getName());
+                }
             } else {
                 towerButtons.get(i).setText("Empty");
             }
