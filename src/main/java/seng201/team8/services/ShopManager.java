@@ -1,5 +1,6 @@
 package seng201.team8.services;
 
+import seng201.team8.exceptions.BuyingNullError;
 import seng201.team8.exceptions.NoSpaceException;
 import seng201.team8.exceptions.NotEnoughCurrencyException;
 import seng201.team8.exceptions.SellingNullError;
@@ -90,24 +91,29 @@ public class ShopManager {
         return shopData.getUpgradesSold();
     }
 
-    public void buyTower(int towerIndex) throws NoSpaceException, NotEnoughCurrencyException {
+    public void buyTower(int towerIndex) throws NoSpaceException, NotEnoughCurrencyException, BuyingNullError {
         Tower towerBought = shopData.getTowersSold()[towerIndex];
-        if (gameManager.getGameData().getMoney() < towerBought.getBuyingPrice()){
-            throw new NotEnoughCurrencyException("Not enough money to purchase tower!");
+        if (towerBought == null){ //check if the tower is not already sold
+            throw new BuyingNullError("Why are you trying to buy air?");
         }
-        else{
-            try{
+        if (gameManager.getGameData().getMoney() < towerBought.getBuyingPrice()){ //check if the player has the money required
+            throw new NotEnoughCurrencyException("Not enough money to purchase tower!");
+        } else{
+            try{ //try to move tower to main towers
                 inventoryManager.moveToMain(towerBought);
             }
-            catch (NoSpaceException noSpaceInMain){
-                inventoryManager.moveToReserve(towerBought);
+            catch (NoSpaceException noSpaceInMain){ //try to move tower to reserve if no space in main
+                inventoryManager.moveToReserve(towerBought); //will throw error, handled by method in ShopScreenController
             }
             gameManager.getGameData().setMoney(gameManager.getGameData().getMoney() - towerBought.getBuyingPrice());
             shopData.getTowersSold()[towerIndex] = null;
         }
     }
-    public void buyUpgrade(int upgradeIndex) throws NotEnoughCurrencyException {
+    public void buyUpgrade(int upgradeIndex) throws NotEnoughCurrencyException, BuyingNullError {
         Upgrade upgradeBought = shopData.getUpgradesSold()[upgradeIndex];
+        if (upgradeBought == null){
+            throw new BuyingNullError("Why are you trying to buy air?");
+        }
         if (gameManager.getGameData().getPoint() < upgradeBought.getBuyingPrice()){
             throw new NotEnoughCurrencyException("Not enough points to purchase upgrade!");
         }

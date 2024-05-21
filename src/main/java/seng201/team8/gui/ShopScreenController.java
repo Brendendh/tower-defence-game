@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.paint.Color;
+import seng201.team8.exceptions.BuyingNullError;
 import seng201.team8.exceptions.NoSpaceException;
 import seng201.team8.exceptions.NotEnoughCurrencyException;
 import seng201.team8.exceptions.SellingNullError;
@@ -60,12 +61,18 @@ public class ShopScreenController {
 
     @FXML
     void buySelectedItem(ActionEvent event) throws NoSpaceException, NotEnoughCurrencyException {
-        if (selectedShopItemIndex < 3 && selectedShopItemIndex >= 0){
-            buyTower(selectedShopItemIndex);
-        } else if (selectedShopItemIndex >= 3 && selectedShopItemIndex < 6) {
-            buyUpgrade(selectedShopItemIndex-3);
+        if (selectedShopItemIndex == -1){
+            errorPopUp("Why are you trying to buy nothing?");
         }
-
+        else{
+            if (selectedShopItemIndex < 3 && selectedShopItemIndex >= 0){
+                buyTower(selectedShopItemIndex);
+                selectedShopItemIndex = -1;
+            } else if (selectedShopItemIndex >= 3 && selectedShopItemIndex < 6) {
+                buyUpgrade(selectedShopItemIndex-3);
+                selectedShopItemIndex = -1;
+            }
+        }
     }
 
     private void buyUpgrade(int upgradeIndex) throws NotEnoughCurrencyException {
@@ -74,18 +81,20 @@ public class ShopScreenController {
         }
         catch (NotEnoughCurrencyException notEnoughCurrencyException){
             errorPopUp("Not enough points to purchase upgrade!");
+        } catch (BuyingNullError e) {
+            errorPopUp(e.getMessage());
         }
         updateUpgradeViewList();
         updateShopDisplay();
         updatePlayerCurrencyLabels();
     }
 
-    private void buyTower(int towerIndex) throws NoSpaceException, NotEnoughCurrencyException {
+    private void buyTower(int towerIndex){
         try{
             shopManager.buyTower(towerIndex);
         }
-        catch (NoSpaceException | NotEnoughCurrencyException noSpaceException){
-            errorPopUp(noSpaceException.getMessage());
+        catch (NoSpaceException | NotEnoughCurrencyException | BuyingNullError exception){
+            errorPopUp(exception.getMessage());
         }
         updateMainTowers();
         updateReserveTowers();
@@ -306,6 +315,6 @@ public class ShopScreenController {
         updateShopDisplay();
         //set the on action event of the shop buttons
         updateShopButtonOnActionEvent();
-
+        selectedShopItemIndex = -1;
     }
 }

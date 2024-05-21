@@ -2,6 +2,7 @@ package seng201.team8.unittests.services;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import seng201.team8.exceptions.BuyingNullError;
 import seng201.team8.exceptions.NoSpaceException;
 import seng201.team8.exceptions.NotEnoughCurrencyException;
 import seng201.team8.models.*;
@@ -31,7 +32,7 @@ public class ShopManagerTest {
     }
 
     @Test
-    public void buyingTowerToMainTest() throws NoSpaceException, NotEnoughCurrencyException {
+    public void buyingTowerToMainTest() throws NoSpaceException, NotEnoughCurrencyException, BuyingNullError {
         Tower testTower1 = new Tower("", new TowerStats(10,Resource.CORN,5),10, Rarity.COMMON);
         Tower testTower2 = new Tower("", new TowerStats(10,Resource.WOOD,5),10, Rarity.COMMON);
         Tower testTower3 = new Tower("", new TowerStats(10, Resource.IRON,5),10, Rarity.COMMON);
@@ -64,7 +65,7 @@ public class ShopManagerTest {
         assertEquals(gameManager.getGameData().getMoney(),0);
         assertEquals(gameManager.getGameData().getPoint(),0);
     }
-    @Test public void buyingToReserveTest() throws NoSpaceException, NotEnoughCurrencyException {
+    @Test public void buyingToReserveTest() throws NoSpaceException, NotEnoughCurrencyException, BuyingNullError {
         Tower testTower1 = new Tower("", new TowerStats(10,Resource.CORN,5),10, Rarity.COMMON);
         Tower testTower2 = new Tower("", new TowerStats(10,Resource.WOOD,5),10, Rarity.COMMON);
         Tower testTower3 = new Tower("", new TowerStats(10,Resource.IRON,5),10, Rarity.COMMON);
