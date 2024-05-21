@@ -208,8 +208,10 @@ public class ShopScreenController {
         pointAmountDisplay.setText(""+gameManager.getGameData().getPoint());
     }
     private void setTowerSimpleDescription(Button button, Tower tower){
-        button.setText(tower.getName()+ "\n" + tower.getBuyingPrice() + " money");
-        setStyleToRarity(button,tower.getRarity());
+        if (tower != null){
+            button.setText(tower.getName()+ "\n" + tower.getBuyingPrice() + " money");
+            setStyleToRarity(button,tower.getRarity());
+        }
     }
 
     private void setUpgradeSimpleDescription(Button button, Upgrade upgrade){
@@ -218,9 +220,11 @@ public class ShopScreenController {
     }
 
     private void setTowerDetailedDescription(Button button, Tower tower){
-        button.setText(tower.getName()+ "\n" + "Produces: "+tower.getTowerStats().getResourceAmount()+" "+tower.getTowerStats().getResourceType()
-                +"\n"+"Cooldown: "+tower.getTowerStats().getCooldown()+"\n"+ tower.getBuyingPrice() + " money");
-        setStyleToRarity(button,tower.getRarity());
+        if (tower != null){
+            button.setText(tower.getName()+ "\n" + "Produces: "+tower.getTowerStats().getResourceAmount()+" "+tower.getTowerStats().getResourceType()
+                    +"\n"+"Cooldown: "+tower.getTowerStats().getCooldown()+"\n"+ tower.getBuyingPrice() + " money");
+            setStyleToRarity(button,tower.getRarity());
+        }
     }
     private void updateShopDisplay(){
         Tower[] towersSold = shopManager.getTowersSold();
