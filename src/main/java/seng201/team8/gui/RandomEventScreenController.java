@@ -95,7 +95,7 @@ public class RandomEventScreenController {
         final IntegerProperty i = new SimpleIntegerProperty(0);
         Timeline timeline = new Timeline();
         KeyFrame keyFrame = new KeyFrame(
-                Duration.seconds(0.1),
+                Duration.seconds(0.05),
                 event -> {
                     if (i.get() > loreText.length()){
                         timeline.stop();

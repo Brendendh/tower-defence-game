@@ -168,6 +168,9 @@ public class ShopScreenController {
             if (mainTowers[i] != null){
                 towerButtons.get(i).setText(mainTowers[i].getName() +"\n" + "Lvl: "+ mainTowers[i].getLevel()+"" +
                         "\n"+ "Sells for: "+mainTowers[i].getSellingPrice()+" money");
+                if (mainTowers[i].isBroken()){
+                    towerButtons.get(i).setText("DESTROYED");
+                }
                 setStyleToRarity(towerButtons.get(i), mainTowers[i].getRarity());
             }
             else{
@@ -184,6 +187,9 @@ public class ShopScreenController {
             if (reserveTowers[i] != null){
                 towerButtons.get(i+5).setText(reserveTowers[i].getName()+ "\n" + "Lvl: " + reserveTowers[i].getLevel()+
                         "\n"+ "Sells for: "+reserveTowers[i].getSellingPrice()+" money");
+                if (reserveTowers[i].isBroken()){
+                    towerButtons.get(i+5).setText("DESTROYED");
+                }
                 setStyleToRarity(towerButtons.get(i+5),reserveTowers[i].getRarity());
             }
             else{

@@ -42,8 +42,14 @@ public class RandomEventsService {
     }
 
     public void destroyRandomTower(){
-        Tower randomTower = playerTowers.get(random.nextInt(playerTowers.size()));
-        randomTower.setBroken(true);
+        boolean notDestroyed = true;
+        while (notDestroyed){
+            Tower randomTower = playerTowers.get(random.nextInt(playerTowers.size()));
+            if (!randomTower.isBroken()){
+                randomTower.setBroken(true);
+                notDestroyed = false;
+            }
+        }
     }
 
     public void boostRandomTower(){
