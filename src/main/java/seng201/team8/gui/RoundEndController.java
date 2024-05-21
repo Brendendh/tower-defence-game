@@ -63,9 +63,9 @@ public class RoundEndController {
         if(gameManager.getRoundWon()){
             gameManager.getGameData().setRound(gameManager.getGameData().getRound() + 1);
             if(gameManager.getGameData().getRound() > gameManager.getGameData().getTargetRound()){
-                // gameManager.getGameGUIManager().launchScreen("Game Result");
+                gameManager.getGameGUIManager().launchScreen("Game Victory");
             }
-            if(roundEndService.isRandomEventPlayed()) {
+            else if (roundEndService.isRandomEventPlayed()) {
                 gameManager.getGameGUIManager().launchScreen("Random Event");
             } else{
                 gameManager.getGameGUIManager().launchScreen("Round Selector");
