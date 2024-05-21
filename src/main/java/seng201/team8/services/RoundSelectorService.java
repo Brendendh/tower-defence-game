@@ -10,11 +10,13 @@ public class RoundSelectorService {
     private Round[] possibleRounds;
     private Random randomGenerator;
     private int currentRoundNumber;
+    private int gameDifficulty; //0 = normal, 1 = hard
 
     public RoundSelectorService(GameManager gameManager){
         this.gameManager = gameManager;
         this.currentRoundNumber = gameManager.getGameData().getRound();
         this.randomGenerator = new Random();
+        this.gameDifficulty = this.gameManager.getGameData().getDifficulty();
         createPossibleRounds();
     }
     public Round[] getPossibleRounds() {
@@ -44,7 +46,7 @@ public class RoundSelectorService {
 
     private Cart generateCart(int numOfCartsSoFar){
         ArrayList<Resource> ownedResourceTypes = getPlayerOwnedResourceTypes();
-        if (numOfCartsSoFar > -1){
+        if (numOfCartsSoFar == 0 || gameDifficulty == 0){
             int randomOwnedResourceIndex = randomGenerator.nextInt(ownedResourceTypes.size());
             Resource chosenResource = ownedResourceTypes.get(randomOwnedResourceIndex);
             return new Cart(generateTargetAmount(chosenResource), chosenResource,generateSpeed());

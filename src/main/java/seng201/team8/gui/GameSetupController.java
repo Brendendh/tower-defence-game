@@ -146,14 +146,14 @@ public class GameSetupController {
         gameSetupService.setDifficulty(0);
         normalDifficultyButton.setStyle("-fx-background-color: #b3b3b3; -fx-background-radius: 5;");
         hardDifficultyButton.setStyle("");
-        difficultyLabel.setText("Normal difficulty: Carts resource type is based on player's tower's resource type");
+        difficultyLabel.setText("Normal difficulty: All carts resource type is based on the player's tower's resource type");
     }
     @FXML
     private void onHardClicked() {
         gameSetupService.setDifficulty(1);
         hardDifficultyButton.setStyle("-fx-background-color: #b3b3b3; -fx-background-radius: 5;");
         normalDifficultyButton.setStyle("");
-        difficultyLabel.setText("Hard difficulty: Half of the carts resource type is based on player's tower's resource type");
+        difficultyLabel.setText("Hard difficulty: At least one of the carts resource type is based on the player's tower's resource type");
     }
     @FXML
     private void onStartGameClicked() {
