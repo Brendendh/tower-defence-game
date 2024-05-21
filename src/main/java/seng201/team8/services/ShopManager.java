@@ -146,6 +146,9 @@ public class ShopManager {
     }
 
     public void sellUpgrade(int upgradeIndex) throws SellingNullError {
+        if(upgradeIndex >= inventoryManager.getInventoryData().getUpgrades().size()){
+            throw new SellingNullError("Why are you trying to sell air...?");
+        }
         if (inventoryManager.getInventoryData().getUpgrades().get(upgradeIndex) == null){
             throw new SellingNullError("Why are you trying to sell air...?");
         }
