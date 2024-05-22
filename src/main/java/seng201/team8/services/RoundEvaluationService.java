@@ -14,6 +14,7 @@ public class RoundEvaluationService {
     private final Round roundData;
     private final Tower[] mainTowers;
     private final EnumMap<Resource, Integer> resourcesProduced;
+    private boolean[] towerProduced = new boolean[5];
     private int counter = 0;
     private final Cart[] carts;
 
@@ -34,11 +35,13 @@ public class RoundEvaluationService {
     }
 
     public void produceResources(){
-        for(Tower maintower:mainTowers){
-            if(maintower != null) {
-                if ((counter % maintower.getTowerStats().getCooldown()) == 0 && !maintower.isBroken()) {
-                    resourcesProduced.put(maintower.getTowerStats().getResourceType(),
-                            resourcesProduced.get(maintower.getTowerStats().getResourceType()) + maintower.getTowerStats().getResourceAmount());
+        towerProduced = new boolean[5];
+        for(int i = 0; i < mainTowers.length; i++){
+            if(mainTowers[i] != null) {
+                if ((counter % mainTowers[i].getTowerStats().getCooldown()) == 0 && !mainTowers[i].isBroken()) {
+                    resourcesProduced.put(mainTowers[i].getTowerStats().getResourceType(),
+                            resourcesProduced.get(mainTowers[i].getTowerStats().getResourceType()) + mainTowers[i].getTowerStats().getResourceAmount());
+                    towerProduced[i] = true;
                 }
             }
         }
@@ -104,5 +107,9 @@ public class RoundEvaluationService {
 
     public void incrementCounter() {
         counter += 1;
+    }
+
+    public boolean[] getTowerProduced() {
+        return towerProduced;
     }
 }

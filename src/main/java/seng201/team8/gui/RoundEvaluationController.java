@@ -3,7 +3,10 @@ package seng201.team8.gui;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
+import javafx.geometry.HPos;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.geometry.VPos;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.ColumnConstraints;
@@ -12,6 +15,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.RowConstraints;
 import javafx.util.Duration;
 import seng201.team8.models.Round;
+import seng201.team8.models.Tower;
 import seng201.team8.services.GameManager;
 import seng201.team8.services.RoundEvaluationService;
 
@@ -23,9 +27,10 @@ public class RoundEvaluationController {
     @FXML
     private GridPane mainLayout;
     @FXML
-    private GridPane resourcePane;
+    private GridPane infoLayout;
 
     private GridPane gamePane;
+    private GridPane towerPane;
 
     private final GameManager gameManager;
     private final Round round;
@@ -34,8 +39,10 @@ public class RoundEvaluationController {
     private List<Label> cartLabels;
     private List<Label> resourceLabels;
 
-    private int numCols;
-    private int numRows;
+    private int numTableCols;
+    private int numTableRows;
+
+    private int numTowerRows;
 
     public RoundEvaluationController(GameManager gameManager) {
         this.gameManager = gameManager;
@@ -44,23 +51,38 @@ public class RoundEvaluationController {
     }
 
     public void initialize(){
-        gamePane = new GridPane();
-        gamePane.getStyleClass().add("grid");
-        gamePane.prefWidthProperty().bind(mainLayout.widthProperty());
+        initializeGamePane();
+        initializeTowerPane();
         cartLabels = new ArrayList<>();
         resourceLabels = new ArrayList<>();
 
         createTableConstraints();
         createGameTable();
-
         createCartLabels();
+
+        createTowerConstraints();
+        createTowerTable();
+        createTowerImageViews();
         createResourceLabels();
 
         mainLayout.getStylesheets().add("/css/GridBorders.css");
 
         mainLayout.add(gamePane, 1, 0);
+        infoLayout.add(towerPane, 0, 0);
 
         playAnimation();
+    }
+
+    private void initializeGamePane() {
+        gamePane = new GridPane();
+        gamePane.getStyleClass().add("grid");
+        gamePane.prefWidthProperty().bind(mainLayout.widthProperty());
+    }
+
+    private void initializeTowerPane() {
+        towerPane = new GridPane();
+        towerPane.getStyleClass().add("grid");
+        towerPane.prefWidthProperty().bind(infoLayout.widthProperty());
     }
 
     private void playAnimation() {
@@ -77,7 +99,7 @@ public class RoundEvaluationController {
 
     private KeyFrame getResourceKeyFrame(Timeline timeline) {
         return new KeyFrame(
-                Duration.seconds(0.1),
+                Duration.seconds(0.3),
                 event -> {
                     if(roundEvaluationService.didCartReach()){
                         timeline.stop();
@@ -85,7 +107,7 @@ public class RoundEvaluationController {
                     }
                     roundEvaluationService.incrementCounter();
                     roundEvaluationService.produceResources();
-                    updateResourcePane();
+                    updateResourceTable();
                 }
         );
     }
@@ -101,31 +123,31 @@ public class RoundEvaluationController {
                     }
                     roundEvaluationService.advanceCarts();
                     updateGamePane();
-                    updateResourcePane();
+                    updateResourceTableNull();
                 }
         );
     }
 
     private void createResourceLabels() {
-        for(int i = 0; i < gameManager.getDefaultResources().length; i++){
+        for(int i = 0; i < gameManager.getInventoryManager().getInventoryData().getMainTowers().length; i++){
             //Change to toString
-            Label tempLabel = new Label(gameManager.getDefaultResources()[i] + " : 0");
+            Label tempLabel = new Label();
             resourceLabels.add(tempLabel);
-            resourcePane.add(tempLabel, 0, i);
+            towerPane.add(tempLabel, 0, (i*2)+1);
         }
     }
 
     private void createTableConstraints() {
-        numCols = round.getDistanceAllowed();
-        numRows = round.getCartNumber();
-        for (int i = 0; i < numCols; i++) {
+        numTableCols = round.getDistanceAllowed();
+        numTableRows = round.getCartNumber();
+        for (int i = 0; i < numTableCols; i++) {
             ColumnConstraints colConst = new ColumnConstraints();
-            colConst.setPercentWidth(100.0 / numCols);
+            colConst.setPercentWidth(100.0 / numTableCols);
             gamePane.getColumnConstraints().add(colConst);
         }
-        for (int i = 0; i < numRows; i++) {
+        for (int i = 0; i < numTableRows; i++) {
             RowConstraints rowConst = new RowConstraints();
-            rowConst.setPercentHeight(100.0 / numRows);
+            rowConst.setPercentHeight(100.0 / numTableRows);
             gamePane.getRowConstraints().add(rowConst);
         }
     }
@@ -141,22 +163,14 @@ public class RoundEvaluationController {
         updateGameTable();
     }
 
-    private void updateResourcePane(){
-        clearResourcePane();
-        updateResourceTable();
-    }
 
     private void clearGamePane(){
         gamePane.getChildren().clear();
     }
 
-    private void clearResourcePane(){
-        resourcePane.getChildren().clear();
-    }
-
     private void createGameTable() {
-        for (int i = 0; i < numCols; i++) {
-            for (int j = 0; j < numRows; j++) {
+        for (int i = 0; i < numTableCols; i++) {
+            for (int j = 0; j < numTableRows; j++) {
                 Pane pane = new Pane();
                 pane.getStyleClass().add("cell");
                 gamePane.add(pane, i, j);
@@ -175,10 +189,23 @@ public class RoundEvaluationController {
         }
     }
 
+    private void updateResourceTableNull(){
+        for (Label resourceLabel : resourceLabels) {
+            resourceLabel.setText("");
+        }
+    }
+
     private void updateResourceTable(){
-        for(int i = 0; i < roundEvaluationService.getResourcesProduced().size(); i++){
-            resourceLabels.get(i).setText(gameManager.getDefaultResources()[i] + " : " +roundEvaluationService.getResourcesProduced().get(gameManager.getDefaultResources()[i]).toString());
-            resourcePane.add(resourceLabels.get(i), 0, i);
+        boolean[] towerProduced = roundEvaluationService.getTowerProduced();
+        for(int i = 0; i < resourceLabels.size(); i++){
+            Tower tower = gameManager.getInventoryManager().getInventoryData().getMainTowers()[i];
+            if(towerProduced[i]){
+                resourceLabels.get(i).setText("+" + tower.getTowerStats().getResourceAmount());
+            } else if(tower == null) {
+                resourceLabels.get(i).setText("");
+            } else  {
+                resourceLabels.get(i).setText("");
+            }
         }
     }
 
@@ -189,12 +216,51 @@ public class RoundEvaluationController {
             tempLabel.setPadding(new Insets(10, 30, 10, 10));
             tempLabel.setStyle("-fx-font: 8 arial;");
             cartLabels.add(tempLabel);
-            ImageView imageView = new ImageView("/images/defaultCart.png");
-            imageView.setFitHeight(50);
-            imageView.setFitWidth(50);
-            gamePane.add(imageView, roundEvaluationService.getCarts()[i].getDistance(), i);
+            ImageView cartImageView = new ImageView("/images/defaultCart.png");
+            cartImageView.setFitHeight(50);
+            cartImageView.setFitWidth(50);
+            gamePane.add(cartImageView, roundEvaluationService.getCarts()[i].getDistance(), i);
             gamePane.add(tempLabel, 0, i);
         }
     }
 
+    private void createTowerImageViews(){
+        for(int i = 0; i < gameManager.getInventoryManager().getInventoryData().getMainTowers().length; i++){
+            Tower tower = gameManager.getInventoryManager().getInventoryData().getMainTowers()[i];
+            if(tower != null) {
+                ImageView towerImageView = new ImageView("/images/towers/"+tower.getTowerStats().getResourceType().name().toLowerCase() + ".jpg");
+                towerImageView.setFitHeight(85);
+                towerImageView.setFitWidth(300);
+                towerImageView.setPreserveRatio(true);
+                GridPane.setHalignment(towerImageView, HPos.CENTER);
+                towerPane.add(towerImageView, 0, i*2);
+            }
+        }
+    }
+
+    private void createTowerConstraints(){
+        numTowerRows = gameManager.getInventoryManager().getInventoryData().getMainTowers().length * 2;
+        ColumnConstraints colConst = new ColumnConstraints();
+        colConst.setPercentWidth(100);
+        colConst.setHalignment(HPos.CENTER);
+        towerPane.getColumnConstraints().add(colConst);
+        for (int i = 0; i < numTowerRows; i++) {
+            RowConstraints rowConst = new RowConstraints();
+            if(i % 2 == 0){
+                rowConst.setPercentHeight(15);
+            } else {
+                rowConst.setPercentHeight(5);
+            }
+            rowConst.setValignment(VPos.CENTER);
+            towerPane.getRowConstraints().add(rowConst);
+        }
+    }
+
+    private void createTowerTable() {
+        for (int j = 0; j < numTowerRows; j++) {
+            Pane pane = new Pane();
+            pane.getStyleClass().add("cell");
+            towerPane.add(pane, 0, j);
+        }
+    }
 }
