@@ -74,7 +74,7 @@
                   <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
                </padding>
                <children>
-                  <Button fx:id="refreshButton" mnemonicParsing="false" onAction="#refreshShop" prefHeight="85.0" prefWidth="180.0" text="Refresh" />
+                  <Button fx:id="refreshButton" mnemonicParsing="false" onAction="#refreshShop" prefHeight="85.0" prefWidth="180.0" text="Refresh (5 money)" />
                   <Button fx:id="sellButton" mnemonicParsing="false" onAction="#sellSelectedItem" prefHeight="88.0" prefWidth="180.0" text="Sell" GridPane.columnIndex="2" />
                   <Button fx:id="buyButton" mnemonicParsing="false" onAction="#buySelectedItem" prefHeight="92.0" prefWidth="180.0" text="Buy" GridPane.columnIndex="1" />
                </children>
