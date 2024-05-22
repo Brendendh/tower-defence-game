@@ -3,6 +3,7 @@ package seng201.team8.gui;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.ColumnConstraints;
@@ -185,7 +186,13 @@ public class RoundEvaluationController {
         for (int i = 0; i < round.getCartNumber(); i++){
             Label tempLabel = new Label("cart" + i);
             tempLabel.setWrapText(true);
+            tempLabel.setPadding(new Insets(10, 30, 10, 10));
+            tempLabel.setStyle("-fx-font: 8 arial;");
             cartLabels.add(tempLabel);
+            ImageView imageView = new ImageView("/images/defaultCart.png");
+            imageView.setFitHeight(50);
+            imageView.setFitWidth(50);
+            gamePane.add(imageView, roundEvaluationService.getCarts()[i].getDistance(), i);
             gamePane.add(tempLabel, 0, i);
         }
     }
