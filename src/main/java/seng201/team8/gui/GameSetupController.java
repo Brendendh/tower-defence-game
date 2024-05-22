@@ -5,6 +5,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import seng201.team8.models.dataRecords.GameData;
 import seng201.team8.models.Tower;
+import seng201.team8.models.dataRecords.ShopData;
 import seng201.team8.services.GameManager;
 import seng201.team8.services.GameSetupService;
 import seng201.team8.services.InventoryManager;
@@ -167,6 +168,7 @@ public class GameSetupController {
             gameData.setName(playerNameTextField.getText());
             InventoryManager inventoryManager = gameSetupService.createInventoryManager(gameSetupService.createInventory(addedTowers));
             gameManager.setGameData(gameData);
+            gameManager.setShopData(null);
             gameManager.setInventoryManager(inventoryManager);
             gameManager.getGameGUIManager().launchScreen("Round Selector");
         }
