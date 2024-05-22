@@ -2,10 +2,10 @@ package seng201.team8.gui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import seng201.team8.models.dataRecords.GameData;
 import seng201.team8.models.Tower;
-import seng201.team8.models.dataRecords.ShopData;
 import seng201.team8.services.GameManager;
 import seng201.team8.services.GameSetupService;
 import seng201.team8.services.InventoryManager;
@@ -72,14 +72,17 @@ public class GameSetupController {
     private void updateSelectedTowerStat(int finalI) {
         if (finalI >= 5){
             if (addedTowers[finalI - 5] != null){
-                updateStats(addedTowers[finalI -5]);
+                updateStats(addedTowers[finalI-5]);
+                displayTowerImage(addedTowers[finalI-5]);
                 renameTowerButton.setDisable(false);
             } else{
                 displayNull();
+                towerImage.setImage(null);
                 renameTowerButton.setDisable(true);
             }
         } else {
             renameTowerButton.setDisable(true);
+            displayTowerImage(gameManager.getDefaultTowers()[finalI]);
             updateStats(gameManager.getDefaultTowers()[finalI]);
         }
     }
@@ -230,5 +233,10 @@ public class GameSetupController {
         } else {
             errorPopUp("You can not remove a default tower");
         }
+    }
+
+    private void displayTowerImage(Tower tower){
+        Image image = new Image("/images/towers/" + tower.getTowerStats().getResourceType().name().toLowerCase() + ".jpg");
+        towerImage.setImage(image);
     }
 }

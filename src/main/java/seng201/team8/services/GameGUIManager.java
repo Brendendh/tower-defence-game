@@ -47,4 +47,5 @@ public class GameGUIManager {
     public Scene getCurrentScene() {
         return currentScene;
     }
+
 }

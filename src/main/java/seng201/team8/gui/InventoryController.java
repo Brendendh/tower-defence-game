@@ -3,9 +3,9 @@ package seng201.team8.gui;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import seng201.team8.models.*;
-import seng201.team8.models.effects.ResourceAmountBoost;
 import seng201.team8.services.GameManager;
 import seng201.team8.services.InventoryManager;
 import seng201.team8.services.TowerStatsManager;
@@ -127,6 +127,7 @@ public class InventoryController {
                 expPointsLabel.setText("Max level reached.");
 
             }
+            displayTowerImage(tower);
         } else{
             displayTowerNull();
         }
@@ -135,6 +136,7 @@ public class InventoryController {
     private void updateUpgradeStats(Upgrade upgrade) {
         upgradeNameLabel.setText(upgrade.getEffect().getEffectName());
         upgradeDescriptionLabel.setText(upgrade.toString());
+        displayUpgradeImage(upgrade);
     }
 
     private void initializeTowerButtons(){
@@ -211,6 +213,18 @@ public class InventoryController {
     private void clearSelectedTowerButtons(){
         selectedTowerButtons = new boolean[towerButtons.size()];
     }
+
+    private void displayTowerImage(Tower tower){
+        Image image = new Image("/images/towers/" + tower.getTowerStats().getResourceType().name().toLowerCase() + ".jpg");
+        towerImageView.setImage(image);
+
+    }
+
+    private void displayUpgradeImage(Upgrade upgrade){
+        Image image = new Image("/images/upgrades/" + upgrade.getEffect().getEffectName().toLowerCase().replace(" ", "") + ".jpg");
+        upgradeImageView.setImage(image);
+    }
+
     private void displayTowerNull() {
         rarityLabel.setText("None");
         resourceAmountLabel.setText("None");
@@ -219,11 +233,13 @@ public class InventoryController {
         towerNameTextField.setText("None");
         levelLabel.setText("None");
         expPointsLabel.setText("None");
+        towerImageView.setImage(null);
     }
 
     private void displayUpgradeNull(){
         upgradeNameLabel.setText("None");
         upgradeDescriptionLabel.setText("None");
+        upgradeImageView.setImage(null);
     }
 
     private boolean applyUpgrade(Tower tower){
@@ -347,5 +363,6 @@ public class InventoryController {
             }
         }
     }
+
 
 }
