@@ -50,10 +50,10 @@ public class RandomEventScreenController {
             "An earthquake has struck your towers, and although your towers were built by the capable hands of civil engineers graduated from UC, it could not withstand the might of nature. One of your towers is now destroyed",
             "Due to the success of today's work, your workers received a huge boost in morale and spent all night at the local tavern. This newfound morale made your workers more efficient when working. One of your tower's resource produced per production has increased"};
     private final String[] imageURL = new String[]{
-            "src/main/resources/images/randomEventsImages/generousDonation.jpg",
-            "src/main/resources/images/randomEventsImages/drunkWizard.jpg",
-            "src/main/resources/images/randomEventsImages/forceOfNature.jpg",
-            "src/main/resources/images/randomEventsImages/moraleBoost.jpg"
+            "/images/randomEventsImages/generousDonation.jpg",
+            "/images/randomEventsImages/drunkWizard.jpg",
+            "/images/randomEventsImages/forceOfNature.jpg",
+            "/images/randomEventsImages/moraleBoost.jpg"
     };
     public RandomEventScreenController(GameManager gameManager){
         finishedTyping = false;
@@ -71,7 +71,7 @@ public class RandomEventScreenController {
         eventName.setTextFill(Color.color(1,0.3,0));
     }
     private void setImageDisplay(int i) throws FileNotFoundException {
-        Image image = new Image(new FileInputStream(imageURL[i]));
+        Image image = new Image(imageURL[i]);
         imageDisplay.setImage(image);
     }
     private void typingText(int eventNum){
