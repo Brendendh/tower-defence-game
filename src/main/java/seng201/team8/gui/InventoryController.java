@@ -123,11 +123,11 @@ public class InventoryController {
             int levelRequirement;
             if(tower.getLevel() < 15){
                 levelRequirement = TowerStatsManager.getLevelRequirements()[tower.getLevel()+1];
+                expPointsLabel.setText(tower.getExperiencePoints() + "/" + levelRequirement);
             } else{
-                levelRequirement = TowerStatsManager.getLevelRequirements()[tower.getLevel()];
+                expPointsLabel.setText("Max level reached.");
 
             }
-            expPointsLabel.setText(tower.getExperiencePoints() + "/" + levelRequirement);
         } else{
             displayTowerNull();
         }
