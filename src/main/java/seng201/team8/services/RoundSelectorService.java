@@ -58,8 +58,7 @@ public class RoundSelectorService {
             return new Cart(generateTargetAmount(chosenResource), chosenResource,generateSpeed());
         }
     }
-
-    private ArrayList<Resource> getPlayerOwnedResourceTypes(){
+    public ArrayList<Resource> getPlayerOwnedResourceTypes(){
         InventoryData inventoryData = gameManager.getInventoryManager().getInventoryData();
         ArrayList<Resource> ownedResourceTypes = new ArrayList<>();
         for (Tower mainTower: inventoryData.getMainTowers()){
