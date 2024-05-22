@@ -4,6 +4,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -165,6 +166,10 @@ public class RoundEvaluationController {
     private void updateGameTable(){
         for(int i = 0; i < round.getCartNumber(); i++){
             cartLabels.get(i).setText(roundEvaluationService.getCarts()[i].toString());
+            ImageView imageView = new ImageView("/images/defaultCart.png");
+            imageView.setFitHeight(50);
+            imageView.setFitWidth(50);
+            gamePane.add(imageView, roundEvaluationService.getCarts()[i].getDistance(), i);
             gamePane.add(cartLabels.get(i), roundEvaluationService.getCarts()[i].getDistance() , i);
         }
     }
