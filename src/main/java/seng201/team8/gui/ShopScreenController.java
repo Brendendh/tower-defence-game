@@ -288,8 +288,8 @@ public class ShopScreenController {
                 shopButtons.get(i).setOnMouseExited(event -> {
                     setTowerSimpleDescription(shopButtons.get(finalI), (Tower) itemsOnSale[finalI]);
                     if (finalI == selectedShopItemIndex){
-                        shopButtons.get(finalI).setStyle("-fx-background-color: #b3b3b3; -fx-background-radius: 5;");
                         setStyleToRarity(shopButtons.get(finalI), itemsOnSale[selectedShopItemIndex].getRarity());
+                        shopButtons.get(finalI).setStyle("-fx-background-color: #b3b3b3; -fx-background-radius: 5;");
                     }
                 });
             }
