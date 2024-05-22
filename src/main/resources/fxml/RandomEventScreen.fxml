@@ -39,7 +39,7 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Label fx:id="eventName" prefHeight="150.0" prefWidth="826.0" text="The wandering wizard visits" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+            <Label fx:id="eventName" prefHeight="150.0" prefWidth="826.0" text="The wandering wizard visits" textAlignment="CENTER" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                <font>
                   <Font size="48.0" />
                </font>
@@ -50,9 +50,9 @@
                   <Insets />
                </GridPane.margin>
             </Label>
-            <ImageView fx:id="imageDisplay" fitHeight="466.0" fitWidth="760.0" pickOnBounds="true" preserveRatio="true" smooth="false" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+            <ImageView fx:id="imageDisplay" fitHeight="500.0" fitWidth="801.0" pickOnBounds="true" preserveRatio="true" smooth="false" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <image>
-                  <Image url="@../images/randomEventsImages/drunkWizard.jpg" />
+                  <Image url="@../images/randomEventsImages/generousDonation.jpg" />
                </image>
             </ImageView>
          </children>
