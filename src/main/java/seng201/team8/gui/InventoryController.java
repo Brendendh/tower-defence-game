@@ -113,7 +113,6 @@ public class InventoryController {
             resourceAmountLabel.setText(String.valueOf(tower.getTowerStats().getResourceAmount()));
             cooldownLabel.setText(String.valueOf(tower.getTowerStats().getCooldown()));
             resourceTypeLabel.setText(String.valueOf(tower.getTowerStats().getResourceType()));
-            //TODO: UPDATE THE DESTROYED DISPLAY
             if (tower.isBroken()){
                 towerNameTextField.setText("DESTROYED");
             } else{
