@@ -78,7 +78,7 @@ public class RoundEvaluationService {
 
     public boolean didCartReach(){
         for(Cart cart:carts){
-            if(cart.getDistance() > roundData.getDistanceAllowed()){
+            if(cart.getDistance() >= roundData.getDistanceAllowed()){
                 return true;
             }
         }
