@@ -45,7 +45,7 @@ public class RoundSelectorService {
      * The constructor for the RoundSelectorService.
      * <p></p>
      * Takes in a {@link GameManager} in order to have access to the current round number and
-     * game difficulty. The three possible rounds are immediatly generated upon the service's
+     * game difficulty. The three possible rounds are immediately generated upon the service's
      * creation.
      * <p></p>
      * Called by RoundSelectorScreenController to generate the rounds.

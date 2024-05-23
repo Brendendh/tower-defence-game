@@ -18,7 +18,7 @@ public class RandomEventsService {
     /**
      * The current game's {@link GameManager}
      */
-    private GameManager gameManager;
+    private final GameManager gameManager;
     /**
      * An {@link ArrayList} containing the player owned {@link Tower}s.
      */
@@ -27,13 +27,13 @@ public class RandomEventsService {
      * Used to randomly generate numbers.
      * @see Random
      */
-    private Random random;
+    private final Random random;
     /**
      * The {@link TowerStatsManager} responsible for setting the {@link RandomEventsService#playerTowers} and handling
      * the levelling aspect of certain random events.
      * @see RandomEventsService#boostRandomTower()
      */
-    private TowerStatsManager towerStatsManager;
+    private final TowerStatsManager towerStatsManager;
 
     /**
      * The constructor for RandomEventsService. Takes in the game's {@link GameManager} as a parameter.
@@ -88,7 +88,7 @@ public class RandomEventsService {
     }
 
     /**
-     * Randomly selects an undestroyed player {@link Tower} and destroys it.
+     * Randomly selects a non-destroyed player {@link Tower} and destroys it.
      */
     public void destroyRandomTower(){
         boolean notDestroyed = true;
