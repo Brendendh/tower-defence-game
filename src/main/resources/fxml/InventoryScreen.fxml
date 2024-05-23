@@ -5,7 +5,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -139,9 +138,6 @@
         </rowConstraints>
          <children>
             <ImageView fx:id="towerImageView" fitHeight="255.0" fitWidth="255.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-               <image>
-                  <Image url="@../images/defaultTower.png" />
-               </image>
             </ImageView>
             <GridPane GridPane.columnIndex="1">
               <columnConstraints>
@@ -233,9 +229,6 @@
                </children>
             </GridPane>
             <ImageView fx:id="upgradeImageView" fitHeight="175.0" fitWidth="175.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
-               <image>
-                  <Image url="@../images/defaultTower.png" />
-               </image>
             </ImageView>
             <Button fx:id="useItemButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onUseItemClicked" text="Use Item" wrapText="true" GridPane.rowIndex="2">
                <GridPane.margin>

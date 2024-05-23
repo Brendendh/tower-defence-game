@@ -108,6 +108,7 @@ public class GameSetupController {
         cooldownLabel.setText("None");
         resourceTypeLabel.setText("None");
         towerNameTextField.setText("None");
+        towerImage.setImage(null);
     }
 
     private void errorPopUp(String message) {

@@ -112,4 +112,8 @@ public class RoundEvaluationService {
     public boolean[] getTowerProduced() {
         return towerProduced;
     }
+
+    public int getCounter() {
+        return counter;
+    }
 }
