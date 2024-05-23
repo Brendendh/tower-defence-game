@@ -6,13 +6,42 @@ import seng201.team8.models.Tower;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * The service class responsible for handling the logic behind the different random events
+ * that occur during the game.
+ * <p></p>
+ * A specified random event is randomly chosen by the RandomEventScreenController and then the service applies
+ * the effects of the random event.
+ * @see seng201.team8.gui.RandomEventScreenController
+ */
 public class RandomEventsService {
+    /**
+     * The current game's {@link GameManager}
+     */
     private GameManager gameManager;
-
+    /**
+     * An {@link ArrayList} containing the player owned {@link Tower}s.
+     */
     private ArrayList<Tower> playerTowers;
+    /**
+     * Used to randomly generate numbers.
+     * @see Random
+     */
     private Random random;
+    /**
+     * The {@link TowerStatsManager} responsible for setting the {@link RandomEventsService#playerTowers} and handling
+     * the levelling aspect of certain random events.
+     * @see RandomEventsService#boostRandomTower()
+     */
     private TowerStatsManager towerStatsManager;
 
+    /**
+     * The constructor for RandomEventsService. Takes in the game's {@link GameManager} as a parameter.
+     * <p></p>
+     * Called by the RandomEventScreenController during initialization.
+     * @see seng201.team8.gui.RandomEventScreenController#RandomEventScreenController(GameManager)
+     * @param gameManager {@link GameManager}
+     */
     public RandomEventsService(GameManager gameManager){
         this.gameManager = gameManager;
         this.playerTowers = new ArrayList<>();
@@ -21,6 +50,20 @@ public class RandomEventsService {
         random = new Random();
     }
 
+    /**
+     * Takes in an {@link Integer} i as a parameter that decides which random event to be called.
+     * <p></p>
+     * If i = 0, it calls {@link RandomEventsService#levelUpRandomTower()}
+     * <p></p>
+     * If i = 1, it calls {@link RandomEventsService#switchRssOfRandomTower()}
+     * <p></p>
+     * If i = 2, it calls {@link RandomEventsService#destroyRandomTower()}
+     * <p></p>
+     * If i = 3, it calls {@link RandomEventsService#boostRandomTower()}
+     * <p></p>
+     * If i > 3, nothing happens.
+     * @param i {@link Integer}
+     */
     public void executeRandomEvent(int i){
         if (i == 0){
             levelUpRandomTower();
@@ -35,11 +78,18 @@ public class RandomEventsService {
             boostRandomTower();
         }
     }
+
+    /**
+     * Randomly selects a player {@link Tower} and increases its level by 1.
+     */
     public void levelUpRandomTower(){
         Tower randomTower = playerTowers.get(random.nextInt(playerTowers.size()));
         towerStatsManager.levelUp(randomTower);
     }
 
+    /**
+     * Randomly selects an undestroyed player {@link Tower} and destroys it.
+     */
     public void destroyRandomTower(){
         boolean notDestroyed = true;
         while (notDestroyed){
@@ -51,11 +101,18 @@ public class RandomEventsService {
         }
     }
 
+    /**
+     * Randomly boosts the resource amount of a random player {@link Tower}.
+     */
     public void boostRandomTower(){
         Tower randomTower = playerTowers.get(random.nextInt(playerTowers.size()));
         randomTower.getTowerStats().setResourceAmount(randomTower.getTowerStats().getResourceAmount() + 10);
     }
 
+    /**
+     * Randomly chooses a player owned {@link Tower} and change its {@link Resource} type to a random Resource type that
+     * isn't the same as the original type.
+     */
     public void switchRssOfRandomTower(){
         Tower randomTower = playerTowers.get(random.nextInt(playerTowers.size()));
         boolean sameResource = true;
