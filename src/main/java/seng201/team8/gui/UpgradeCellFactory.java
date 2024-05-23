@@ -12,6 +12,10 @@ import seng201.team8.models.Rarity;
 import seng201.team8.models.Upgrade;
 import javafx.scene.control.Label;
 
+/**
+ * The class that sets the formatting style of the ListView {@link Upgrade} cell. Is used by the
+ * {@link ShopScreenController} and {@link InventoryController} when displaying the player's Upgrades.
+ */
 public class UpgradeCellFactory implements Callback<ListView<Upgrade>, ListCell<Upgrade>> {
     @Override
     public ListCell<Upgrade> call(ListView<Upgrade> param){
@@ -38,8 +42,7 @@ public class UpgradeCellFactory implements Callback<ListView<Upgrade>, ListCell<
                             new Label((upgrade.toString())),
                             new Label(String.format("Sells for: %s", upgrade.getSellingPrice()))
                     );
-                    //Add the image and the VBox to the HBox
-                    //TODO : ADD IMAGES TO UPGRADE SO THIS ACTUALLY DISPLAYS IMAGES
+                    //Add the VBox to the HBox
                     hBox.getChildren().addAll(vBox);
                     setGraphic(hBox);
                 }
