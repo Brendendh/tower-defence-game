@@ -5,7 +5,6 @@ import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -181,10 +180,10 @@ public class RoundEvaluationController {
     private void updateGameTable(){
         for(int i = 0; i < round.getCartNumber(); i++){
             cartLabels.get(i).setText(roundEvaluationService.getCarts()[i].toString());
-            ImageView imageView = new ImageView("/images/defaultCart.png");
-            imageView.setFitHeight(50);
-            imageView.setFitWidth(50);
-            gamePane.add(imageView, roundEvaluationService.getCarts()[i].getDistance(), i);
+            ImageView cartImageView = new ImageView("/images/carts/"+ round.getCarts()[i].getResourceType().name().toLowerCase() +".png");
+            cartImageView.setFitHeight(50);
+            cartImageView.setFitWidth(50);
+            gamePane.add(cartImageView, roundEvaluationService.getCarts()[i].getDistance(), i);
             gamePane.add(cartLabels.get(i), roundEvaluationService.getCarts()[i].getDistance() , i);
         }
     }
@@ -214,9 +213,9 @@ public class RoundEvaluationController {
             Label tempLabel = new Label("cart" + i);
             tempLabel.setWrapText(true);
             tempLabel.setPadding(new Insets(10, 30, 10, 10));
-            tempLabel.setStyle("-fx-font: 8 arial;");
+            tempLabel.setStyle("-fx-font: 9 arial;");
             cartLabels.add(tempLabel);
-            ImageView cartImageView = new ImageView("/images/defaultCart.png");
+            ImageView cartImageView = new ImageView("/images/carts/"+ round.getCarts()[i].getResourceType().name().toLowerCase() +".png");
             cartImageView.setFitHeight(50);
             cartImageView.setFitWidth(50);
             gamePane.add(cartImageView, roundEvaluationService.getCarts()[i].getDistance(), i);
@@ -229,7 +228,7 @@ public class RoundEvaluationController {
             Tower tower = gameManager.getInventoryManager().getInventoryData().getMainTowers()[i];
             if(tower != null) {
                 ImageView towerImageView = new ImageView("/images/towers/"+tower.getTowerStats().getResourceType().name().toLowerCase() + ".jpg");
-                towerImageView.setFitHeight(85);
+                towerImageView.setFitHeight(95);
                 towerImageView.setFitWidth(300);
                 towerImageView.setPreserveRatio(true);
                 GridPane.setHalignment(towerImageView, HPos.CENTER);
