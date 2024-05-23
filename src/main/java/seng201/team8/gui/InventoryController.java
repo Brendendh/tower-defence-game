@@ -3,6 +3,7 @@ package seng201.team8.gui;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import seng201.team8.models.*;
@@ -115,11 +116,7 @@ public class InventoryController {
             resourceAmountLabel.setText(String.valueOf(tower.getTowerStats().getResourceAmount()));
             cooldownLabel.setText(String.valueOf(tower.getTowerStats().getCooldown()));
             resourceTypeLabel.setText(String.valueOf(tower.getTowerStats().getResourceType()));
-            if (tower.isBroken()){
-                towerNameTextField.setText("DESTROYED");
-            } else{
-                towerNameTextField.setText(tower.getName());
-            }
+            towerNameTextField.setText(tower.getName());
             levelLabel.setText(String.valueOf(tower.getLevel()));
             int levelRequirement;
             if(tower.getLevel() < 15){
@@ -166,7 +163,7 @@ public class InventoryController {
             if(tower != null) {
                 style += "-fx-border-color: " + tower.getRarity().getRarityTextColor() + ";  -fx-border-width: 5;";
                 if(tower.isBroken()) {
-                    towerButtons.get(i).setText("Destroyed");
+                    towerButtons.get(i).setText("DESTROYED");
                 } else {
                     towerButtons.get(i).setText(tower.getName());
                 }
@@ -218,12 +215,20 @@ public class InventoryController {
 
     private void displayTowerImage(Tower tower){
         Image image = new Image("/images/towers/" + tower.getTowerStats().getResourceType().name().toLowerCase() + ".jpg");
+        if(tower.isBroken()) {
+            ColorAdjust brokenFilter = new ColorAdjust();
+            brokenFilter.setSaturation(-1);
+            towerImageView.setEffect(brokenFilter);
+        } else {
+            towerImageView.setEffect(null);
+        }
         towerImageView.setImage(image);
 
     }
 
     private void displayUpgradeImage(Upgrade upgrade){
         Image image = new Image("/images/upgrades/" + upgrade.getEffect().getEffectName().toLowerCase().replace(" ", "") + ".jpg");
+
         upgradeImageView.setImage(image);
     }
 

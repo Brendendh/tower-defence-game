@@ -7,6 +7,7 @@ import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.VPos;
 import javafx.scene.control.Label;
+import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
@@ -236,14 +237,24 @@ public class RoundEvaluationController {
         for(int i = 0; i < gameManager.getInventoryManager().getInventoryData().getMainTowers().length; i++){
             Tower tower = gameManager.getInventoryManager().getInventoryData().getMainTowers()[i];
             if(tower != null) {
-                ImageView towerImageView = new ImageView("/images/towers/"+tower.getTowerStats().getResourceType().name().toLowerCase() + ".jpg");
-                towerImageView.setFitHeight(95);
-                towerImageView.setFitWidth(300);
-                towerImageView.setPreserveRatio(true);
+                ImageView towerImageView = getImageView(tower);
                 GridPane.setHalignment(towerImageView, HPos.CENTER);
                 towerPane.add(towerImageView, 0, i*2);
             }
         }
+    }
+
+    private static ImageView getImageView(Tower tower) {
+        ImageView towerImageView = new ImageView("/images/towers/"+ tower.getTowerStats().getResourceType().name().toLowerCase() + ".jpg");
+        if(tower.isBroken()) {
+            ColorAdjust brokenFilter = new ColorAdjust();
+            brokenFilter.setSaturation(-1);
+            towerImageView.setEffect(brokenFilter);
+        }
+        towerImageView.setFitHeight(95);
+        towerImageView.setFitWidth(300);
+        towerImageView.setPreserveRatio(true);
+        return towerImageView;
     }
 
     private void createTowerConstraints(){
