@@ -21,8 +21,6 @@ public class RandomEventsService {
         random = new Random();
     }
 
-    //this is stupid ugly code, I should've just made random events its own class like upgrade which implements
-    //events, but hey, it works and unfortunately 262 and 261 is knocking on my door.
     public void executeRandomEvent(int i){
         if (i == 0){
             levelUpRandomTower();

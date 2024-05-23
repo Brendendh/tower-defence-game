@@ -9,14 +9,68 @@ import seng201.team8.models.dataRecords.ShopData;
 
 import java.util.Random;
 
+/**
+ * The service class for the Shop.
+ * <p></p>
+ * Handles the logic behind generating shop {@link Item} and the buying and selling
+ * of player owned {@link Tower}s and {@link Upgrade}.
+ * <p></p>
+ * Is initialized by the ShopScreenController upon creation to manage the different logic operations
+ * that involves the game's {@link ShopData} and player's inventory.
+ * @see seng201.team8.gui.ShopScreenController
+ * @see InventoryManager
+ */
+
 public class ShopManager {
+    /**
+     * The game's current {@link ShopData}. Set by the constructor based
+     * of the {@link GameManager} value.
+     *
+     * @see GameManager#getShopData()
+     */
     private final ShopData shopData;
+    /**
+     * The player's {@link InventoryManager}. Used by the manager to access and
+     * change the player's inventory when interacting with the shop.
+     */
     private final InventoryManager inventoryManager;
+    /**
+     * The current game's {@link GameManager}
+     */
     private final GameManager gameManager;
+    /**
+     * Used to generate random numbers to generate random {@link Item}s.
+     * @see Random
+     */
     private final Random randomGenerator;
+    /**
+     * The default pool of {@link Tower}s
+     * @see GameManager#getDefaultTowers()
+     */
     private final Tower[] defaultTowersToPick;
+    /**
+     * The default pool of {@link Upgrade}s
+     * @see GameManager#getDefaultUpgrades()
+     */
     private final Upgrade[] defaultUpgrades;
 
+    /**
+     * The constructor for ShopManager.
+     * <p></p>
+     * Takes in the game's GameManager as a parameter in order for the ShopManager to be able to
+     * manage the {@link ShopData} and communicate with the InventoryManager via the GameManager.
+     *<p></p>
+     * At the start of the game, the ShopData in the GameManager will not be initialized yet and if so, the ShopManager
+     * will initialize the ShopData. From there onwards, everytime the player enters the shop again, a new ShopManager is
+     * initialized where it compares the current round number to the ShopData's initializedRoundNumber to see if a round has passed
+     * or not. If a round has passed, refresh the shop and update the ShopData's initalizedRoundNumber. If not, do nothing.
+     * <p></p>
+     * This is to ensure the shop state is saved when the player exits and re-enters the shop within the same round, while
+     * the shop refreshes itself after every round.
+     * @see ShopData#getInitializedRoundNumber()
+     * @see InventoryManager
+     * @param gameManager {@link GameManager}
+     */
     public ShopManager(GameManager gameManager){
         this.gameManager = gameManager;
         randomGenerator = new Random();
@@ -39,6 +93,18 @@ public class ShopManager {
         gameManager.setShopData(this.shopData);
     }
 
+    /**
+     * Refreshes the {@link Tower}s and {@link Upgrade}s sold by the shop at the cost
+     * of 5 money.
+     * <p></p>
+     * Does so by calling {@link ShopManager#updateTowers()} to refresh Towers sold
+     * and {@link ShopManager#updateUpgrades()} to refresh Upgrades sold.
+     * <p></p>
+     * If the player does not have enough money to refresh, it will throw a {@link NotEnoughCurrencyException}
+     * to be handled by the ShopScreenController.
+     * @throws NotEnoughCurrencyException
+     * @see seng201.team8.gui.ShopScreenController
+     */
     public void refresh() throws NotEnoughCurrencyException {
         if (gameManager.getGameData().getMoney() < 5){
             throw new NotEnoughCurrencyException("Not enough money to refresh!");
@@ -50,6 +116,13 @@ public class ShopManager {
         }
     }
 
+    /**
+     * Updates the {@link Tower} sold by the shop. The possible Towers are randomly
+     * selected from the default Tower pool from GameManager. The Tower's rarity is then decided
+     * by calling {@link ShopManager#generateRarities(int currentRoundNumber)}
+     *
+     * @see GameManager#getDefaultTowers()
+     */
     public void updateTowers(){
         Tower[] towersToBeSold = new Tower[3];
         for (int i = 0; i < 3; i++){
@@ -59,7 +132,13 @@ public class ShopManager {
         }
         shopData.setTowersSold(towersToBeSold);
     }
-
+    /**
+     * Updates the {@link Upgrade} sold by the shop. The possible Upgrades are randomly
+     * selected from the default Upgrade pool from GameManager. The Upgrade's rarity is then decided
+     * by calling {@link ShopManager#generateRarities(int currentRoundNumber)}
+     *
+     * @see GameManager#getDefaultUpgrades()
+     */
     public void updateUpgrades(){
         Upgrade[] upgradesToBeSold = new Upgrade[3];
         for (int i = 0; i < 3; i++){
@@ -70,6 +149,16 @@ public class ShopManager {
         shopData.setUpgradesSold(upgradesToBeSold);
 
     }
+
+    /**
+     * Return a random {@link Rarity} based on the current round number.
+     * <p></p>
+     * Does so by randomly choosing from different rarity probability pools based on the
+     * current round number.
+     * @param currentRound the current round number
+     * @return {@link Rarity}
+     * @see seng201.team8.models.dataRecords.RarityData
+     */
     public Rarity generateRarities(int currentRound){
         int randomValue = randomGenerator.nextInt(10);
         Rarity generatedRarity = Rarity.COMMON;
@@ -85,13 +174,42 @@ public class ShopManager {
         return generatedRarity;
     }
 
+    /**
+     * Returns the {@link Tower}s sold by the shop.
+     * @return An Array of the Towers sold
+     */
     public Tower[] getTowersSold(){
         return shopData.getTowersSold();
     }
+    /**
+     * Returns the {@link Upgrade}s sold by the shop.
+     * @return An Array of the Upgrades sold
+     */
     public Upgrade[] getUpgradesSold(){
         return shopData.getUpgradesSold();
     }
 
+    /**
+     * Buys the selected {@link Tower}. Called by the ShopScreenController
+     * <p></p>
+     * The Tower bought will be moved to the first empty slot in the player's main towers, if
+     * there is no space in the main towers, it will be moved to the first empty slot in the player's
+     * reserve towers. Else, a {@link NoSpaceException} will be thrown and the player's money won't be
+     * deducted.
+     * <p></p>
+     * If the player tries to buy an already sold Tower, a {@link BuyingNullError} will be thrown and
+     * the player's money won't be deducted.
+     * <p></p>
+     * If the player does not have enough money to purchase the selected Tower, a {@link NotEnoughCurrencyException}
+     * will be thrown.
+     * <p></p>
+     * All exceptions will be handled by the ShopScreenController.
+     * @param towerIndex the selected Tower's index
+     * @throws NoSpaceException
+     * @throws NotEnoughCurrencyException
+     * @throws BuyingNullError
+     * @see seng201.team8.gui.ShopScreenController
+     */
     public void buyTower(int towerIndex) throws NoSpaceException, NotEnoughCurrencyException, BuyingNullError {
         Tower towerBought = shopData.getTowersSold()[towerIndex];
         if (towerBought == null){ //check if the tower is not already sold
@@ -110,6 +228,23 @@ public class ShopManager {
             shopData.getTowersSold()[towerIndex] = null;
         }
     }
+    /**
+     * Buys the selected {@link Upgrade}. Called by the ShopScreenController.
+     * <p></p>
+     * The bought Upgrade will be added to the player's inventory.
+     * <p></p>
+     * If the player tries to buy an already sold Upgrade, a {@link BuyingNullError} will be thrown and
+     * the player's points won't be deducted.
+     * <p></p>
+     * If the player does not have enough points to purchase the selected Upgrade, a {@link NotEnoughCurrencyException}
+     * will be thrown.
+     * <p></p>
+     * All exceptions will be handled by the ShopScreenController.
+     * @param upgradeIndex the selected Upgrade's index
+     * @throws NotEnoughCurrencyException
+     * @throws BuyingNullError
+     * @see seng201.team8.gui.ShopScreenController
+     */
     public void buyUpgrade(int upgradeIndex) throws NotEnoughCurrencyException, BuyingNullError {
         Upgrade upgradeBought = shopData.getUpgradesSold()[upgradeIndex];
         if (upgradeBought == null){
@@ -124,6 +259,18 @@ public class ShopManager {
             shopData.getUpgradesSold()[upgradeIndex] = null;
         }
     }
+
+    /**
+     * Sells the selected Main {@link Tower}. Called by the ShopScreenController.
+     * <p></p>
+     * The sold Tower is removed from player's inventory via the {@link InventoryManager}
+     * and the Tower's selling price money is added to the player's money count.
+     * <p></p>
+     * If the selected towerIndex points to an empty slot instead of a Tower, a {@link SellingNullError}
+     * is thrown to be handled by the ShopScreenController.
+     * @param towerIndex the selected main tower {@link Integer} index
+     * @throws SellingNullError
+     */
     public void sellMainTower(int towerIndex) throws SellingNullError {
         if (inventoryManager.getInventoryData().getMainTowers()[towerIndex] == null){
             throw new SellingNullError("Why are you trying to sell air...?");
@@ -134,6 +281,17 @@ public class ShopManager {
             inventoryManager.getInventoryData().getMainTowers()[towerIndex] = null;
         }
     }
+    /**
+     * Sells the selected Reserve {@link Tower}. Called by the ShopScreenController.
+     * <p></p>
+     * The sold Tower is removed from player's inventory via the {@link InventoryManager}
+     * and the Tower's selling price money is added to the player's money count.
+     * <p></p>
+     * If the selected towerIndex points to an empty slot instead of a Tower, a {@link SellingNullError}
+     * is thrown to be handled by the ShopScreenController.
+     * @param towerIndex the selected reserve tower {@link Integer} index
+     * @throws SellingNullError
+     */
     public void sellReserveTower(int towerIndex) throws SellingNullError {
         if (inventoryManager.getInventoryData().getReserveTowers()[towerIndex] == null){
             throw new SellingNullError("Why are you trying to sell air...?");
@@ -145,6 +303,19 @@ public class ShopManager {
         }
     }
 
+    /**
+     * Sells the selected {@link Upgrade} by calling .get() on the player's owned Upgrades based on the selected
+     * upgradeIndex. Called by the ShopScreenController.
+     * <p></p>
+     * The sold Upgrade is removed from the player's inventory via the {@link InventoryManager}
+     * and the Upgrade's selling price points is added to the player's point count.
+     * <p></p>
+     * If the selected upgradeIndex points to null or is out of range of the owned Upgrades ArrayList, a
+     * {@link SellingNullError} is thrown to be handled by the ShopScreenController.
+     * @param upgradeIndex the selected Upgrade's {@link Integer} index
+     * @throws SellingNullError
+     * @see seng201.team8.gui.ShopScreenController
+     */
     public void sellUpgrade(int upgradeIndex) throws SellingNullError {
         if(upgradeIndex >= inventoryManager.getInventoryData().getUpgrades().size()){
             throw new SellingNullError("Why are you trying to sell air...?");
@@ -159,6 +330,10 @@ public class ShopManager {
         }
     }
 
+    /**
+     * Getter for {@link ShopManager#shopData}
+     * @return {@link ShopManager#shopData}
+     */
     public ShopData getShopData() {
         return shopData;
     }
