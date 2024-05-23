@@ -71,6 +71,19 @@ public class GameMenuController {
         gameManager.getGameGUIManager().launchScreen("Inventory Screen");
     }
 
+    /**
+     * Sets the label in the game menu screen to display:
+     * <p>
+     * The current game's difficulty by calling {@link GameMenuController#updateDifficultyLabel(Integer)}
+     * <p></p>
+     * The player's current money and point amount
+     * <p></p>
+     * The player's current name
+     * <p></p>
+     * The current round count
+     * <p></p>
+     * and the upcoming round's {@link Resource} types required by calling {@link GameMenuController#updateResourceDisplay()}
+     */
     public void initialize(){
         updateDifficultyLabel(gameManager.getGameData().getDifficulty());
         moneyLabel.setText("Money: "+gameManager.getGameData().getMoney());
@@ -80,6 +93,15 @@ public class GameMenuController {
         roundCounter.setText("Round "+gameManager.getGameData().getRound()+"/"+gameManager.getGameData().getTargetRound());
     }
 
+    /**
+     * Sets the label to display the game's difficulty mode based on the {@link Integer} parameter.
+     * <p></p>
+     * If the Integer = 0, the difficulty label is set to "Normal"
+     * <p>
+     *     If the Integer = 1, the difficulty label is set to "Hard"
+     * </p>
+     * @param difficulty the difficulty {@link Integer}
+     */
     private void updateDifficultyLabel(Integer difficulty){
         if (difficulty == 0){
             difficultyLabel.setText("Difficulty: Normal");
@@ -88,6 +110,9 @@ public class GameMenuController {
         }
     }
 
+    /**
+     * Sets the label to display the upcoming required {@link Resource} types.
+     */
     private void updateResourceDisplay(){
         ArrayList<Resource> resources = gameManager.getRoundResourceDisplay();
         String resourceString = "Possible cart resource type: ";
