@@ -23,10 +23,13 @@ import java.util.List;
 
 public class RoundEvaluationController {
 
+
     @FXML
     private GridPane mainLayout;
     @FXML
     private GridPane infoLayout;
+    @FXML
+    private Label roundCounterLabel;
 
     private GridPane gamePane;
     private GridPane towerPane;
@@ -105,6 +108,7 @@ public class RoundEvaluationController {
                         finishGame(false);
                     }
                     roundEvaluationService.incrementCounter();
+                    roundCounterLabel.setText("Round: " + roundEvaluationService.getCounter());
                     roundEvaluationService.produceResources();
                     updateResourceTable();
                 }
@@ -137,7 +141,7 @@ public class RoundEvaluationController {
     }
 
     private void createTableConstraints() {
-        numTableCols = round.getDistanceAllowed();
+        numTableCols = round.getDistanceAllowed()+1;
         numTableRows = round.getCartNumber();
         for (int i = 0; i < numTableCols; i++) {
             ColumnConstraints colConst = new ColumnConstraints();
@@ -168,12 +172,17 @@ public class RoundEvaluationController {
     }
 
     private void createGameTable() {
-        for (int i = 0; i < numTableCols; i++) {
+        for (int i = 0; i < numTableCols-1; i++) {
             for (int j = 0; j < numTableRows; j++) {
                 Pane pane = new Pane();
                 pane.getStyleClass().add("cell");
                 gamePane.add(pane, i, j);
             }
+        }
+        for (int j = 0; j < numTableRows; j++) {
+            Pane pane = new Pane();
+            pane.getStyleClass().add("end-cell");
+            gamePane.add(pane, numTableCols-1, j);
         }
     }
 
@@ -213,7 +222,7 @@ public class RoundEvaluationController {
             Label tempLabel = new Label(roundEvaluationService.getCarts()[i].toString());
             tempLabel.setWrapText(true);
             tempLabel.setPadding(new Insets(10, 30, 10, 10));
-            tempLabel.setStyle("-fx-font: 9 arial;");
+            tempLabel.setStyle("-fx-font: 8 arial;");
             cartLabels.add(tempLabel);
             ImageView cartImageView = new ImageView("/images/carts/"+ round.getCarts()[i].getResourceType().name().toLowerCase() +".png");
             cartImageView.setFitHeight(50);

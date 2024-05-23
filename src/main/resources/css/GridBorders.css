@@ -9,3 +9,8 @@
     -fx-background-color: black, white ;
     -fx-background-insets: 0, 0 0 1 1 ;
 }
+
+.end-cell {
+    -fx-background-color: black, red ;
+    -fx-background-insets: 0, 0 0 1 1 ;
+}
