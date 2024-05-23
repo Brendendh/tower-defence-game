@@ -4,7 +4,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -225,9 +224,6 @@
         </rowConstraints>
          <children>
             <ImageView fx:id="towerImage" fitHeight="510.0" fitWidth="510.0" pickOnBounds="true" preserveRatio="true" GridPane.columnSpan="5" GridPane.rowIndex="2">
-               <image>
-                  <Image url="@../images/defaultTower.png" />
-               </image>
             </ImageView>
             <Button fx:id="tower1Button" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="T1" GridPane.rowIndex="1">
                <GridPane.margin>

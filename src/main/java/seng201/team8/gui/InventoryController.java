@@ -72,6 +72,7 @@ public class InventoryController {
         updateUpgradeViewList();
         initializeDefaultValues();
         renameTowerButton.setDisable(true);
+        useItemButton.setDisable(true);
         displayTowerNull();
         displayUpgradeNull();
         styleTowerButtons();
@@ -84,6 +85,7 @@ public class InventoryController {
             selectedInventoryUpgradeIndex = newIndex.intValue();
             selectedInventoryItemType = "Upgrade";
             renameTowerButton.setDisable(true);
+            useItemButton.setDisable(false);
             if(!isApplyingUpgrade){
                 updateUpgradeStats(inventoryManager.getInventoryData().getUpgrades().get(selectedInventoryUpgradeIndex));
             }
@@ -274,6 +276,7 @@ public class InventoryController {
             moveTowerButton.setDisable(false);
             useItemButton.setText("Use Item");
         }
+        displayTowerNull();
         clearSelectedTowerButtons();
         styleTowerButtons();
     }
@@ -284,6 +287,7 @@ public class InventoryController {
         updateUpgradeViewList();
         displayUpgradeNull();
         displayTowerNull();
+        useItemButton.setDisable(true);
         selectedInventoryUpgradeIndex = -1;
     }
 

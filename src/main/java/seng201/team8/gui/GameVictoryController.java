@@ -10,14 +10,14 @@ public class GameVictoryController {
     @FXML
     private Label statLabel;
 
-    private GameManager gameManager;
+    private final GameManager gameManager;
 
     public GameVictoryController(GameManager gameManager){
         this.gameManager = gameManager;
     }
 
     @FXML
-    void moveToGameStartScreen(ActionEvent event) {
+    void moveToGameStartScreen() {
         gameManager.getGameGUIManager().launchScreen("Game Start");
     }
 

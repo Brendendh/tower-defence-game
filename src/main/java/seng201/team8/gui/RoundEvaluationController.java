@@ -210,7 +210,7 @@ public class RoundEvaluationController {
 
     private void createCartLabels(){
         for (int i = 0; i < round.getCartNumber(); i++){
-            Label tempLabel = new Label("cart" + i);
+            Label tempLabel = new Label(roundEvaluationService.getCarts()[i].toString());
             tempLabel.setWrapText(true);
             tempLabel.setPadding(new Insets(10, 30, 10, 10));
             tempLabel.setStyle("-fx-font: 9 arial;");
