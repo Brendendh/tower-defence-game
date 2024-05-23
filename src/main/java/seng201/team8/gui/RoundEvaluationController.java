@@ -68,7 +68,7 @@ public class RoundEvaluationController {
         createTowerImageViews();
         createResourceLabels();
 
-        mainLayout.getStylesheets().add("/css/GridBorders.css");
+        mainLayout.getStylesheets().add("/css/RoundEvaluationService.css");
 
         mainLayout.add(gamePane, 1, 0);
         infoLayout.add(towerPane, 0, 0);

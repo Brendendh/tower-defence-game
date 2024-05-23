@@ -117,13 +117,21 @@ public class GameManager {
             new Upgrade(new ResourceAmountBoost(10), Rarity.COMMON, 10, 1),
             new Upgrade(new RepairTower(), Rarity.COMMON, 10, 1)};
 
+    /**
+     * The constructor for {@link GameManager}.
+     * <p></p>
+     * Takes in a Consumer object which launches a screen and a Runnable object which clears the screen to set up a new screen.
+     * These objects are stored in a newly generated GameGUIManager and launches the first screen of the application.
+     * @param screenLauncher Consumer object which runs the launchScreen method in the FXWrapper with the parameter, GameManager.
+     * @param clearPane Runnable object which clears the screen to create a new screen.
+     */
     public GameManager(Consumer<GameManager> screenLauncher, Runnable clearPane){
         this.gameGUIManager = new GameGUIManager(screenLauncher, clearPane, this);
         gameGUIManager.launchScreen("Game Start");
     }
 
     /**
-     * The constructor for {@link GameManager}.
+     * The constructor for {@link GameManager} for testing purposes.
      * <p></p>
      * Takes in a newly generated GameData and InventoryManager as a parameter and stores
      * their value inside the GameManager.

@@ -170,7 +170,7 @@ public class GameSetupController {
             errorPopUp("Select 3 towers.");
         } else {
             gameData.setName(playerNameTextField.getText());
-            InventoryManager inventoryManager = gameSetupService.createInventoryManager(gameSetupService.createInventory(addedTowers));
+            InventoryManager inventoryManager = new InventoryManager(gameSetupService.createInventory(addedTowers));
             gameManager.setGameData(gameData);
             gameManager.setShopData(null);
             gameManager.setInventoryManager(inventoryManager);
