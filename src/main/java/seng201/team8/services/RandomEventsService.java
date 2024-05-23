@@ -59,14 +59,13 @@ public class RandomEventsService {
     public void switchRssOfRandomTower(){
         Tower randomTower = playerTowers.get(random.nextInt(playerTowers.size()));
         boolean sameResource = true;
-        Resource chosenResource =gameManager.getDefaultResources()[random.nextInt(3)];;
+        Resource chosenResource =gameManager.getDefaultResources()[random.nextInt(3)];
         while (sameResource){
             chosenResource = gameManager.getDefaultResources()[random.nextInt(3)];
             if (chosenResource != randomTower.getTowerStats().getResourceType()){
                 sameResource = false;
             }
         }
-        //this may cause a glitch which could affect the list in GameManager itself...but we'll see :>
         randomTower.getTowerStats().setResourceType(chosenResource);
     }
 }
