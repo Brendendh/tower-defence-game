@@ -122,7 +122,6 @@ public class GameManager {
      * <p></p>
      * Takes in a Consumer object which launches a screen and a Runnable object which clears the screen to set up a new screen.
      * These objects are stored in a newly generated GameGUIManager and launches the first screen of the application.
-     *
      * @param screenLauncher Consumer object which runs the launchScreen method in the FXWrapper with the parameter, GameManager.
      * @param clearPane Runnable object which clears the screen to create a new screen.
      */
