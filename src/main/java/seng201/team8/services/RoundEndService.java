@@ -6,7 +6,7 @@ import java.util.Random;
 
 /**
  * The service class for RoundEndService. Created when the
- * RoundEndScreen is created.
+ * RoundEndController is created.
  * <p></p>
  * Provides the methods to check if a random event will be played,
  * calculates the points, exp points and money reward, and
