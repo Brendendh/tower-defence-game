@@ -469,7 +469,7 @@ public class InventoryController {
         } else {
             moveTowerButton.setText("Move Tower");
             isMovingTowers = false;
-            useItemButton.setDisable(false);
+            useItemButton.setDisable(selectedInventoryUpgradeIndex == -1);
         }
         styleTowerButtons();
         fromTowerIndex = -1;
@@ -543,7 +543,7 @@ public class InventoryController {
                 displayTowerNull();
             }
             isMovingTowers = false;
-            useItemButton.setDisable(false);
+            useItemButton.setDisable(selectedInventoryUpgradeIndex == -1);
             moveTowerButton.setText("Move Tower");
             clearSelectedTowerButtons();
         } else {
