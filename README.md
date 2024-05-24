@@ -6,7 +6,7 @@
 - SENG201 Teaching team
 
 ## Prerequisites
-- JDK >= 17 [click here to get the latest stable OpenJDK release (as of writing this README)](https://jdk.java.net/18/)
+- JDK >= 17 [click here to get the latest stable OpenJDK release (as of writing this README)](https://jdk.java.net/22/)
 - *(optional)* Gradle [Download](https://gradle.org/releases/) and [Install](https://gradle.org/install/)
 
 ## Cloning project into IntelliJ
