@@ -5,7 +5,7 @@ import seng201.team8.models.Rarity;
 
 /**
  * A model class for RarityData.
- * <p></p>
+ * <br><br>
  * Responsible for holding an Array of different {@link Rarity} that determines
  * the probability of an {@link Item}'s generated rarity at different stages of the game.
  * Accessed by the ShopManager when generating the items sold in the shop.
@@ -19,9 +19,9 @@ public class RarityData {
     /**
      * A sized 10 Array of {@link Rarity} which represent
      * the probability of rarities during rounds 1-5
-     * <p>
+     * <br><br>
      *     70% for Common, 30% for Rare
-     * </p>
+     *
      */
     final private Rarity[] earlyGameRarity;
     /**
@@ -29,18 +29,23 @@ public class RarityData {
      * the probability of rarities during rounds 6-10
      * <p>
      *     50% Common, 30% Rare, 20% Epic
-     * </p>
+     *
      */
     final private Rarity[] midGameRarity;
     /**
      * A sized 10 Array of {@link Rarity} which represent
      * the probability of rarities during rounds 11-15
      * <p>
-     *     30% Common,40% Rare, 30% Epic
-     * </p>
+     *     30% Common, 40% Rare, 30% Epic
+     *
      */
     final private Rarity[] lateGameRarity;
 
+    /**
+     * The constructor for {@link RarityData}.
+     * <p>
+     * Initializes the default values for early, middle and late game rarities.
+     */
     public RarityData(){
         this.earlyGameRarity = new Rarity[]{Rarity.COMMON,Rarity.COMMON,Rarity.COMMON,Rarity.COMMON,Rarity.COMMON,Rarity.COMMON,Rarity.COMMON,Rarity.RARE,Rarity.RARE, Rarity.RARE};
         this.midGameRarity = new Rarity[]{Rarity.COMMON,Rarity.COMMON,Rarity.COMMON,Rarity.COMMON,Rarity.COMMON,Rarity.RARE,Rarity.RARE,Rarity.RARE,Rarity.EPIC,Rarity.EPIC};

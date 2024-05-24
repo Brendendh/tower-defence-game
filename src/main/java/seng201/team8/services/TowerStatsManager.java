@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 /**
  * The service that handles the logic behind the leveling system of the {@link Tower}
- * <p></p>
+ * <br><br>
  * Whenever a class deals with adding exp or levelling up towers, an instance of TowerStatsManager
  * is created to handle the logic behind it.
  * @see RandomEventsService#boostRandomTower()
@@ -22,7 +22,7 @@ public class TowerStatsManager {
     private InventoryData inventoryData;
     /**
      * An Array of Integers which represents the required exp points a tower needs to level up
-     * <p></p>
+     * <br><br>
      * The Integer at the index is the exp points needed for that tower to reach that index's level.
      * Since the starting level of a tower is lvl 0, index 0 of the Array is set to -1.
      */
@@ -36,7 +36,7 @@ public class TowerStatsManager {
 
     /**
      * The constructor for TowerStatsManager that does not require an {@link InventoryData}.
-     * <p></p>
+     * <br><br>
      * Used by classes that does not store player InventoryData but require levelling towers like
      * {@link RoundEndService} and the ExpBoost {@link Upgrade}.
      * @see seng201.team8.models.effects.ExpBoost
@@ -47,12 +47,12 @@ public class TowerStatsManager {
     /**
      * The constructor for TowerStatsManager that takes in an {@link InventoryData} as a parameter, stores it
      * and then calls {@link TowerStatsManager#findPlayerTower(ArrayList)} to find all the player's owned {@link Tower}.
-     * <p></p>
+     * <br><br>
      * Called by {@link RandomEventsService} as one of the random events require to randomly select from the pool
      * of player owned towers.
      *
      * @param inventoryData {@link InventoryData}
-     * @see {@link RandomEventsService#boostRandomTower()}
+     * @see RandomEventsService#boostRandomTower()
      */
     public TowerStatsManager(InventoryData inventoryData){
         this.inventoryData = inventoryData;
@@ -63,7 +63,7 @@ public class TowerStatsManager {
 
     /**
      * Takes in an ArrayList as a parameter and adds all the player owned {@link Tower} to it.
-     * @param playerTowers
+     * @param playerTowers an {@link ArrayList} of {@link Tower}s
      */
     public void findPlayerTower(ArrayList<Tower> playerTowers){
         for (int i = 0; i < inventoryData.getMainTowers().length; i++){

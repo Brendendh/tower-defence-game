@@ -5,14 +5,13 @@ import seng201.team8.models.Upgrade;
 
 /**
  * The model for the ShopData class.
- * <p></p>
+ * <br><br>
  * Stores all the information relating to the shop. Such as:
- * <p>
+ * <br><br>
  * The towers sold in the shop, {@link ShopData#towersSold}
- * <p>
+ * <br><br>
  * The upgrades sold in the shop, {@link ShopData#upgradesSold}
- * </p>
- * <p></p>
+ * <br><br>
  *
  * Created and managed by the ShopManager class and is stored in the GameManager.
  * @see seng201.team8.services.GameManager
@@ -31,13 +30,13 @@ public class ShopData {
     /**
      * An integer representing the round number in which the shop data
      * was created/last accessed.
-     * <p></p>
+     * <br><br>
      * The ShopData should remain the same when exiting and entering the
      * Shop screen during the same round. However, the shop should refresh
      * when it is accessed during the next round, hence this value will be compared
      * to the current round number stored in {@link GameData} as a means to check
      * if the current round is the next round and if it should refresh or not.
-     * <p></p>
+     * <br><br>
      * Once the shop is refreshed, this value updates to the current round number again.
      */
 

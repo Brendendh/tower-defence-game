@@ -8,7 +8,7 @@ import java.util.function.Consumer;
 
 /**
  * The service class for GameGUIManager. Created with the GameManager.
- * <p></p>
+ * <br><br>
  * Serves as hub that keeps tracks and stores the graphical information of the game. Such as the current game scene,
  * scenes that are available in the game and the functions to create and clear screens. Frequently accessed by other
  * controllers in order to delete the current screen and create a new different screen for players to navigate.
@@ -40,7 +40,7 @@ public class GameGUIManager {
 
     /**
      * The constructor for {@link GameGUIManager}.
-     * <p></p>
+     * <br><br>
      * Takes in a Consumer object which launches a screen, a Runnable object which clears the screen and a GameManager object.
      * These get stored in the GameGUIManager.
      * @param screenLauncher Consumer object which runs the launchScreen method in the FXWrapper with the parameter, GameManager.
@@ -78,7 +78,7 @@ public class GameGUIManager {
 
     /**
      * Launches a new screen with the given {@link String} sceneKey.
-     * <p></p>
+     * <br><br>
      * Clears the current screen, gets the {@link Scene} object with the
      * {@link String} sceneKey and then launches the new screen with the
      * respective {@link Scene} object.

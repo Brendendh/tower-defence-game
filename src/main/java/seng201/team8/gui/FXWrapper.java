@@ -13,9 +13,9 @@ import java.lang.reflect.InvocationTargetException;
 
 /**
  * The class for switching between Scenes.
- * <p></p>
+ * <br><br>
  * Used by the GameGUIManager to launch to a specific Scene.
- * <p></p>
+ * <br><br>
  * A controller will utilize the FXWrapper through the GameGUIManager by clearing
  * the mainPane and integrating the elements in a FXML file stored in the Scene.
  *
@@ -36,6 +36,7 @@ public class FXWrapper {
 
     /**
      * Stores the stage from the FXWindow and creates a new GameManager.
+     * @param stage {@link Stage}
      */
     public void init(Stage stage) {
         this.stage = stage;

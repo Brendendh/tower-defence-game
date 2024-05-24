@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * Increases the resource produced by a {@link Tower} by a flat integer amount
- * <p></p>
+ * <br><br>
  * One of the possible effects an {@link Upgrade} can have. The added resource amount
  * scales based on {@link Rarity}.
  */

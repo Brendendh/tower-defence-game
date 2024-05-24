@@ -12,12 +12,12 @@ import java.util.regex.Pattern;
 /**
  * The service class for InventoryManager. Created during the Game Setup Screen after the
  * player has chosen starting towers.
- * <p></p>
+ * <br><br>
  * Serves as a manager class which provides methods for the {@link InventoryData} object.
  * These include transferring {@link Tower}s and {@link Upgrade}s,
  * applying {@link Upgrade}s and checking {@link Tower} names. Frequently accessed by services which
  * needs to modify the {@link InventoryData}. Stored in the GameManager.
- * <p></p>
+ * <br><br>
  * @see GameManager
  */
 public class InventoryManager {
@@ -29,7 +29,7 @@ public class InventoryManager {
 
     /**
      * The constructor for {@link InventoryManager} for testing purposes.
-     * <p></p>
+     * <br><br>
      * Creates an empty {@link InventoryData} and stores it inside the InventoryManager.
      */
     public InventoryManager(){
@@ -38,7 +38,7 @@ public class InventoryManager {
 
     /**
      * The constructor for {@link InventoryManager}.
-     * <p></p>
+     * <br><br>
      * Takes in an {@link InventoryData} as a parameter and stores it inside the InventoryManager;
      * @param inventoryData {@link InventoryData}
      */
@@ -74,7 +74,7 @@ public class InventoryManager {
 
     /**
      * Swaps the {@link Tower}s between two given {@link Integer} indexes.
-     * <p></p>
+     * <br><br>
      * Indexes which are bigger or equal to the size of main towers are converted to
      * reserve tower indexes. This is done by taking away the size of the main towers from the index.
      * @param tower1Index {@link Integer}
@@ -100,7 +100,7 @@ public class InventoryManager {
     /**
      * Applies an {@link Upgrade} given by an {@link Integer} index to a
      * given {@link List} of {@link Tower}s.
-     * <p></p>
+     * <br><br>
      * After the upgrade is used, the upgrade is removed.
      * @param upgradeIndex {@link Integer}
      * @param towers An {@link List} of {@link Tower}s
@@ -121,7 +121,7 @@ public class InventoryManager {
 
     /**
      * Moves a given {@link Tower} to the reserve towers.
-     * <p></p>
+     * <br><br>
      * Checks for a null element which represents an empty spot in the reserve tower array.
      * @param tower {@link Tower}
      * @throws NoSpaceException {@link NoSpaceException} if there is no space left in the reserve tower array.
@@ -141,7 +141,7 @@ public class InventoryManager {
 
     /**
      * Moves a given {@link Tower} to the main towers.
-     * <p></p>
+     * <br><br>
      * Checks for a null element which represents an empty spot in the main tower array.
      * @param tower {@link Tower}
      * @throws NoSpaceException {@link NoSpaceException} if there is no space left in the main tower array.

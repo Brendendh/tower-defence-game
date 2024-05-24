@@ -16,7 +16,7 @@ import java.util.List;
 
 /**
  * The controller class for InventoryController.
- * <p></p>
+ * <br><br>
  * Responsible for the communication between the user input and the InventoryManager.
  */
 public class InventoryController {
@@ -119,7 +119,7 @@ public class InventoryController {
 
     /**
      * The constructor for {@link InventoryController}.
-     * <p></p>
+     * <br><br>
      * Takes in a {@link GameManager} and stores it in the InventoryController.
      * @param gameManager {@link GameManager}
      */
@@ -275,7 +275,7 @@ public class InventoryController {
 
     /**
      * Functionality for when the tower button is clicked.
-     * <p></p>
+     * <br><br>
      * It checks for what the current state of the inventory it is in and run
      * the appropriate functionality depending on the state.
      * @param finalI {@link Integer}
@@ -409,7 +409,7 @@ public class InventoryController {
      * not in an applying upgrade state. Then the inventory screen will get into
      * an applying upgrade state where the player has to select towers
      * up to the maximum target of the upgrade.
-     * <p></p>
+     * <br><br>
      * If the player is already in the applying upgrade state, the upgrade
      * will either be consumed and used on the selected towers, or none are
      * selected so the action will be canceled. Afterward, the player will
@@ -454,7 +454,7 @@ public class InventoryController {
     /**
      * Checks if the player is in the moving tower state. If not, the player will
      * be in the moving tower state.
-     * <p></p>
+     * <br><br>
      * If the player is already in the moving tower state. The player will the not be in
      * the moving tower state.
      */
@@ -531,7 +531,7 @@ public class InventoryController {
     /**
      * If the player has not chosen the {@link Tower} to move from, that tower index
      * is stored in the fromTowerIndex.
-     * <p></p>
+     * <br><br>
      * If the player has already chosen the {@link Tower} to move from, the tower
      * that is selected swaps positions with the {@link Tower} to move from. The player
      * will not be in the moving tower state.

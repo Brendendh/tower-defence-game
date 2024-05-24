@@ -12,7 +12,7 @@ import java.util.EnumMap;
 /**
  * The service class for RoundEvaluationService. Created when the
  * RoundEvaluationController is created.
- * <p></p>
+ * <br><br>
  * Used to simulate the game logic of creating resources from towers,
  * filling the carts with the resources and advancing carts. There are
  * also methods to check if the round finished.
@@ -49,7 +49,7 @@ public class RoundEvaluationService {
 
     /**
      * The constructor for {@link RoundEvaluationService}.
-     * <p></p>
+     * <br><br>
      * Takes in a {@link GameManager} object and stores it in the RoundEvaluationService. Sorts the carts in speed
      * descending speed order to fill the fastest first.
      * @param gameManager {@link GameManager}
@@ -179,7 +179,7 @@ public class RoundEvaluationService {
 
     /**
      * Getter for {@link RoundEvaluationService#resourcesProduced}
-     * <p></p>
+     * <br><br>
      * For testing purposes.
      * @return an {@link EnumMap} of {@link Resource}s as keys and the {@link Integer} amount produced as values.
      */

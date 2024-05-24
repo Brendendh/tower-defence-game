@@ -8,7 +8,7 @@ import java.util.Random;
 
 /**
  * The service class for RoundSelectorService.
- * <p></p>
+ * <br><br>
  * Responsible for handling the logic behind generating the three rounds the player can
  * choose from after they complete a round. The rounds generated have their difficulty
  * calculated based of the current round number and the chosen game difficulty by the player.
@@ -43,11 +43,11 @@ public class RoundSelectorService {
 
     /**
      * The constructor for the RoundSelectorService.
-     * <p></p>
+     * <br><br>
      * Takes in a {@link GameManager} in order to have access to the current round number and
      * game difficulty. The three possible rounds are immediately generated upon the service's
      * creation.
-     * <p></p>
+     * <br><br>
      * Called by RoundSelectorScreenController to generate the rounds.
      * @param gameManager {@link GameManager}
      * @see seng201.team8.gui.RoundSelectorScreenController
@@ -91,7 +91,7 @@ public class RoundSelectorService {
 
     /**
      * Called by {@link RoundSelectorService#createPossibleRounds()} to generate a single {@link Round} .
-     * <p></p>
+     * <br><br>
      * It pseudo randomly decides the number of carts first based on round number, finds out the types of resources
      * the player's towers can produce by calling {@link RoundSelectorService#getPlayerOwnedResourceTypes()} and then calls
      * {@link RoundSelectorService#generateCart(int, ArrayList)} to generate each {@link Cart} which then
@@ -113,18 +113,18 @@ public class RoundSelectorService {
     /**
      * Generates a single {@link Cart}. Takes in two parameters, an Integer numOfCartsSoFar and
      * a list of the type of player's tower's {@link Resource}.
-     * <p></p>
+     * <br><br>
      * If the number of carts generated in the round so far is 0, it will generate a cart that shares the same resource
      * type as one of the player's owned towers. This is to make sure "impossible" rounds don't exist.
-     * <p></p>
+     * <br><br>
      * If the game's difficulty is set to normal, it will continue to set the generated cart's resource type to
      * the types that the player's tower can produce. However, if the game difficulty is set to hard and at least one
      * cart has already been generated, then it will randomly select a resource from the default pool of resources in
      * GameManager, regardless if the player has a tower of that resource type or not.
-     * <p></p>
+     * <br><br>
      * It then calls {@link RoundSelectorService#generateTargetAmount(Resource)} and {@link RoundSelectorService#generateSpeed()}
      * to generate the cart's target amount of resources and the cart's speed.
-     * <p></p>
+     * <br><br>
      * Returns the generated cart
      *
      * @param numOfCartsSoFar An {@link Integer} number of the number of carts generated so far.
@@ -148,7 +148,7 @@ public class RoundSelectorService {
     /**
      * Goes through all the player's {@link Tower}, both main and reserve and returns an {@link ArrayList}
      * of the tower resource types.
-     * <p></p>
+     * <br><br>
      * The ArrayList has a max size of 3 as no duplicate resource is added to ensure
      * equal probability when selecting a cart's resource type.
      * @return An {@link ArrayList} of player tower's resource types

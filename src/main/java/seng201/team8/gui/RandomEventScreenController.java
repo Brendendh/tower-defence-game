@@ -104,7 +104,7 @@ public class RandomEventScreenController {
     /**
      * Uses the {@link RandomEventScreenController#gameManager} to access the GameGuiManager
      * to switch the scene to "Round Selector".
-     * <p></p>
+     * <br><br>
      * Is called when {@link RandomEventScreenController#proceedButton} is pressed by the player.
      * @see seng201.team8.services.GameGUIManager#launchScreen(String)
      * @param event
@@ -126,7 +126,7 @@ public class RandomEventScreenController {
     /**
      * Sets the image of {@link RandomEventScreenController#imageDisplay} to display the image of the event
      * obtained from indexing i from {@link RandomEventScreenController#imageURL}
-     * <p></p>
+     * <br><br>
      * Throws a {@link FileNotFoundException} if the image url is invalid.
      * @param i The event {@link Integer} index
      */
@@ -139,7 +139,7 @@ public class RandomEventScreenController {
      * Immediately randomly selects a random event to be executed and calls {@link RandomEventsService} to execute the
      * event and update the visuals by calling {@link RandomEventScreenController#setEventName(int)} and
      * {@link RandomEventScreenController#setImageDisplay(int)}.
-     * <p></p>
+     * <br><br>
      * It then creates a {@link Timeline} to iteratively add the full event description text from
      * {@link RandomEventScreenController#eventLore} to {@link RandomEventScreenController#loreTextField} to simulate
      * a typing animation. Once the full text is displayed, the timeline is stopped. The player can skip the typing

@@ -8,7 +8,6 @@ package seng201.team8.exceptions;
  */
 
 public class SellingNullError extends Exception{
-    public SellingNullError(){}
     /**
      * Constructor for the error that sets the error message to the parameter error message {@link String}
      * @param errorMessage error message {@link String}

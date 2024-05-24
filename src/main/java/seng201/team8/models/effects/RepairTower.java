@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * Repairs a destroyed {@link Tower}.
- * <p></p>
+ * <br><br>
  * One of the possible effects an {@link Upgrade} can have. The number of
  * towers targetable scales based on {@link Rarity}.
  */

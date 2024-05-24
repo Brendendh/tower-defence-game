@@ -6,7 +6,6 @@ package seng201.team8.exceptions;
  * @see seng201.team8.services.ShopManager#buyUpgrade(int)
  */
 public class BuyingNullError extends Exception{
-    public BuyingNullError(){}
 
     /**
      * Constructor for the error that sets the error message to the parameter error message {@link String}

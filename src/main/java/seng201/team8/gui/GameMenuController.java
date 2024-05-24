@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 /**
  * The Controller for the Game Menu Screen.
- * <p></p>
+ * <br><br>
  * Used to set the buttons functionality to navigate to the Shop Screen, Inventory Screen or Round Evaluation Screen.
  */
 
@@ -38,7 +38,7 @@ public class GameMenuController {
 
     /**
      * The constructor for a GameMenuController object.
-     * <p></p>
+     * <br><br>
      * Takes in a GameManager object.
      *
      * @param gameManager the GameManager for launching screens.
@@ -73,16 +73,16 @@ public class GameMenuController {
 
     /**
      * Sets the label in the game menu screen to display:
-     * <p>
-     * The current game's difficulty by calling {@link GameMenuController#updateDifficultyLabel(Integer)}
-     * <p></p>
-     * The player's current money and point amount
-     * <p></p>
-     * The player's current name
-     * <p></p>
-     * The current round count
-     * <p></p>
-     * and the upcoming round's {@link Resource} types required by calling {@link GameMenuController#updateResourceDisplay()}
+     * <br><br>
+     * - The current game's difficulty by calling {@link GameMenuController#updateDifficultyLabel(Integer)}
+     * <br><br>
+     * - The player's current money and point amount
+     * <br><br>
+     * - The player's current name
+     * <br><br>
+     * - The current round count
+     * <br><br>
+     * - and the upcoming round's {@link Resource} types required by calling {@link GameMenuController#updateResourceDisplay()}
      */
     public void initialize(){
         updateDifficultyLabel(gameManager.getGameData().getDifficulty());
@@ -95,11 +95,11 @@ public class GameMenuController {
 
     /**
      * Sets the label to display the game's difficulty mode based on the {@link Integer} parameter.
-     * <p></p>
+     * <br><br>
      * If the Integer = 0, the difficulty label is set to "Normal"
-     * <p>
+     * <br><br>
      *     If the Integer = 1, the difficulty label is set to "Hard"
-     * </p>
+     *
      * @param difficulty the difficulty {@link Integer}
      */
     private void updateDifficultyLabel(Integer difficulty){

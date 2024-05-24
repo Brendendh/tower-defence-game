@@ -11,7 +11,7 @@ import java.util.Random;
 /**
  * The service class responsible for handling the logic behind the different random events
  * that occur during the game.
- * <p></p>
+ * <br><br>
  * A specified random event is randomly chosen by the RandomEventScreenController and then the service applies
  * the effects of the random event.
  * @see RandomEventScreenController
@@ -39,7 +39,7 @@ public class RandomEventsService {
 
     /**
      * The constructor for RandomEventsService. Takes in the game's {@link GameManager} as a parameter.
-     * <p></p>
+     * <br><br>
      * Called by the RandomEventScreenController during initialization.
      * @see RandomEventScreenController#RandomEventScreenController(GameManager)
      * @param gameManager {@link GameManager}
@@ -54,15 +54,15 @@ public class RandomEventsService {
 
     /**
      * Takes in an {@link Integer} i as a parameter that decides which random event to be called.
-     * <p></p>
+     * <br><br>
      * If i = 0, it calls {@link RandomEventsService#levelUpRandomTower()}
-     * <p></p>
+     * <br><br>
      * If i = 1, it calls {@link RandomEventsService#switchRssOfRandomTower()}
-     * <p></p>
+     * <br><br>
      * If i = 2, it calls {@link RandomEventsService#destroyRandomTower()}
-     * <p></p>
+     * <br><br>
      * If i = 3, it calls {@link RandomEventsService#boostRandomTower()}
-     * <p></p>
+     * <br><br>
      * If i > 3, nothing happens.
      * @param i {@link Integer}
      */

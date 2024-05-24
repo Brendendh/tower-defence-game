@@ -101,16 +101,16 @@ public class ShopScreenController {
     /**
      * Buys the {@link Item} indexed at {@link ShopScreenController#selectedInventoryItemIndex i} when the
      * {@link ShopScreenController#buyButton} is pressed by the player.
-     * <p></p>
+     * <br><br>
      * If i is -1, that means no item is currently selected and {@link ShopScreenController#errorPopUp(String)} is called
      * to display the error.
-     * <p></p>
+     * <br><br>
      * If i is between 0 and 2 inclusively, it means the selected item type is a {@link Tower} and
      * {@link ShopScreenController#buyTower(int)} is called.
-     * <p></p>
+     * <br><br>
      * If i is between 3 and 6 inclusively, it means the selected item type is an {@link Upgrade} and
      * {@link ShopScreenController#buyUpgrade(int)} is called.
-     * <p></p>
+     * <br><br>
      * After every successful purchase, i is then set back to -1 to show that no item is currently selected.
      * @param event
      */
@@ -134,7 +134,7 @@ public class ShopScreenController {
      * Buys the selected {@link Upgrade} indexed by the parameter upgradeIndex. Calls the
      * {@link ShopManager#buyUpgrade(int)} method and catches all the thrown exceptions by calling
      * {@link ShopScreenController#errorPopUp(String)} to display the error to the player.
-     * <p></p>
+     * <br><br>
      * After a successful purchase, updates the shop view by calling the respective update methods.
      * @param upgradeIndex the selected Upgrade's index
      * @see ShopScreenController#updateShopDisplay()
@@ -158,7 +158,7 @@ public class ShopScreenController {
      * Buys the selected {@link Tower} indexed by the parameter upgradeIndex. Calls the
      * {@link ShopManager#buyTower(int)} method and catches all the thrown exceptions by calling
      * {@link ShopScreenController#errorPopUp(String)} to display the error to the player.
-     * <p></p>
+     * <br><br>
      * After a successful purchase, updates the shop view by calling the respective update methods.
      * @param towerIndex the selected Tower's index
      * @throws NotEnoughCurrencyException
@@ -182,7 +182,7 @@ public class ShopScreenController {
 
     /**
      * The main {@link Exception} handling method used to handle all thrown exceptions.
-     * <p></p>
+     * <br><br>
      * Creates a new {@link DialogPane} popup to display the error message to the player.
      * @param errorMessage the error message {@link String} to display
      */
@@ -196,7 +196,7 @@ public class ShopScreenController {
     /**
      * Calls the {@link ShopManager#refresh()} method when {@link ShopScreenController#refreshButton}
      * is pressed by the player.
-     * <p></p>
+     * <br><br>
      * Calls {@link ShopScreenController#errorPopUp(String)} to handle the potentially thrown
      * {@link NotEnoughCurrencyException} thrown by the refresh method.
      * @param event
@@ -224,10 +224,10 @@ public class ShopScreenController {
 
     /**
      * Sells the selected inventory {@link Item} when {@link ShopScreenController#sellButton} is pressed by the player.
-     * <p></p>
+     * <br><br>
      * Calls {@link ShopScreenController#sellTower(int)} if {@link ShopScreenController#selectedInventoryItemType} is
      * {@link Tower} and {@link ShopScreenController#sellUpgrade(int)} if it's an {@link Upgrade} otherwise.
-     * <p></p>
+     * <br><br>
      * Calls {@link ShopScreenController#errorPopUp(String)} to handle the potentially thrown {@link SellingNullError}
      * @param event
      */
@@ -248,7 +248,7 @@ public class ShopScreenController {
     /**
      * Passes on the parameter upgradeIndex to {@link ShopManager#sellUpgrade(int)} to sell the {@link Upgrade} at the
      * index.
-     * <p></p>
+     * <br><br>
      * Updates the shop view by calling the respective update methods after a successful sale.
      * @see ShopScreenController#updatePlayerCurrencyLabels()
      * @see ShopScreenController#updateUpgradeViewList()
@@ -263,9 +263,9 @@ public class ShopScreenController {
     /**
      * Takes in a parameter {@link Integer towerIndex} and calls either {@link ShopManager#sellMainTower(int)} or
      * {@link ShopManager#sellReserveTower(int)} depending if towerIndex is less than 5.
-     * <p></p>
+     * <br><br>
      * Calls {@link ShopScreenController#errorPopUp(String errorMessage)} to handle the different exceptions thrown.
-     * <p></p>
+     * <br><br>
      * Updates the shop view by calling the respective update methods after a successful sale.
      * @see ShopScreenController#updatePlayerCurrencyLabels()
      * @see ShopScreenController#updateMainTowers()
@@ -286,7 +286,7 @@ public class ShopScreenController {
 
     /**
      * The constructor for the ShopScreenController.
-     * <p></p>
+     * <br><br>
      * Takes in the game's {@link GameManager} and stores it. Then sets {@link ShopScreenController#inventoryManager} by
      * calling {@link GameManager#getInventoryManager()}.
      * @param gameManager the game's {@link GameManager}
@@ -299,7 +299,7 @@ public class ShopScreenController {
     /**
      * Updates the display of the player's main {@link Tower}. Sets the border of the button to reflect the tower's
      * {@link Rarity} and displays the tower's name and selling price.
-     * <p></p>
+     * <br><br>
      * If the tower is destroyed or if it is an empty slot instead, it will display the appropriate message on the button.
      */
     private void updateMainTowers(){
@@ -323,7 +323,7 @@ public class ShopScreenController {
     /**
      * Updates the display of the player's reserve {@link Tower}. Sets the border of the button to reflect the tower's
      * {@link Rarity} and displays the tower's name and selling price.
-     * <p></p>
+     * <br><br>
      * If the tower is destroyed or if it is an empty slot instead, it will display the appropriate message on the button.
      */
     private void updateReserveTowers(){
@@ -397,7 +397,7 @@ public class ShopScreenController {
 
     /**
      * Updates all the displays of the shop {@link Button} to display their corresponding {@link Item} and their price.
-     * <p></p>
+     * <br><br>
      * If the item is sold, displays the text "Sold" in red instead.
      */
     private void updateShopDisplay(){
@@ -443,10 +443,10 @@ public class ShopScreenController {
      * Sets the player's {@link Tower} buttons on action event to update its visuals,
      * {@link ShopScreenController#selectedInventoryItemType}
      * and {@link ShopScreenController#selectedInventoryItemIndex} when clicked.
-     * <p></p>
+     * <br><br>
      * Also makes the buttons have a "toggled" pressed effect to make it easier for the player to see which button is
      * currently selected.
-     * <p></p>
+     * <br><br>
      * Called once during initialization.
      * @see ShopScreenController#updateMainTowers()
      * @see ShopScreenController#updateReserveTowers()
@@ -467,13 +467,13 @@ public class ShopScreenController {
 
     /**
      * Sets the shop {@link Button} to properly update the button visuals and {@link ShopScreenController#selectedShopItemIndex}
-     * <p></p>
+     * <br><br>
      * Sets the sold {@link Tower} buttons to display a detailed description when hovered over and revert back to
      * a simplified display when no longer hovered over.
-     * <p></p>
+     * <br><br>
      * Also makes the buttons have a "toggled" pressed effect to make it easier for the player to see which button is
      * currently selected.
-     * <p></p>
+     * <br><br>
      * Called once during initialization.
      * @see ShopScreenController#setTowerDetailedDescription(Button, Tower)
      * @see ShopScreenController#setTowerSimpleDescription(Button, Tower)
@@ -505,13 +505,13 @@ public class ShopScreenController {
      * Immediately sets the {@link ShopScreenController#upgradesListView} cell factory to {@link UpgradeCellFactory}
      * set the selection mode to single and makes sure the list view properly updates
      * {@link ShopScreenController#selectedInventoryItemIndex} and {@link ShopScreenController#selectedInventoryItemType}
-     * and then calls {@link ShopScreenController#updateUpgradeViewList()}
-     * <p></p>
+     * and then calls {@link ShopScreenController#updateUpgradeViewList()}.
+     * <br><br>
      * Groups all the buttons into their respective lists and calls {@link ShopScreenController#updateShopButtonOnActionEvent()}
      * and {@link ShopScreenController#updateTowerButtonsOnActionEvent()}.
-     * <p></p>
+     * <br><br>
      * Creates a new instance of {@link ShopManager}.
-     * <p></p>
+     * <br><br>
      * Calls all update methods to update the visuals of the shop.
      * @see ShopScreenController#updateShopDisplay()
      * @see ShopScreenController#updateMainTowers()

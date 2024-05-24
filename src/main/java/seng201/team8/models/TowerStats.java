@@ -2,16 +2,16 @@ package seng201.team8.models;
 
 /**
  * A model class for the TowerStats class.
- * <p></p>
+ * <br><br>
  * In charge of holding the important attributes of a {@link Tower}
  * such as:
- * <p>
+ * <br><br>
  *     The tower's resource production amount, {@link TowerStats#resourceAmount}
- * <p>
+ * <br><br>
  *     The tower's resource type, {@link TowerStats#resourceType}
- * <p>
+ * <br><br>
  *     The tower's production cooldown, {@link TowerStats#cooldown}
- * <p></p>
+ * <br><br>
  * It is created and taken in as a parameter by the constructor of a Tower
  * @see Tower#Tower(String, TowerStats, int, Rarity) 
  */
@@ -35,7 +35,7 @@ public class TowerStats implements Cloneable{
 
     /**
      *The constructor for {@link TowerStats}
-     * <p></p>
+     * <br><br>
      * Takes in the parameters resourceAmount which is the number of resources
      * produced by the tower per production, resourceType which is the type of
      * resources that the tower produces and cooldown, the number of turns it
@@ -68,7 +68,7 @@ public class TowerStats implements Cloneable{
 
     /**
      * Getter for the production cooldown of the towers
-     * @return {@link TowerStats#cooldown
+     * @return {@link TowerStats#cooldown}
      */
     public int getCooldown(){
         return cooldown;

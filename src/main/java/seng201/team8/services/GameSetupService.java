@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 /**
  * The service class for GameSetupService. Created when the
  * GameSetupController is created.
- * <p></p>
+ * <br><br>
  * Serves as a builder for {@link GameData} and {@link InventoryManager}.
  */
 public class GameSetupService {
@@ -22,7 +22,7 @@ public class GameSetupService {
 
     /**
      * The constructor for {@link GameSetupService}.
-     * <p></p>
+     * <br><br>
      * Creates a new {@link GameData} object and stores it in the GameSetupService.
      */
     public GameSetupService(){

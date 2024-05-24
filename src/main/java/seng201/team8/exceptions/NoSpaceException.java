@@ -5,7 +5,7 @@ package seng201.team8.exceptions;
  * @see seng201.team8.services.ShopManager#buyTower(int)
  */
 public class NoSpaceException extends Exception{
-    public NoSpaceException(){}
+
     /**
      * Constructor for the error that sets the error message to the parameter error message {@link String}
      * @param message error message {@link String}

@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * Reduces the cooldown of tower's resource production
- * <p></p>
+ * <br><br>
  * One of the possible effects an Upgrade can have. The maximum number of targetable towers
  * scales based on Rarity.
  * @see Upgrade
@@ -20,7 +20,7 @@ public class CooldownReduction implements Effect, Cloneable{
 
     /**
      * The constructor for the CooldownReduction effect. Takes in a specified reduction amount
-     * <p></p>
+     * <br><br>
      * @param reductionAmount An Integer amount to set the reductionAmount to
      * @see #reductionAmount
      */
@@ -30,7 +30,7 @@ public class CooldownReduction implements Effect, Cloneable{
 
     /**
      * Reduces the cooldown of each tower by the reductionAmount
-     * <p>
+     * <br><br>
      * Does not reduce the tower's cooldown below 1.
      * @param towers a List of Towers to apply the effect to
      * @see Tower

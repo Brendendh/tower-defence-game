@@ -14,7 +14,7 @@ import java.util.List;
 
 /**
  * The controller class for GameSetupController.
- * <p></p>
+ * <br><br>
  * Responsible for the communication between the user input and the GameSetupService.
  */
 public class GameSetupController {
@@ -29,7 +29,7 @@ public class GameSetupController {
 
     /**
      * The constructor for {@link GameSetupController}
-     * <p></p>
+     * <br><br>
      * Takes in a {@link GameManager} object and creates a {@link GameSetupService} which are stored
      * in the GameSetupController.
      * @param gameManager {@link GameManager}

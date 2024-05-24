@@ -4,7 +4,7 @@ import java.lang.reflect.Constructor;
 
 /**
  * The model for the Scene objects.
- * <p></p>
+ * <br><br>
  * Used as a part of GameGUIManager which stores the scenes in a HashMap and utilized for
  * launching into different screens in the game.
  *
@@ -30,7 +30,7 @@ public class Scene {
 
     /**
      * The constructor for a Scene object.
-     * <p></p>
+     * <br><br>
      * Takes in the name, fxml path and controller constructor for this scene.
      *
      * @param sceneName the String for the scene name
@@ -60,7 +60,7 @@ public class Scene {
     /**
      * Returns the constructor
      *
-     * @return Constructor<?>
+     * @return Constructor
      */
     public Constructor<?> getControllerCreator() {return controllerCreator;}
 }

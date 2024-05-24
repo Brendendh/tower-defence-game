@@ -4,11 +4,11 @@ import seng201.team8.models.dataRecords.InventoryData;
 
 /**
  * The model for the Tower objects.
- * <p>
+ * <br><br>
  * Extends the Item class as it is considered a type of Item
- * <p></p>
+ * <br><br>
  * Used as a part of InventoryData where an array of towers is added and stored for rounds.
- * <p></p>
+ * <br><br>
  * A Tower fills up the non-full carts with its respective resource type
  * every time the cooldown time ends before the carts reach the end of the track.
  *
@@ -49,13 +49,13 @@ public class Tower extends Item implements Cloneable {
 
     /**
      * The constructor for a Tower object.
-     * <p></p>
+     * <br><br>
      * Takes in the name of the tower, the {@link TowerStats} (which contains the resource amount, resource type and cooldown),
      * buying price for the shop and rarity for different tiers of a certain tower.
-     * <p></p>
+     * <br><br>
      * The initial selling price is set based on the buying price of the tower.
      * The value of the selling price will then increase further when the tower levels up.
-     * <p></p>
+     * <br><br>
      * Calls the {@link Item} super constructor to set the Tower's rarity, selling price and buying price based on the values
      * taken in.
      * @param name        the String for the towers name.

@@ -15,12 +15,12 @@ import java.util.function.Consumer;
 /**
  *The service class for GameManager. Created during the start
  * of the game by the FxWrapper.
- * <p></p>
+ * <br><br>
  * Serves as an information hub that keeps tracks and stores every information
  * of the game. Such as the current game state, player information, and the default
  * model {@link Item}s. Frequently accessed by other services in order to obtain the
  * information they require to perform their respective logic operations.
- * <p></p>
+ * <br><br>
  * @see seng201.team8.gui.FXWrapper
  */
 public class GameManager {
@@ -59,10 +59,10 @@ public class GameManager {
     /**
      * An ArrayList that represents the proportions of the current
      * round's {@link Cart} {@link Resource} types.
-     * <p></p>
+     * <br><br>
      * Used by the GameMenuController to display a simplified representation
      * of the upcoming round's cart resource types to the player.
-     * <p></p>
+     * <br><br>
      * @see seng201.team8.gui.GameMenuController
      */
     private ArrayList<Resource> roundResourceDisplay;
@@ -78,7 +78,7 @@ public class GameManager {
     /**
      * An array of {@link Resource} containing the possible resource types.
      *
-     *<p></p>
+     *<br><br>
      * Used by RoundSelectorService and RandomEventsService as a pool of possible
      * resource types to choose from.
      *
@@ -89,7 +89,7 @@ public class GameManager {
 
     /**
      * An Array of the 5 different types of {@link Tower}s available in the game.
-     *<p></p>
+     *<br><br>
      * Accessed by the ShopManager and GameSetupService when generating towers for the players.
      * Their rarities are modified when generated.
      *
@@ -105,7 +105,7 @@ public class GameManager {
 
     /**
      * An Array of the 4 different types of {@link Upgrade}s available in the game.
-     *<p></p>
+     *<br><br>
      * Accessed by the ShopManager when generating new upgrades in the shop for the players.
      * Their rarities are modified when generated.
      *
@@ -119,7 +119,7 @@ public class GameManager {
 
     /**
      * The constructor for {@link GameManager}.
-     * <p></p>
+     * <br><br>
      * Takes in a Consumer object which launches a screen and a Runnable object which clears the screen to set up a new screen.
      * These objects are stored in a newly generated GameGUIManager and launches the first screen of the application.
      * @param screenLauncher Consumer object which runs the launchScreen method in the FXWrapper with the parameter, GameManager.
@@ -132,7 +132,7 @@ public class GameManager {
 
     /**
      * The constructor for {@link GameManager} for testing purposes.
-     * <p></p>
+     * <br><br>
      * Takes in a newly generated GameData and InventoryManager as a parameter and stores
      * their value inside the GameManager.
      * @param gameData {@link GameData}
@@ -224,7 +224,7 @@ public class GameManager {
     /**
      * Takes in a parameter {@link GameData} to set the current
      * GameManager's gameData to.
-     * <p></p>
+     * <br><br>
      * Called by the GameSetupController to initialize the GameData for GameManager.
      * @param gameData {@link GameData}
      * @see seng201.team8.gui.GameSetupController
@@ -236,7 +236,7 @@ public class GameManager {
     /**
      * Takes in a parameter {@link InventoryManager} to set the current
      * GameManager's inventoryManager to.
-     * <p></p>
+     * <br><br>
      * Called by the GameSetupController to initialize the InventoryManager for GameManager.
      * @param inventoryManager {@link InventoryManager}
      * @see seng201.team8.gui.GameSetupController
@@ -247,7 +247,7 @@ public class GameManager {
 
     /**
      * Getter for {@link GameManager#roundWon}.
-     * <p></p>
+     * <br><br>
      * Returns true if the round is won and a false if the round is lost.
      * @return {@link GameManager#roundWon}
      */
@@ -257,7 +257,7 @@ public class GameManager {
 
     /**
      * Setter to set the {@link GameManager#roundWon} value to the boolean parameter.
-     * <p></p>
+     * <br><br>
      * Used by the Round Evaluation Controller to signal that a round is won or lost, allowing
      * other methods to be called.
      * @see seng201.team8.gui.RoundEvaluationController

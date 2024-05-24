@@ -2,50 +2,50 @@ package seng201.team8.models;
 
 /**
  * An enumerator class for an item's Rarity
- * <p>
+ * <br><br>
  *     Has attributes:
- *     <p>
+ *     <br><br>
  *         -Rarity name : Common, Rare and Epic
- *         <p>
+ *         <br><br>
  *             -{@link Rarity#rarityStatMultiplier}
- *             <p>
+ *             <br><br>
  *                 -{@link Rarity#rarityTextColorHex}
- *             </p>
- *         </p>
- *     </p>
- * </p>
+ *
+ *
+ *
+ *
  * Taken in as a parameter when constructing items.
  * @see Item
  */
 public enum Rarity {
     /**
      * Common rarity of an item
-     * <p>
+     * <br><br>
      *     Rarity text color is black
-     *     <p>
+     *     <br><br>
      *         Stat multiplier is 1
-     *     </p>
-     * </p>
+     *
+     *
      */
     COMMON(1, "#000000"),
     /**
      * Rare rarity of an item
-     * <p>
+     * <br><br>
      *     Rarity text color is gold
-     *     <p>
+     *     <br><br>
      *         Stat multiplier is 2
-     *     </p>
-     * </p>
+     *
+     *
      */
     RARE(2, "#FFA500"),
     /**
      * Epic rarity of an item
-     * <p>
+     * <br><br>
      *     Rarity text color is Purple
-     *     <p>
+     *     <br><br>
      *         Stat multiplier is 3
-     *     </p>
-     * </p>
+     *
+     *
      */
     EPIC(3, "#A020F0");
 
@@ -62,10 +62,10 @@ public enum Rarity {
 
     /**
      * The constructor for Rarity
-     * <p>
+     * <br><br>
      *     Takes in an Integer rarityStatMultiplier and a
      *     Color rarityTextColor
-     * </p>
+     *
      * @param rarityStatMultiplier An integer
      * @param rarityTextColor A Color Hex Code
      */

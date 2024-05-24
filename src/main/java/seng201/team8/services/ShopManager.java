@@ -11,10 +11,10 @@ import java.util.Random;
 
 /**
  * The service class for the Shop.
- * <p></p>
+ * <br><br>
  * Handles the logic behind generating shop {@link Item} and the buying and selling
  * of player owned {@link Tower}s and {@link Upgrade}.
- * <p></p>
+ * <br><br>
  * Is initialized by the ShopScreenController upon creation to manage the different logic operations
  * that involves the game's {@link ShopData} and player's inventory.
  * @see seng201.team8.gui.ShopScreenController
@@ -56,15 +56,15 @@ public class ShopManager {
 
     /**
      * The constructor for ShopManager.
-     * <p></p>
+     * <br><br>
      * Takes in the game's GameManager as a parameter in order for the ShopManager to be able to
      * manage the {@link ShopData} and communicate with the InventoryManager via the GameManager.
-     *<p></p>
+     * <br><br>
      * At the start of the game, the ShopData in the GameManager will not be initialized yet and if so, the ShopManager
      * will initialize the ShopData. From there onwards, everytime the player enters the shop again, a new ShopManager is
      * initialized where it compares the current round number to the ShopData's initializedRoundNumber to see if a round has passed
      * or not. If a round has passed, refresh the shop and update the ShopData's initializedRoundNumber. If not, do nothing.
-     * <p></p>
+     * <br><br>
      * This is to ensure the shop state is saved when the player exits and re-enters the shop within the same round, while
      * the shop refreshes itself after every round.
      * @see ShopData#getInitializedRoundNumber()
@@ -96,13 +96,13 @@ public class ShopManager {
     /**
      * Refreshes the {@link Tower}s and {@link Upgrade}s sold by the shop at the cost
      * of 5 money.
-     * <p></p>
+     * <br><br>
      * Does so by calling {@link ShopManager#updateTowers()} to refresh Towers sold
      * and {@link ShopManager#updateUpgrades()} to refresh Upgrades sold.
-     * <p></p>
+     * <br><br>
      * If the player does not have enough money to refresh, it will throw a {@link NotEnoughCurrencyException}
      * to be handled by the ShopScreenController.
-     * @throws NotEnoughCurrencyException
+     * @throws NotEnoughCurrencyException occurs when there is not enough money.
      * @see seng201.team8.gui.ShopScreenController
      */
     public void refresh() throws NotEnoughCurrencyException {
@@ -152,7 +152,7 @@ public class ShopManager {
 
     /**
      * Return a random {@link Rarity} based on the current round number.
-     * <p></p>
+     * <br><br>
      * Does so by randomly choosing from different rarity probability pools based on the
      * current round number.
      * @param currentRound the current round number
@@ -191,23 +191,23 @@ public class ShopManager {
 
     /**
      * Buys the selected {@link Tower}. Called by the ShopScreenController
-     * <p></p>
+     * <br><br>
      * The Tower bought will be moved to the first empty slot in the player's main towers, if
      * there is no space in the main towers, it will be moved to the first empty slot in the player's
      * reserve towers. Else, a {@link NoSpaceException} will be thrown and the player's money won't be
      * deducted.
-     * <p></p>
+     * <br><br>
      * If the player tries to buy an already sold Tower, a {@link BuyingNullError} will be thrown and
      * the player's money won't be deducted.
-     * <p></p>
+     * <br><br>
      * If the player does not have enough money to purchase the selected Tower, a {@link NotEnoughCurrencyException}
      * will be thrown.
-     * <p></p>
+     * <br><br>
      * All exceptions will be handled by the ShopScreenController.
-     * @param towerIndex the selected Tower's index
-     * @throws NoSpaceException
-     * @throws NotEnoughCurrencyException
-     * @throws BuyingNullError
+     * @param towerIndex the selected Tower's index.
+     * @throws NoSpaceException occurs when there is no space in the main towers and reserve towers.
+     * @throws NotEnoughCurrencyException occurs when there is not enough money to buy a tower.
+     * @throws BuyingNullError occurs when there is no tower selected.
      * @see seng201.team8.gui.ShopScreenController
      */
     public void buyTower(int towerIndex) throws NoSpaceException, NotEnoughCurrencyException, BuyingNullError {
@@ -230,19 +230,19 @@ public class ShopManager {
     }
     /**
      * Buys the selected {@link Upgrade}. Called by the ShopScreenController.
-     * <p></p>
+     * <br><br>
      * The bought Upgrade will be added to the player's inventory.
-     * <p></p>
+     * <br><br>
      * If the player tries to buy an already sold Upgrade, a {@link BuyingNullError} will be thrown and
      * the player's points won't be deducted.
-     * <p></p>
+     * <br><br>
      * If the player does not have enough points to purchase the selected Upgrade, a {@link NotEnoughCurrencyException}
      * will be thrown.
-     * <p></p>
+     * <br><br>
      * All exceptions will be handled by the ShopScreenController.
      * @param upgradeIndex the selected Upgrade's index
-     * @throws NotEnoughCurrencyException
-     * @throws BuyingNullError
+     * @throws NotEnoughCurrencyException occurs when there is not enough points.
+     * @throws BuyingNullError occurs when there is no upgrade selected.
      * @see seng201.team8.gui.ShopScreenController
      */
     public void buyUpgrade(int upgradeIndex) throws NotEnoughCurrencyException, BuyingNullError {
@@ -262,14 +262,14 @@ public class ShopManager {
 
     /**
      * Sells the selected Main {@link Tower}. Called by the ShopScreenController.
-     * <p></p>
+     * <br><br>
      * The sold Tower is removed from player's inventory via the {@link InventoryManager}
      * and the Tower's selling price money is added to the player's money count.
-     * <p></p>
+     * <br><br>
      * If the selected towerIndex points to an empty slot instead of a Tower, a {@link SellingNullError}
      * is thrown to be handled by the ShopScreenController.
-     * @param towerIndex the selected main tower {@link Integer} index
-     * @throws SellingNullError
+     * @param towerIndex the selected main tower {@link Integer} index.
+     * @throws SellingNullError occurs when there is no tower selected.
      */
     public void sellMainTower(int towerIndex) throws SellingNullError {
         if (inventoryManager.getInventoryData().getMainTowers()[towerIndex] == null){
@@ -283,14 +283,14 @@ public class ShopManager {
     }
     /**
      * Sells the selected Reserve {@link Tower}. Called by the ShopScreenController.
-     * <p></p>
+     * <br><br>
      * The sold Tower is removed from player's inventory via the {@link InventoryManager}
      * and the Tower's selling price money is added to the player's money count.
-     * <p></p>
+     * <br><br>
      * If the selected towerIndex points to an empty slot instead of a Tower, a {@link SellingNullError}
      * is thrown to be handled by the ShopScreenController.
-     * @param towerIndex the selected reserve tower {@link Integer} index
-     * @throws SellingNullError
+     * @param towerIndex the selected reserve tower {@link Integer} index.
+     * @throws SellingNullError occurs when there is no tower selected.
      */
     public void sellReserveTower(int towerIndex) throws SellingNullError {
         if (inventoryManager.getInventoryData().getReserveTowers()[towerIndex] == null){
@@ -306,14 +306,14 @@ public class ShopManager {
     /**
      * Sells the selected {@link Upgrade} by calling .get() on the player's owned Upgrades based on the selected
      * upgradeIndex. Called by the ShopScreenController.
-     * <p></p>
+     * <br><br>
      * The sold Upgrade is removed from the player's inventory via the {@link InventoryManager}
      * and the Upgrade's selling price points is added to the player's point count.
-     * <p></p>
+     * <br><br>
      * If the selected upgradeIndex points to null or is out of range of the owned Upgrades ArrayList, a
      * {@link SellingNullError} is thrown to be handled by the ShopScreenController.
-     * @param upgradeIndex the selected Upgrade's {@link Integer} index
-     * @throws SellingNullError
+     * @param upgradeIndex the selected Upgrade's {@link Integer} index.
+     * @throws SellingNullError occurs when nothing is selected.
      * @see seng201.team8.gui.ShopScreenController
      */
     public void sellUpgrade(int upgradeIndex) throws SellingNullError {

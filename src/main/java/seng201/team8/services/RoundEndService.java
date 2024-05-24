@@ -7,7 +7,7 @@ import java.util.Random;
 /**
  * The service class for RoundEndService. Created when the
  * RoundEndController is created.
- * <p></p>
+ * <br><br>
  * Provides the methods to check if a random event will be played,
  * calculates the points, exp points and money reward, and
  * applying the stats to the model classes.
@@ -39,7 +39,7 @@ public class RoundEndService {
 
     /**
      * The constructor for {@link GameManager}.
-     * <p></p>
+     * <br><br>
      * Takes in a {@link GameManager} object and creates a {@link TowerStatsManager} which are
      * stored in the RoundEndService. The number of carts, round number and difficulty are also stored in the
      * RoundEndService.

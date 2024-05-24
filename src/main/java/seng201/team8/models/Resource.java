@@ -2,14 +2,14 @@ package seng201.team8.models;
 
 /**
  * The enumerator Resource for the different resource types in the game
- * <p></p>
+ * <br><br>
  * Each resource type has the attributes:
- * <p>
+ * <br><br>
  *     One of the resource names: CORN, WOOD or IRON
- *     <p>
+ *     <br><br>
  *         Resource value: {@link Resource#resourceValue}
- *     </p>
- * </p>
+ *
+ *
  * Taken in as a parameter when constructing TowerStats and Cart.
  * {@link TowerStats#TowerStats(int, Resource, int)}
  * {@link Cart#Cart(int, Resource, int)}
@@ -34,16 +34,16 @@ public enum Resource {
     /**
      * An integer representing the resource's respective
      * resource value.
-     * <p></p>
+     * <br><br>
      *     This value is used when trying to calculate the different
      *     resource amount as each resource type scales differently.
-     * <p></p>
+     * <br><br>
      */
     final private int resourceValue;
 
     /**
      * The constructor for a Resource enum
-     * <p></p>
+     * <br><br>
      * Takes in an integer to set the resource value of
      * the resource to
      * @param resourceValue An integer

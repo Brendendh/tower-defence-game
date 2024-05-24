@@ -2,9 +2,9 @@ package seng201.team8.models;
 
 /**
  * The model for the Cart objects.
- * <p></p>
+ * <br><br>
  * Used as a part of Round where a list of carts is added and stored in the Round class object.
- * <p></p>
+ * <br><br>
  * Once a cart travels a certain amount of distance without being filled up completely, the
  * round is considered lost.
  * @see Round
@@ -13,7 +13,7 @@ package seng201.team8.models;
 public class Cart {
     /**
      * An Integer value that determines the cart's capacity.
-     * <p></p>
+     * <br><br>
      * The cart is considered filled once its amount reaches or exceeds the targetAmount.
      */
     private final int targetAmount;
@@ -41,7 +41,7 @@ public class Cart {
 
     /**
      * The constructor for a Cart object.
-     * <p></p>
+     * <br><br>
      * Takes in the number of resources needed to fill up the cart, the resource type that
      * the cart accepts and the speed value of the cart
      * @param targetAmount the Integer number of resources needed to fill up the cart.

@@ -61,10 +61,10 @@ public class RoundSelectorScreenController {
 
     /**
      * Called when the "proceed to next round" button is pressed.
-     * <p></p>
+     * <br><br>
      * If a {@link Round} has not yet been chosen, calls {@link RoundSelectorScreenController#errorPopUp(String)} to notify
      * the player to do so.
-     * <p></p>
+     * <br><br>
      * Else, updates the round information in the {@link GameManager} and switches the screen to "Game Menu".
      * @param event
      */
@@ -82,10 +82,10 @@ public class RoundSelectorScreenController {
 
     /**
      * The constructor for RoundSelectorScreenController.
-     * <p></p>
+     * <br><br>
      * Takes in a {@link GameManager} to store and initializes a new {@link RoundSelectorService} and generates the possible
      * rounds.
-     * @param gameManager
+     * @param gameManager {@link GameManager}
      */
     public RoundSelectorScreenController(GameManager gameManager){
         roundNotChosen = true;
@@ -95,7 +95,7 @@ public class RoundSelectorScreenController {
     }
     /**
      * The main {@link Exception} handling method used to handle all thrown exceptions.
-     * <p></p>
+     * <br><br>
      * Creates a new {@link DialogPane} popup to display the error message to the player.
      * @param errorMessage the error message {@link String} to display
      */
@@ -139,7 +139,7 @@ public class RoundSelectorScreenController {
 
     /**
      * Takes in a {@link Button}, {@link Round} and {@link Integer optionNumber} as parameters.
-     * <p></p>
+     * <br><br>
      * Sets the display text of the button to display information about the round and the option number.
      * @param button {@link Button}
      * @param round {@link Round}
@@ -170,7 +170,7 @@ public class RoundSelectorScreenController {
     /**
      * Calls {@link RoundSelectorScreenController#updateButtonDisplay(Button, Round, int)} for each {@link Button} in
      * {@link RoundSelectorScreenController#roundButtons}.
-     * <p></p>
+     * <br><br>
      * Then makes sure that each button properly updates {@link RoundSelectorScreenController#chosenRoundIndex} and
      * has a "toggled" pressed effect when selected to make it easier for the player to know which round is currently
      * selected.

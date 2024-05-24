@@ -9,7 +9,7 @@ import java.util.List;
 
 /**
  * Increases the exp value of a {@link Tower} by a flat integer amount
- * <p></p>
+ * <br><br>
  * One of the possible effects an {@link Upgrade} can have. The added exp value
  * scales based on {@link Rarity}.
  */
@@ -20,19 +20,19 @@ public class ExpBoost implements Effect, Cloneable{
     private int boostAmount;
     /**
      * A service used to handle all things tower levelling related.
-     * <p>
+     * <br><br>
      *     Necessary since adding exp to a tower could result in the tower
      *     levelling up
-     * </p>
+     *
      * @see TowerStatsManager
      */
     private final TowerStatsManager towerStatsManager;
 
     /**
      * The constructor for ExpBoost.
-     * <p></p>
+     * <br><br>
      * Takes in an Integer boostAmount to set the added exp value to.
-     * <p></p>
+     * <br><br>
      * Creates a new instance
      * of TowerStatsManager to handle the exp and levelling calculations.
      * @param boostAmount the Integer amount of exp to be added to towers

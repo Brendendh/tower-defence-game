@@ -24,7 +24,7 @@ import java.util.List;
 
 /**
  * The controller class for RoundEvaluationController.
- * <p></p>
+ * <br><br>
  * Responsible for the communication between the user input and the RoundEvaluationController.
  */
 public class RoundEvaluationController {
@@ -90,7 +90,7 @@ public class RoundEvaluationController {
 
     /**
      * The constructor for {@link RoundEvaluationController}.
-     * <p></p>
+     * <br><br>
      * Takes in a {@link GameManager}, creates a new RoundEvaluationService and
      * stores it in the RoundEvaluationController.
      * @param gameManager {@link RoundEvaluationController}

@@ -6,7 +6,7 @@ import seng201.team8.services.GameManager;
 
 /**
  * The controller class for GameStartController.
- * <p></p>
+ * <br><br>
  * Manages the button inputs in the GameStartScreen.
  */
 public class GameStartController {
@@ -18,7 +18,7 @@ public class GameStartController {
 
     /**
      * The constructor for the {@link GameStartController}
-     * <p></p>
+     * <br><br>
      * Takes in a {@link GameManager} object and stores it in the GameStartController.
      * @param gameManager {@link GameManager}
      */

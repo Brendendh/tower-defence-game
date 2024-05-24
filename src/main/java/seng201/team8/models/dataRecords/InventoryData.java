@@ -9,7 +9,7 @@ import java.util.ArrayList;
 /**
  * A model that stores the player's inventory data which
  * includes the player's main towers, reserve towers and upgrades
- * <p></p>
+ * <br><br>
  * Is created by, stored in and managed by InventoryManager
  * {@link InventoryManager#InventoryManager()}
  * @see seng201.team8.services.InventoryManager
@@ -18,7 +18,7 @@ public class InventoryData {
     /**
      * An array of fixed size 5 that contains the player's
      * main towers Tower object.
-     * <p></p>
+     * <br><br>
      * If there is no tower as a specified slot, it is null
      * instead.
      * @see Tower
@@ -27,7 +27,7 @@ public class InventoryData {
     /**
      * An array of fixed size 5 that contains the player's
      * reserve towers Tower object.
-     * <p></p>
+     * <br><br>
      * If there is no tower as a specified slot, it is null
      * instead.
      * @see Tower
@@ -41,7 +41,7 @@ public class InventoryData {
 
     /**
      * The constructor for InventoryData
-     * <p></p>
+     * <br><br>
      * Creates the mainTowers,reserveTowers arrays and
      * upgrades ArrayList when first constructed.
      */

@@ -8,7 +8,7 @@ import seng201.team8.services.RoundEndService;
 
 /**
  * The controller class for RoundEndController.
- * <p></p>
+ * <br><br>
  * Responsible for the communication between the user input and the RoundEndService.
  */
 public class RoundEndController {
@@ -32,7 +32,7 @@ public class RoundEndController {
 
     /**
      * The controller class for the {@link RoundEndController}.
-     * <p></p>
+     * <br><br>
      * Takes in a {@link GameManager}, creates a RoundEndService, and stores it
      * in the {@link RoundEndController}.
      * @param gameManager {@link GameManager}
@@ -100,11 +100,11 @@ public class RoundEndController {
 
     /**
      * Determines where the player will go next.
-     * <p></p>
+     * <br><br>
      * If the player has won last round, the player will either, go to the victory screen if the
      * player has reached the target round, or randomly decide if the player will go to the
      * random event screen or the round selector screen.
-     * <p></p>
+     * <br><br>
      * If the player has lost last round, the player will be directed to the "Game Start" screen.
      */
     @FXML

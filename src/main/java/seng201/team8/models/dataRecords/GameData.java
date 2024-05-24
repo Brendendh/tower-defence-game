@@ -4,7 +4,7 @@ package seng201.team8.models.dataRecords;
  * A model that stores the game data such as the player name, target round
  * number, the current round number, the chosen difficulty, and the player's
  * current money and points.
- *<p></p>
+ * <br><br>
  * Is created upon the start of the game by the GameSetupService and stored
  * in the GameManager
  *
@@ -39,7 +39,7 @@ public class GameData {
 
     /**
      * The constructor for GameData that takes in no parameters.
-     * <p></p>
+     * <br><br>
      * Sets player money, point to 0 and current round to 1 upon
      * creation.
      */

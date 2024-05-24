@@ -4,44 +4,41 @@ import seng201.team8.models.effects.Effect;
 
 /**
  * A model for the different items in the game such as Tower and Upgrade
- * <p></p>
+ * <br><br>
  * Makes sure that all items have the same required attributes and methods.
  * Attributes such as:
- * <p>
+ * <br><br>
  *     -Buying price
- *     <p>
+ *     <br><br>
  *     -Selling price
- *     <p>
+ *     <br><br>
  *     -Rarity
- * </p>
+ *
  * @see Upgrade
  * @see Tower
  */
 public class Item {
     /**
      * The integer buying price of the item.
-     * <p>
+     * <br><br>
      *     Can mean either points or money depending
      *     on the item type.
-     *     <p>
+     *     <br><br>
      *         If its a Tower, it means money
-     *     </p>
      *      If its an Upgrade, it means points
-     * </p>
      * @see Tower
      * @see Upgrade
      */
     private int buyingPrice;
     /**
      * The integer selling price of the item.
-     * <p>
+     * <br><br>
      *     Can mean either points or money depending
      *     on the item type.
-     *     <p>
+     *     <br><br>
      *         If its a Tower, it means money
-     *     </p>
      *      If its an Upgrade, it means points
-     * </p>
+     *
      * @see Tower
      * @see Upgrade
      */
@@ -54,14 +51,14 @@ public class Item {
 
     /**
      * The constructor for an Item.
-     * <p>
+     * <br><br>
      *     Called by the constructors of Upgrade and Tower to
      *     set their respective Rarity, buying price and selling price.
-     *     <p></p>
+     *     <br><br>
      *     {@link Tower#Tower(String, TowerStats, int, Rarity)}
      *     {@link Upgrade#Upgrade(Effect, Rarity, int, int)}
-     * </p>
-     * </p>
+     *
+     *
      * @param buyingPrice an Integer to set the buying price to
      * @param sellingPrice an Integer to set the selling price to
      * @param rarity a Rarity enum to set the rarity to
