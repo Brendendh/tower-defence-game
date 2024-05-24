@@ -13,11 +13,22 @@ import seng201.team8.services.TowerStatsManager;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
+/**
+ * The controller class for InventoryController.
+ * <p></p>
+ * Responsible for the communication between the user input and the InventoryManager.
+ */
 public class InventoryController {
 
+    /**
+     * The {@link InventoryManager} for managing the players {@link seng201.team8.models.dataRecords.InventoryData}.
+     */
     final InventoryManager inventoryManager;
+
+    /**
+     * The {@link GameManager} for accessing central information and launching new screens.
+     */
 
     final GameManager gameManager;
 
@@ -45,28 +56,83 @@ public class InventoryController {
     @FXML
     private ListView<Upgrade> upgradesListView;
 
-    private String selectedInventoryItemType;
+    /**
+     * The {@link Integer} which represents which {@link Upgrade} is selected by index.
+     */
     private int selectedInventoryUpgradeIndex;
+
+    /**
+     * The {@link Integer} which represents which {@link Tower} is selected by index.
+     */
     private int selectedInventoryTowerIndex;
+
+    /**
+     * The array of {@link Boolean} objects where the index represents the index of
+     * the tower buttons and the {@link Boolean} objects represent if they are selected.
+     * Used for multi-selection.
+     */
     private boolean[] selectedTowerButtons;
 
+    /**
+     * The {@link List} of tower {@link Button}s.
+     */
     private List<Button> towerButtons;
+
+    /**
+     * The {@link List} of utility {@link Button}s.
+     * These include useItemButton, moveTowerButton and renameTowerButton.
+     */
     private List<Button> utilityButtons;
 
+    /**
+     * The {@link Boolean} object which represents the state where the player is moving towers.
+     */
     private boolean isMovingTowers;
+
+    /**
+     * The {@link Integer} which represents which tower index it will move from.
+     */
     private int fromTowerIndex;
 
+    /**
+     * The {@link Boolean} object which represents the state where the player is applying upgrades.
+     */
     private boolean isApplyingUpgrade;
+
+    /**
+     * The {@link Integer} which represents the index of the {@link Upgrade}
+     * which is in the {@link seng201.team8.models.dataRecords.InventoryData}.
+     */
     private int upgradeToApplyIndex;
+
+    /**
+     * The {@link List} of {@link Tower}s which represent the towers to apply
+     * to.
+     */
     private List<Tower> towersToApply;
+
+    /**
+     * The {@link Integer} which represents how many towers can be selected.
+     * Used during application of upgrades.
+     */
     private int maximumTargets;
 
-
+    /**
+     * The constructor for {@link InventoryController}
+     * <p></p>
+     * Takes in a {@link GameManager} and stores it in the InventoryController
+     * @param gameManager {@link GameManager}
+     */
     public InventoryController(GameManager gameManager){
         this.gameManager = gameManager;
         inventoryManager = gameManager.getInventoryManager();
     }
 
+    /**
+     * Runs when the {@link InventoryController} is initialized. Initializes the
+     * {@link Tower} {@link Tower}s, {@link Upgrade} {@link ListView}, default values,
+     * and {@link ImageView}s for the controller.
+     */
     public void initialize(){
         initializeTowerButtons();
         initializeUpgradeListView();
@@ -79,12 +145,15 @@ public class InventoryController {
         styleTowerButtons();
     }
 
+    /**
+     * Initializes the {@link Upgrade} {@link ListView} with functionality
+     * when the {@link ListView} elements are selected.
+     */
     private void initializeUpgradeListView() {
         upgradesListView.setCellFactory(new UpgradeCellFactory());
         upgradesListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         upgradesListView.getSelectionModel().selectedIndexProperty().addListener((observableValue, oldIndex, newIndex) -> {
             selectedInventoryUpgradeIndex = newIndex.intValue();
-            selectedInventoryItemType = "Upgrade";
             renameTowerButton.setDisable(true);
             useItemButton.setDisable(false);
             if(!isApplyingUpgrade){
@@ -93,6 +162,10 @@ public class InventoryController {
         });
     }
 
+    /**
+     * Initializes the default values that are required before the
+     * controller becomes functional.
+     */
     private void initializeDefaultValues() {
         isMovingTowers = false;
         isApplyingUpgrade = false;
@@ -106,10 +179,19 @@ public class InventoryController {
         selectedTowerButtons = new boolean[towerButtons.size()];
     }
 
+    /**
+     * Updates the {@link Upgrade} {@link ListView}.
+     */
     private void updateUpgradeViewList(){
         upgradesListView.setItems(FXCollections.observableArrayList(inventoryManager.getInventoryData().getUpgrades()));
     }
 
+
+    /**
+     * Updates the tower stat {@link Label}s and tower {@link ImageView} based on the given {@link Tower}.
+     * If the given tower is null, the tower stat {@link Label}s are set to "None"
+     * @param tower {@link Tower}
+     */
     private void updateTowerStats(Tower tower) {
         if (tower != null) {
             rarityLabel.setText(String.valueOf(tower.getRarity()));
@@ -132,25 +214,39 @@ public class InventoryController {
         }
     }
 
+    /**
+     * Updates the upgrade stat {@link Label}s and upgrade {@link ImageView} based on the given {@link Upgrade}.
+     * @param upgrade {@link Upgrade}
+     */
     private void updateUpgradeStats(Upgrade upgrade) {
         upgradeNameLabel.setText(upgrade.getEffect().getEffectName());
         upgradeDescriptionLabel.setText(upgrade.toString());
         displayUpgradeImage(upgrade);
     }
 
+    /**
+     * Initializes the tower {@link Button}s with functionality
+     * when the tower {@link Button}s are clicked.
+     */
     private void initializeTowerButtons(){
         towerButtons = List.of(mainTower1Button, mainTower2Button, mainTower3Button, mainTower4Button, mainTower5Button,
                 reserveTower1Button, reserveTower2Button, reserveTower3Button, reserveTower4Button, reserveTower5Button);
         for (int i = 0; i < towerButtons.size(); i++){
             int finalI = i;
             towerButtons.get(i).setOnAction(event ->{
-                selectedInventoryItemType = "Tower";
                 selectedInventoryTowerIndex = finalI;
                 towerButtonClicked(finalI);
             });
         }
     }
 
+    /**
+     * Applies styling to each tower button depending on the towers
+     * rarity and if it is selected or not.
+     * Broken towers have their tower buttons text set to "DESTROYED".
+     * Positions which are null in the main towers or reserve towers
+     * have their tower buttons text set to "Empty"
+     */
     private void styleTowerButtons(){
         Tower tower;
         for (int i = 0; i < towerButtons.size(); i++){
@@ -177,6 +273,13 @@ public class InventoryController {
         }
     }
 
+    /**
+     * Functionality for when the tower button is clicked.
+     * <p></p>
+     * It checks for what the current state of the inventory it is in and run
+     * the appropriate functionality depending on the state.
+     * @param finalI {@link Integer}
+     */
     private void towerButtonClicked(int finalI) {
         Tower tower;
         if (finalI >= 5) {
@@ -200,6 +303,11 @@ public class InventoryController {
 
     }
 
+    /**
+     * Updates the useItemButton depending on how many towers
+     * are in the towersToApply {@link List} and the maximum number of
+     * towers the player can choose.
+     */
     private void updateUseItemButton(){
         if(towersToApply.isEmpty()){
             useItemButton.setText("Click here to cancel or select " + maximumTargets + " more towers");
@@ -209,10 +317,20 @@ public class InventoryController {
             useItemButton.setText("Click here to apply or select " + (maximumTargets - towersToApply.size()) + " more towers");
         }
     }
+
+    /**
+     * Clears the selectedTowerButton array by creating a new one.
+     */
     private void clearSelectedTowerButtons(){
         selectedTowerButtons = new boolean[towerButtons.size()];
     }
 
+    /**
+     * Displays the {@link Tower} {@link ImageView} which is dependent
+     * on the given tower's {@link Resource} type.
+     * If the tower is broken, a greyscale filter is applied over the image.
+     * @param tower {@link Tower}
+     */
     private void displayTowerImage(Tower tower){
         Image image = new Image("/images/towers/" + tower.getTowerStats().getResourceType().name().toLowerCase() + ".jpg");
         if(tower.isBroken()) {
@@ -226,12 +344,22 @@ public class InventoryController {
 
     }
 
+    /**
+     * Displays the {@link Upgrade} {@link ImageView} which is dependent
+     * on the given upgrade's {@link seng201.team8.models.effects.Effect}.
+     * @param upgrade {@link Upgrade}
+     */
     private void displayUpgradeImage(Upgrade upgrade){
         Image image = new Image("/images/upgrades/" + upgrade.getEffect().getEffectName().toLowerCase().replace(" ", "") + ".jpg");
 
         upgradeImageView.setImage(image);
     }
 
+
+    /**
+     * Displays all the {@link Tower} stat {@link Label}s to "None"
+     * and sets the {@link Tower} {@link ImageView} image to null.
+     */
     private void displayTowerNull() {
         rarityLabel.setText("None");
         resourceAmountLabel.setText("None");
@@ -243,12 +371,24 @@ public class InventoryController {
         towerImageView.setImage(null);
     }
 
+    /**
+     * Displays all the {@link Upgrade} {@link Label}s to "None"
+     * and sets the {@link Upgrade} {@link ImageView} image to null.
+     */
     private void displayUpgradeNull(){
         upgradeNameLabel.setText("None");
         upgradeDescriptionLabel.setText("None");
         upgradeImageView.setImage(null);
     }
 
+    /**
+     * Adds {@link Tower}s to towers to apply {@link List} or removes
+     * them if the tower is already in the list.
+     * If a new tower was to be added in a full {@link List}, it will
+     * be rejected.
+     * @param tower {@link Tower}
+     * @return {@link Boolean}
+     */
     private boolean applyUpgrade(Tower tower){
         if(tower != null) {
             if (towersToApply.contains(tower)) {
@@ -264,6 +404,17 @@ public class InventoryController {
         return false;
     }
 
+    /**
+     * Checks if the currently selected item is an {@link Upgrade} and
+     * not in an applying upgrade state. Then the inventory screen will get into
+     * an applying upgrade state where the player has to select towers
+     * up to the maximum target of the upgrade.
+     * <p></p>
+     * If the player is already in the applying upgrade state, the upgrade
+     * will either be consumed and used on the selected towers, or none are
+     * selected so the action will be canceled. Afterward, the player will
+     * not be in the applying upgrade state/
+     */
     @FXML
     private void onUseItemClicked() {
         if (selectedInventoryUpgradeIndex != -1 && !isApplyingUpgrade) {
@@ -286,6 +437,10 @@ public class InventoryController {
         styleTowerButtons();
     }
 
+    /**
+     * Applies {@link Upgrade} to the selected towers and then gets removed
+     * from the upgrades in the {@link seng201.team8.models.dataRecords.InventoryData}.
+     */
     private void applyUpgrades() {
         inventoryManager.applyUpgradeTo(upgradeToApplyIndex, towersToApply);
         upgradeToApplyIndex = -1;
@@ -296,6 +451,13 @@ public class InventoryController {
         selectedInventoryUpgradeIndex = -1;
     }
 
+    /**
+     * Checks if the player is in the moving tower state. If not, the player will
+     * be in the moving tower state.
+     * <p></p>
+     * If the player is already in the moving tower state. The player will the not be in
+     * the moving tower state.
+     */
     @FXML
     private void onMoveClicked(){
         if(!isMovingTowers) {
@@ -314,9 +476,14 @@ public class InventoryController {
         selectedInventoryTowerIndex = -1;
     }
 
+    /**
+     * Renames the selected tower with the {@link String} in the tower name {@link TextField}.
+     * If the name does not meet the conditions in {@link InventoryManager}, the tower does not
+     * get renamed.
+     */
     @FXML
     private void onRenameTowerClicked() {
-        if (selectedInventoryTowerIndex != -1 && Objects.equals(selectedInventoryItemType, "Tower")) {
+        if (selectedInventoryTowerIndex != -1) {
             if(inventoryManager.checkName(towerNameTextField.getText())){
                 renameTower();
             } else {
@@ -328,14 +495,24 @@ public class InventoryController {
         styleTowerButtons();
     }
 
+    /**
+     * Renames the tower at the {@link Integer} selectedInventoryTowerIndex with the
+     * tower name {@link TextField}
+     */
     private void renameTower() {
-        if(selectedInventoryTowerIndex >= 5){
-            inventoryManager.getInventoryData().getReserveTowers()[selectedInventoryTowerIndex-5].setName(towerNameTextField.getText());
+        if(selectedInventoryTowerIndex >= inventoryManager.getInventoryData().getMainTowers().length){
+            inventoryManager.getInventoryData().getReserveTowers()[selectedInventoryTowerIndex-
+                    inventoryManager.getInventoryData().getMainTowers().length].setName(towerNameTextField.getText());
         } else {
             inventoryManager.getInventoryData().getMainTowers()[selectedInventoryTowerIndex].setName(towerNameTextField.getText());
         }
     }
 
+    /**
+     * A pop-up message creator which displays a given {@link String} message and an "OK" button.
+     * Used to give the player an indicator that the player is performing a wrong action.
+     * @param message {@link String}
+     */
     private void errorPopUp(String message) {
         Dialog<?> errorPane = new Dialog<>();
         errorPane.setContentText(message);
@@ -343,11 +520,22 @@ public class InventoryController {
         errorPane.show();
     }
 
+    /**
+     * Launches to the "Game Menu" Screen.
+     */
     @FXML
     private void onReturnClicked(){
         gameManager.getGameGUIManager().launchScreen("Game Menu");
     }
 
+    /**
+     * If the player has not chosen the {@link Tower} to move from, that tower index
+     * is stored in the fromTowerIndex.
+     * <p></p>
+     * If the player has already chosen the {@link Tower} to move from, the tower
+     * that is selected swaps positions with the {@link Tower} to move from. The player
+     * will not be in the moving tower state.
+     */
     private void moveTower(){
         if (fromTowerIndex != -1) {
             if (selectedInventoryTowerIndex != fromTowerIndex) {
@@ -365,6 +553,10 @@ public class InventoryController {
         }
     }
 
+    /**
+     * Disables the utility buttons except for the given {@link Button}
+     * @param button {@link Button}
+     */
     private void disableOtherButtons(Button button){
         for (Button b : utilityButtons) {
             if(b != button){

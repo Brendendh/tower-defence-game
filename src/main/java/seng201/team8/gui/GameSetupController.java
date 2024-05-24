@@ -379,7 +379,7 @@ public class GameSetupController {
 
     /**
      * Displays the {@link Tower} {@link ImageView} which is dependent
-     * on the given towers {@link seng201.team8.models.Resource} type.
+     * on the given tower's {@link seng201.team8.models.Resource} type.
      * @param tower {@link Tower}
      */
     private void displayTowerImage(Tower tower){
