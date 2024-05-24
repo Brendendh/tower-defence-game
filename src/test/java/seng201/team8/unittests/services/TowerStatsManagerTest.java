@@ -12,13 +12,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class TowerStatsManagerTest {
-    private Tower[] testTowers;
     private InventoryData inventoryData;
     private TowerStatsManager towerStatsManager;
     @BeforeEach
     public void setupTest(){
-        testTowers = new Tower[]{
-                new Tower("Corn Farm", new TowerStats(10, Resource.CORN, 1 ), 10, Rarity.COMMON),
+        Tower[] testTowers = new Tower[]{
+                new Tower("Corn Farm", new TowerStats(10, Resource.CORN, 1), 10, Rarity.COMMON),
                 new Tower("Corn Field", new TowerStats(35, Resource.CORN, 3), 15, Rarity.COMMON),
                 new Tower("Timber Yard", new TowerStats(8, Resource.WOOD, 1), 10, Rarity.COMMON),
                 new Tower("Forest", new TowerStats(30, Resource.WOOD, 3), 15, Rarity.COMMON),

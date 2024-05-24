@@ -15,9 +15,6 @@ import seng201.team8.services.GameManager;
 import seng201.team8.services.InventoryManager;
 import seng201.team8.services.ShopManager;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ShopManagerTest {

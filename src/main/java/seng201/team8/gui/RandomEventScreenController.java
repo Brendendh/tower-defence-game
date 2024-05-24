@@ -13,16 +13,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
-import seng201.team8.models.*;
 import seng201.team8.services.GameManager;
-import seng201.team8.services.InventoryManager;
 import seng201.team8.services.RandomEventsService;
 
-import javax.imageio.stream.FileImageInputStream;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.EventListener;
 import java.util.Random;
 
 /**
@@ -135,9 +129,8 @@ public class RandomEventScreenController {
      * <p></p>
      * Throws a {@link FileNotFoundException} if the image url is invalid.
      * @param i The event {@link Integer} index
-     * @throws FileNotFoundException
      */
-    private void setImageDisplay(int i) throws FileNotFoundException {
+    private void setImageDisplay(int i) {
         Image image = new Image(imageURL[i]);
         imageDisplay.setImage(image);
     }
@@ -151,9 +144,8 @@ public class RandomEventScreenController {
      * {@link RandomEventScreenController#eventLore} to {@link RandomEventScreenController#loreTextField} to simulate
      * a typing animation. Once the full text is displayed, the timeline is stopped. The player can skip the typing
      * animation and move on to the next screen by simply pressing {@link RandomEventScreenController#proceedButton}
-     * @throws FileNotFoundException potentially thrown by {@link RandomEventScreenController#setImageDisplay(int)}
      */
-    public void initialize() throws FileNotFoundException {
+    public void initialize() {
         Random random = new Random();
         int randomEventNum = random.nextInt(4);
         randomEventsService.executeRandomEvent(randomEventNum);

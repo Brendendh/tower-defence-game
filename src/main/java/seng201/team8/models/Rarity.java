@@ -1,7 +1,5 @@
 package seng201.team8.models;
 
-import javafx.scene.paint.Color;
-
 /**
  * An enumerator class for an item's Rarity
  * <p>
@@ -57,7 +55,7 @@ public enum Rarity {
      */
     private final int rarityStatMultiplier;
     /**
-     * The color hexcode of the text that will be displayed when an
+     * The color hex code of the text that will be displayed when an
      * item is of a specific rarity.
      */
     private final String rarityTextColorHex;

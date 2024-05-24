@@ -11,235 +11,246 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng201.team8.gui.ShopScreenController">
-   <children>
-      <GridPane prefHeight="720.0" prefWidth="640.0">
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng201.team8.gui.ShopScreenController">
+    <GridPane prefHeight="720.0" prefWidth="640.0">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
         </columnConstraints>
         <rowConstraints>
-            <RowConstraints maxHeight="170.8000244140625" minHeight="0.0" percentHeight="10.0" prefHeight="55.999998569488525" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="360.8" minHeight="10.0" prefHeight="210.19998779296873" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="320.7999633789063" minHeight="10.0" percentHeight="10.0" prefHeight="192.60001220703123" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="320.7999633789063" minHeight="10.0" percentHeight="30.0" prefHeight="84.20004882812498" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="242.5999816894531" minHeight="10.0" percentHeight="20.0" prefHeight="190.40004272460942" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="170.8000244140625" minHeight="0.0" percentHeight="10.0"
+                            prefHeight="55.999998569488525" vgrow="SOMETIMES"/>
+            <RowConstraints maxHeight="360.8" minHeight="10.0" prefHeight="210.19998779296873" vgrow="SOMETIMES"/>
+            <RowConstraints maxHeight="320.7999633789063" minHeight="10.0" percentHeight="10.0"
+                            prefHeight="192.60001220703123" vgrow="SOMETIMES"/>
+            <RowConstraints maxHeight="320.7999633789063" minHeight="10.0" percentHeight="30.0"
+                            prefHeight="84.20004882812498" vgrow="SOMETIMES"/>
+            <RowConstraints maxHeight="242.5999816894531" minHeight="10.0" percentHeight="20.0"
+                            prefHeight="190.40004272460942" vgrow="SOMETIMES"/>
         </rowConstraints>
-         <children>
-            <GridPane hgap="10.0" GridPane.rowIndex="1">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <padding>
-                  <Insets bottom="10.0" left="30.0" right="30.0" top="10.0" />
-               </padding>
-               <children>
-                  <Button fx:id="firstTowerOnSale" mnemonicParsing="false" prefHeight="193.0" prefWidth="186.0" text="Tower1" />
-                  <Button fx:id="secondTowerOnSale" mnemonicParsing="false" prefHeight="220.0" prefWidth="186.0" text="Tower2" GridPane.columnIndex="1" />
-                  <Button fx:id="thirdTowerOnSale" mnemonicParsing="false" prefHeight="204.0" prefWidth="186.0" text="Tower3" GridPane.columnIndex="2" />
-               </children>
-            </GridPane>
-            <GridPane hgap="10.0" GridPane.rowIndex="3">
-              <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <padding>
-                  <Insets bottom="10.0" left="30.0" right="30.0" top="10.0" />
-               </padding>
-               <children>
-                  <Button fx:id="firstUpgradeOnSale" mnemonicParsing="false" prefHeight="201.0" prefWidth="186.0" text="Upgrade1" />
-                  <Button fx:id="secondUpgradeOnSale" mnemonicParsing="false" prefHeight="199.0" prefWidth="186.0" text="Upgrade2" GridPane.columnIndex="1" />
-                  <Button fx:id="thirdUpgradeOnSale" mnemonicParsing="false" prefHeight="201.0" prefWidth="186.0" text="Upgrade3" GridPane.columnIndex="2" />
-               </children>
-            </GridPane>
-            <GridPane hgap="20.0" GridPane.rowIndex="4">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <padding>
-                  <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
-               </padding>
-               <children>
-                  <Button fx:id="refreshButton" mnemonicParsing="false" onAction="#refreshShop" prefHeight="85.0" prefWidth="180.0" text="Refresh (5 money)" />
-                  <Button fx:id="sellButton" mnemonicParsing="false" onAction="#sellSelectedItem" prefHeight="88.0" prefWidth="180.0" text="Sell" GridPane.columnIndex="2" />
-                  <Button fx:id="buyButton" mnemonicParsing="false" onAction="#buySelectedItem" prefHeight="92.0" prefWidth="180.0" text="Buy" GridPane.columnIndex="1" />
-               </children>
-            </GridPane>
-            <Label minWidth="-Infinity" prefHeight="150.0" prefWidth="200.0" text="Tower">
-               <GridPane.margin>
-                  <Insets left="30.0" />
-               </GridPane.margin>
-               <font>
-                  <Font name="System Bold" size="35.0" />
-               </font>
-               <padding>
-                  <Insets bottom="-30.0" />
-               </padding>
+        <GridPane hgap="10.0" GridPane.rowIndex="1">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            </rowConstraints>
+            <padding>
+                <Insets bottom="10.0" left="30.0" right="30.0" top="10.0"/>
+            </padding>
+            <Button fx:id="firstTowerOnSale" mnemonicParsing="false" prefHeight="193.0" prefWidth="186.0"
+                    text="Tower1"/>
+            <Button fx:id="secondTowerOnSale" mnemonicParsing="false" prefHeight="220.0" prefWidth="186.0"
+                    text="Tower2" GridPane.columnIndex="1"/>
+            <Button fx:id="thirdTowerOnSale" mnemonicParsing="false" prefHeight="204.0" prefWidth="186.0"
+                    text="Tower3" GridPane.columnIndex="2"/>
+        </GridPane>
+        <GridPane hgap="10.0" GridPane.rowIndex="3">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            </rowConstraints>
+            <padding>
+                <Insets bottom="10.0" left="30.0" right="30.0" top="10.0"/>
+            </padding>
+            <Button fx:id="firstUpgradeOnSale" mnemonicParsing="false" prefHeight="201.0" prefWidth="186.0"
+                    text="Upgrade1"/>
+            <Button fx:id="secondUpgradeOnSale" mnemonicParsing="false" prefHeight="199.0" prefWidth="186.0"
+                    text="Upgrade2" GridPane.columnIndex="1"/>
+            <Button fx:id="thirdUpgradeOnSale" mnemonicParsing="false" prefHeight="201.0" prefWidth="186.0"
+                    text="Upgrade3" GridPane.columnIndex="2"/>
+        </GridPane>
+        <GridPane hgap="20.0" GridPane.rowIndex="4">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            </rowConstraints>
+            <padding>
+                <Insets bottom="30.0" left="30.0" right="30.0" top="30.0"/>
+            </padding>
+            <Button fx:id="refreshButton" mnemonicParsing="false" onAction="#refreshShop" prefHeight="85.0"
+                    prefWidth="180.0" text="Refresh (5 money)"/>
+            <Button fx:id="sellButton" mnemonicParsing="false" onAction="#sellSelectedItem" prefHeight="88.0"
+                    prefWidth="180.0" text="Sell" GridPane.columnIndex="2"/>
+            <Button fx:id="buyButton" mnemonicParsing="false" onAction="#buySelectedItem" prefHeight="92.0"
+                    prefWidth="180.0" text="Buy" GridPane.columnIndex="1"/>
+        </GridPane>
+        <Label minWidth="-Infinity" prefHeight="150.0" prefWidth="200.0" text="Tower">
+            <GridPane.margin>
+                <Insets left="30.0"/>
+            </GridPane.margin>
+            <font>
+                <Font name="System Bold" size="35.0"/>
+            </font>
+            <padding>
+                <Insets bottom="-30.0"/>
+            </padding>
+        </Label>
+        <Label text="Upgrades" GridPane.rowIndex="2">
+            <font>
+                <Font name="System Bold" size="35.0"/>
+            </font>
+            <GridPane.margin>
+                <Insets left="30.0"/>
+            </GridPane.margin>
+            <padding>
+                <Insets bottom="-30.0"/>
+            </padding>
+        </Label>
+        <GridPane>
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            </rowConstraints>
+            <Label text="Money: " GridPane.columnIndex="1">
+                <font>
+                    <Font name="System Bold" size="12.0"/>
+                </font>
             </Label>
-            <Label text="Upgrades" GridPane.rowIndex="2">
-               <font>
-                  <Font name="System Bold" size="35.0" />
-               </font>
-               <GridPane.margin>
-                  <Insets left="30.0" />
-               </GridPane.margin>
-               <padding>
-                  <Insets bottom="-30.0" />
-               </padding>
+            <Label text="Points:" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                <font>
+                    <Font name="System Bold" size="12.0"/>
+                </font>
             </Label>
-            <GridPane>
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-                  <Label text="Money: " GridPane.columnIndex="1">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Label>
-                  <Label text="Points:" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="moneyAmountDisplay" text="0" GridPane.columnIndex="1" GridPane.valignment="CENTER">
-                     <GridPane.margin>
-                        <Insets left="50.0" />
-                     </GridPane.margin>
-                  </Label>
-                  <Label fx:id="pointAmountDisplay" text="0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                     <GridPane.margin>
-                        <Insets left="50.0" />
-                     </GridPane.margin>
-                  </Label>
-               </children>
-            </GridPane>
-         </children>
-      </GridPane>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#56390b" height="724.0" layoutX="642.0" layoutY="-4.0" stroke="BLACK" strokeType="INSIDE" width="18.0" />
-      <GridPane layoutX="660.0" layoutY="-2.0" prefHeight="721.0" prefWidth="618.0">
+            <Label fx:id="moneyAmountDisplay" text="0" GridPane.columnIndex="1" GridPane.valignment="CENTER">
+                <GridPane.margin>
+                    <Insets left="50.0"/>
+                </GridPane.margin>
+            </Label>
+            <Label fx:id="pointAmountDisplay" text="0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                <GridPane.margin>
+                    <Insets left="50.0"/>
+                </GridPane.margin>
+            </Label>
+        </GridPane>
+    </GridPane>
+    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#56390b" height="724.0" layoutX="642.0" layoutY="-4.0"
+               stroke="BLACK" strokeType="INSIDE" width="18.0"/>
+    <GridPane layoutX="660.0" layoutY="-2.0" prefHeight="721.0" prefWidth="618.0">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints maxHeight="152.39999237060547" minHeight="10.0" percentHeight="10.0" prefHeight="24.399998092651373" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="216.40000190734864" minHeight="10.0" percentHeight="20.0" prefHeight="216.40000190734864" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" percentHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" percentHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" percentHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" percentHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="152.39999237060547" minHeight="10.0" percentHeight="10.0"
+                            prefHeight="24.399998092651373" vgrow="SOMETIMES"/>
+            <RowConstraints maxHeight="216.40000190734864" minHeight="10.0" percentHeight="20.0"
+                            prefHeight="216.40000190734864" vgrow="SOMETIMES"/>
+            <RowConstraints minHeight="10.0" percentHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            <RowConstraints minHeight="10.0" percentHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            <RowConstraints minHeight="10.0" percentHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            <RowConstraints minHeight="10.0" percentHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES"/>
         </rowConstraints>
-         <children>
-            <Label text="Main Towers">
-               <GridPane.margin>
-                  <Insets left="30.0" />
-               </GridPane.margin>
-               <font>
-                  <Font name="System Bold" size="35.0" />
-               </font>
-               <padding>
-                  <Insets bottom="-30.0" />
-               </padding>
-            </Label>
-            <Label text="Reserve Towers" GridPane.rowIndex="2">
-               <font>
-                  <Font name="System Bold" size="35.0" />
-               </font>
-               <GridPane.margin>
-                  <Insets left="30.0" />
-               </GridPane.margin>
-               <padding>
-                  <Insets bottom="-30.0" />
-               </padding>
-            </Label>
-            <Label text="Upgrades" GridPane.rowIndex="4">
-               <font>
-                  <Font name="System Bold" size="35.0" />
-               </font>
-               <padding>
-                  <Insets bottom="-30.0" left="30.0" />
-               </padding>
-            </Label>
-            <ListView fx:id="upgradesListView" prefHeight="218.0" prefWidth="506.0" GridPane.rowIndex="5">
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <GridPane.margin>
-                  <Insets bottom="10.0" left="30.0" right="30.0" top="10.0" />
-               </GridPane.margin></ListView>
-            <GridPane hgap="10.0" GridPane.rowIndex="1">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <GridPane.margin>
-                  <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
-               </GridPane.margin>
-               <children>
-                  <Button fx:id="mainTower1" mnemonicParsing="false" prefHeight="92.0" prefWidth="104.0" text="MainTower1" />
-                  <Button fx:id="mainTower2" mnemonicParsing="false" prefHeight="122.0" prefWidth="103.0" text="MainTower2" GridPane.columnIndex="1" />
-                  <Button fx:id="mainTower3" mnemonicParsing="false" prefHeight="122.0" prefWidth="103.0" text="MainTower3" GridPane.columnIndex="2" />
-                  <Button fx:id="mainTower4" mnemonicParsing="false" prefHeight="101.0" prefWidth="103.0" text="MainTower4" GridPane.columnIndex="3" />
-                  <Button fx:id="mainTower5" mnemonicParsing="false" prefHeight="136.0" prefWidth="103.0" text="MainTower5" GridPane.columnIndex="4" />
-               </children>
-            </GridPane>
-            <GridPane hgap="10.0" GridPane.rowIndex="3">
-               <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-               </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-               </rowConstraints>
-               <children>
-                  <Button fx:id="reserveTower1" mnemonicParsing="false" prefHeight="92.0" prefWidth="104.0" text="ReserveTower1" />
-                  <Button fx:id="reserveTower2" mnemonicParsing="false" prefHeight="122.0" prefWidth="103.0" text="ReserveTower2" GridPane.columnIndex="1" />
-                  <Button fx:id="reserveTower3" mnemonicParsing="false" prefHeight="122.0" prefWidth="103.0" text="ReserveTower3" GridPane.columnIndex="2" />
-                  <Button fx:id="reserveTower4" mnemonicParsing="false" prefHeight="101.0" prefWidth="103.0" text="ReserveTower4" GridPane.columnIndex="3" />
-                  <Button fx:id="reserveTower5" mnemonicParsing="false" prefHeight="136.0" prefWidth="103.0" text="ReserveTower5" GridPane.columnIndex="4" />
-               </children>
-               <GridPane.margin>
-                  <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
-               </GridPane.margin>
-            </GridPane>
-            <Button fx:id="returnButton" mnemonicParsing="false" onAction="#returnToGameMenu" text="Return" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <GridPane.margin>
-                  <Insets right="30.0" />
-               </GridPane.margin>
-            </Button>
-         </children>
-      </GridPane>
-   </children>
+        <Label text="Main Towers">
+            <GridPane.margin>
+                <Insets left="30.0"/>
+            </GridPane.margin>
+            <font>
+                <Font name="System Bold" size="35.0"/>
+            </font>
+            <padding>
+                <Insets bottom="-30.0"/>
+            </padding>
+        </Label>
+        <Label text="Reserve Towers" GridPane.rowIndex="2">
+            <font>
+                <Font name="System Bold" size="35.0"/>
+            </font>
+            <GridPane.margin>
+                <Insets left="30.0"/>
+            </GridPane.margin>
+            <padding>
+                <Insets bottom="-30.0"/>
+            </padding>
+        </Label>
+        <Label text="Upgrades" GridPane.rowIndex="4">
+            <font>
+                <Font name="System Bold" size="35.0"/>
+            </font>
+            <padding>
+                <Insets bottom="-30.0" left="30.0"/>
+            </padding>
+        </Label>
+        <ListView fx:id="upgradesListView" prefHeight="218.0" prefWidth="506.0" GridPane.rowIndex="5">
+            <opaqueInsets>
+                <Insets/>
+            </opaqueInsets>
+            <GridPane.margin>
+                <Insets bottom="10.0" left="30.0" right="30.0" top="10.0"/>
+            </GridPane.margin>
+        </ListView>
+        <GridPane hgap="10.0" GridPane.rowIndex="1">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            </rowConstraints>
+            <GridPane.margin>
+                <Insets bottom="30.0" left="30.0" right="30.0" top="30.0"/>
+            </GridPane.margin>
+            <Button fx:id="mainTower1" mnemonicParsing="false" prefHeight="92.0" prefWidth="104.0"
+                    text="MainTower1"/>
+            <Button fx:id="mainTower2" mnemonicParsing="false" prefHeight="122.0" prefWidth="103.0"
+                    text="MainTower2" GridPane.columnIndex="1"/>
+            <Button fx:id="mainTower3" mnemonicParsing="false" prefHeight="122.0" prefWidth="103.0"
+                    text="MainTower3" GridPane.columnIndex="2"/>
+            <Button fx:id="mainTower4" mnemonicParsing="false" prefHeight="101.0" prefWidth="103.0"
+                    text="MainTower4" GridPane.columnIndex="3"/>
+            <Button fx:id="mainTower5" mnemonicParsing="false" prefHeight="136.0" prefWidth="103.0"
+                    text="MainTower5" GridPane.columnIndex="4"/>
+        </GridPane>
+        <GridPane hgap="10.0" GridPane.rowIndex="3">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            </rowConstraints>
+            <GridPane.margin>
+                <Insets bottom="30.0" left="30.0" right="30.0" top="30.0"/>
+            </GridPane.margin>
+            <Button fx:id="reserveTower1" mnemonicParsing="false" prefHeight="92.0" prefWidth="104.0"
+                    text="ReserveTower1"/>
+            <Button fx:id="reserveTower2" mnemonicParsing="false" prefHeight="122.0" prefWidth="103.0"
+                    text="ReserveTower2" GridPane.columnIndex="1"/>
+            <Button fx:id="reserveTower3" mnemonicParsing="false" prefHeight="122.0" prefWidth="103.0"
+                    text="ReserveTower3" GridPane.columnIndex="2"/>
+            <Button fx:id="reserveTower4" mnemonicParsing="false" prefHeight="101.0" prefWidth="103.0"
+                    text="ReserveTower4" GridPane.columnIndex="3"/>
+            <Button fx:id="reserveTower5" mnemonicParsing="false" prefHeight="136.0" prefWidth="103.0"
+                    text="ReserveTower5" GridPane.columnIndex="4"/>
+        </GridPane>
+        <Button fx:id="returnButton" mnemonicParsing="false" onAction="#returnToGameMenu" text="Return"
+                GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
+            <opaqueInsets>
+                <Insets/>
+            </opaqueInsets>
+            <GridPane.margin>
+                <Insets right="30.0"/>
+            </GridPane.margin>
+        </Button>
+    </GridPane>
 </AnchorPane>

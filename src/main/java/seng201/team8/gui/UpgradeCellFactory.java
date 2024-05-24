@@ -8,7 +8,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.util.Callback;
-import seng201.team8.models.Rarity;
 import seng201.team8.models.Upgrade;
 import javafx.scene.control.Label;
 

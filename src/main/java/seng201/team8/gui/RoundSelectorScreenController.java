@@ -9,7 +9,6 @@ import javafx.scene.control.Dialog;
 import javafx.scene.control.DialogPane;
 import seng201.team8.models.*;
 import seng201.team8.services.GameManager;
-import seng201.team8.services.InventoryManager;
 import seng201.team8.services.RoundSelectorService;
 
 import java.util.*;
@@ -41,12 +40,12 @@ public class RoundSelectorScreenController {
     /**
      * The game's current {@link GameManager}
      */
-    private GameManager gameManager;
+    private final GameManager gameManager;
     /**
      * The {@link RoundSelectorService} created upon initialization to handle
      * the generation of {@link Round}s.
      */
-    private RoundSelectorService roundSelectorService;
+    private final RoundSelectorService roundSelectorService;
     /**
      * A {@link List} containing all the {@link Round} {@link Button}
      */
@@ -54,7 +53,7 @@ public class RoundSelectorScreenController {
     /**
      * An Array containing all the generated {@link Round} by the {@link RoundSelectorScreenController#roundSelectorService}
      */
-    private Round[] possibleRounds;
+    private final Round[] possibleRounds;
     /**
      * A boolean to keep track if a round has been chosen or not.
      */
@@ -101,7 +100,7 @@ public class RoundSelectorScreenController {
      * @param errorMessage the error message {@link String} to display
      */
     private void errorPopUp(String errorMessage){
-        Dialog errorPane = new Dialog();
+        Dialog<?> errorPane = new Dialog<>();
         errorPane.setContentText(errorMessage);
         errorPane.getDialogPane().getButtonTypes().addAll(ButtonType.CANCEL);
         errorPane.show();
@@ -116,19 +115,19 @@ public class RoundSelectorScreenController {
     private ArrayList<Resource> calculateResourceRatio(Round round){
         float ratio = (float) 3.0/round.getCartNumber();
         Map<Resource,Integer> resourceCounter = new HashMap<>();
-        ArrayList<Resource> avaliableResource = new ArrayList<>();
+        ArrayList<Resource> availableResource = new ArrayList<>();
         for (Cart cart: round.getCarts()){
             if (resourceCounter.containsKey(cart.getResourceType())){
                 int resourceCount = resourceCounter.get(cart.getResourceType());
                 resourceCounter.put(cart.getResourceType(), resourceCount+1);
             }
             else{
-                avaliableResource.add(cart.getResourceType());
+                availableResource.add(cart.getResourceType());
                 resourceCounter.put(cart.getResourceType(),1);
             }
         }
         ArrayList<Resource> resourceDisplayList = new ArrayList<>();
-        for (Resource resource:avaliableResource){
+        for (Resource resource:availableResource){
             int numOfCartsOfThisRss = Math.round(resourceCounter.get(resource) * ratio);
             if (numOfCartsOfThisRss == 0){numOfCartsOfThisRss = 1;}
             for (int i = 0; i < numOfCartsOfThisRss; i++){
@@ -148,14 +147,14 @@ public class RoundSelectorScreenController {
      */
     private void updateButtonDisplay(Button button, Round round, int optionNumber){
         ArrayList<Resource> listOfResourceToDisplay = calculateResourceRatio(round);
-        String buttonText = "Option "+optionNumber+"\n"+"Distance to travel: "+round.getDistanceAllowed()+"\n" +
-                "Number of carts: "+round.getCartNumber()+"\n"+
-                "Cart speed range: "+(1+(gameManager.getGameData().getRound())/6)+" to "+(2+(gameManager.getGameData().getRound())/6)+"\n"+
-                "Estimated resources: ";
+        StringBuilder buttonText = new StringBuilder("Option " + optionNumber + "\n" + "Distance to travel: " + round.getDistanceAllowed() + "\n" +
+                "Number of carts: " + round.getCartNumber() + "\n" +
+                "Cart speed range: " + (1 + (gameManager.getGameData().getRound()) / 6) + " to " + (2 + (gameManager.getGameData().getRound()) / 6) + "\n" +
+                "Estimated resources: ");
         for (Resource resource:listOfResourceToDisplay){
-            buttonText = buttonText + resource+"\n"+"                                  ";
+            buttonText.append(resource).append("\n").append("                                  ");
         }
-        button.setText(buttonText);
+        button.setText(buttonText.toString());
 
     }
 

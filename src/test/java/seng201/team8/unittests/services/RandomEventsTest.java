@@ -11,18 +11,10 @@ import seng201.team8.models.dataRecords.InventoryData;
 import seng201.team8.services.GameManager;
 import seng201.team8.services.InventoryManager;
 import seng201.team8.services.RandomEventsService;
-import seng201.team8.services.TowerStatsManager;
-
-import java.util.ArrayList;
-import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class RandomEventsTest {
-    private GameManager gameManager;
-    private Random random;
-    private TowerStatsManager towerStatsManager;
-    private ArrayList<Tower> playerTowers;
     private InventoryManager inventoryManager;
     private RandomEventsService randomEventsService;
 
@@ -33,7 +25,7 @@ public class RandomEventsTest {
         inventoryData.setMainTowers(testTowers);
         this.inventoryManager = new InventoryManager(inventoryData);
         GameData gameData = new GameData();
-        gameManager = new GameManager(gameData,this.inventoryManager);
+        GameManager gameManager = new GameManager(gameData, this.inventoryManager);
         randomEventsService = new RandomEventsService(gameManager);
     }
 

@@ -1,7 +1,5 @@
 package seng201.team8.gui;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,15 +10,12 @@ import seng201.team8.exceptions.NoSpaceException;
 import seng201.team8.exceptions.NotEnoughCurrencyException;
 import seng201.team8.exceptions.SellingNullError;
 import seng201.team8.models.*;
-import seng201.team8.services.GameGUIManager;
 import seng201.team8.services.GameManager;
 import seng201.team8.services.InventoryManager;
 import seng201.team8.services.ShopManager;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 /**
  * The controller class responsible for handling the communication between the GUI elements of the Shop screen and
@@ -118,11 +113,9 @@ public class ShopScreenController {
      * <p></p>
      * After every successful purchase, i is then set back to -1 to show that no item is currently selected.
      * @param event
-     * @throws NoSpaceException
-     * @throws NotEnoughCurrencyException
      */
     @FXML
-    void buySelectedItem(ActionEvent event) throws NoSpaceException, NotEnoughCurrencyException {
+    void buySelectedItem(ActionEvent event) {
         if (selectedShopItemIndex == -1){
             errorPopUp("Why are you trying to buy nothing?");
         }
@@ -144,12 +137,11 @@ public class ShopScreenController {
      * <p></p>
      * After a successful purchase, updates the shop view by calling the respective update methods.
      * @param upgradeIndex the selected Upgrade's index
-     * @throws NotEnoughCurrencyException
      * @see ShopScreenController#updateShopDisplay()
      * @see ShopScreenController#updateUpgradeViewList()
      * @see ShopScreenController#updatePlayerCurrencyLabels()
      */
-    private void buyUpgrade(int upgradeIndex) throws NotEnoughCurrencyException {
+    private void buyUpgrade(int upgradeIndex) {
         try{
             shopManager.buyUpgrade(upgradeIndex);
         }
@@ -314,7 +306,7 @@ public class ShopScreenController {
         Tower[] mainTowers = inventoryManager.getInventoryData().getMainTowers();
         for (int i = 0; i < mainTowers.length; i++){
             if (mainTowers[i] != null){
-                towerButtons.get(i).setText(mainTowers[i].getName() +"\n" + "Lvl: "+ mainTowers[i].getLevel()+"" +
+                towerButtons.get(i).setText(mainTowers[i].getName() +"\n" + "Lvl: "+ mainTowers[i].getLevel()+
                         "\n"+ "Sells for: "+mainTowers[i].getSellingPrice()+" money");
                 if (mainTowers[i].isBroken()){
                     towerButtons.get(i).setText("DESTROYED");
@@ -497,9 +489,7 @@ public class ShopScreenController {
             });
             //make the towers sold show detailed descriptions when mouse hovers over button
             if (finalI < 3){
-                shopButtons.get(i).setOnMouseEntered(event -> {
-                    setTowerDetailedDescription(shopButtons.get(finalI), (Tower) itemsOnSale[finalI]);
-                });
+                shopButtons.get(i).setOnMouseEntered(event -> setTowerDetailedDescription(shopButtons.get(finalI), (Tower) itemsOnSale[finalI]));
                 shopButtons.get(i).setOnMouseExited(event -> {
                     setTowerSimpleDescription(shopButtons.get(finalI), (Tower) itemsOnSale[finalI]);
                     if (finalI == selectedShopItemIndex){
@@ -537,12 +527,9 @@ public class ShopScreenController {
         //Makes the player only able to select one upgrade at a time
         upgradesListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         //sets the list view to update the selected upgrade index
-        upgradesListView.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
-            @Override
-            public void changed(ObservableValue<? extends Number> observableValue, Number oldIndex, Number newIndex) {
-                selectedInventoryItemIndex = newIndex.intValue();
-                selectedInventoryItemType = "Upgrade";
-            }
+        upgradesListView.getSelectionModel().selectedIndexProperty().addListener((observableValue, oldIndex, newIndex) -> {
+            selectedInventoryItemIndex = newIndex.intValue();
+            selectedInventoryItemType = "Upgrade";
         });
         updateUpgradeViewList();
         //groups buttons together into their respective lists

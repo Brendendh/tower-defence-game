@@ -1,7 +1,5 @@
 package seng201.team8.models;
 
-import seng201.team8.gui.RoundEvaluationController;
-
 /**
  * The model for the Cart objects.
  * <p></p>

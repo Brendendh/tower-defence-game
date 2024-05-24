@@ -14,7 +14,7 @@ import java.util.List;
  */
 public interface Effect {
     /**
-     * Applies the effect to each tower in an List of towers
+     * Applies the effect to each tower in a List of towers
      * @param towers a List of towers to be affected
      */
     void affects(List<Tower> towers);

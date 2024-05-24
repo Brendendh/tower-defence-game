@@ -115,10 +115,10 @@ public class GameMenuController {
      */
     private void updateResourceDisplay(){
         ArrayList<Resource> resources = gameManager.getRoundResourceDisplay();
-        String resourceString = "Possible cart resource type: ";
+        StringBuilder resourceString = new StringBuilder("Possible cart resource type: ");
         for (Resource resource : resources){
-            resourceString += resource + " ";
+            resourceString.append(resource).append(" ");
         }
-        resourceType.setText(resourceString);
+        resourceType.setText(resourceString.toString());
     }
 }

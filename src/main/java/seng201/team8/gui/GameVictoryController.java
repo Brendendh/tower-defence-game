@@ -1,6 +1,5 @@
 package seng201.team8.gui;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import seng201.team8.services.GameManager;
@@ -67,7 +66,7 @@ public class GameVictoryController {
         else{
             result.setText("DEFEAT");
             statLabel.setText(playerName+ " lost with "+money+" money and " +point+" points left , only reaching round " +
-                    currentRoundNumber +" out of "+targetRoundNumber);
+                    currentRoundNumber +" out of "+targetRoundNumber + ".");
         }
     }
 }

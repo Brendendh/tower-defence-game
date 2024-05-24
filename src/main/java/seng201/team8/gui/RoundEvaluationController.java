@@ -247,10 +247,11 @@ public class RoundEvaluationController {
      */
     private void finishGame(boolean gameResult) {
         if (gameResult){
-            gameManager.setRoundWon(gameResult);
+            gameManager.setRoundWon(true);
             gameManager.getGameGUIManager().launchScreen("Round End");
         }
         else{
+            gameManager.setRoundWon(false);
             gameManager.getGameGUIManager().launchScreen("Game Result");
         }
 

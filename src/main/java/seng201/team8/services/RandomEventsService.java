@@ -82,7 +82,7 @@ public class RandomEventsService {
     }
 
     /**
-     * Randomly selects a player {@link Tower} and increases its level by 1.
+     * Randomly selects a player {@link Tower} and increases it's level by 1.
      */
     public void levelUpRandomTower(){
         Tower randomTower = playerTowers.get(random.nextInt(playerTowers.size()));

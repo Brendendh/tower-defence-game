@@ -63,7 +63,7 @@ public class ShopManager {
      * At the start of the game, the ShopData in the GameManager will not be initialized yet and if so, the ShopManager
      * will initialize the ShopData. From there onwards, everytime the player enters the shop again, a new ShopManager is
      * initialized where it compares the current round number to the ShopData's initializedRoundNumber to see if a round has passed
-     * or not. If a round has passed, refresh the shop and update the ShopData's initalizedRoundNumber. If not, do nothing.
+     * or not. If a round has passed, refresh the shop and update the ShopData's initializedRoundNumber. If not, do nothing.
      * <p></p>
      * This is to ensure the shop state is saved when the player exits and re-enters the shop within the same round, while
      * the shop refreshes itself after every round.
