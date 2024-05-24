@@ -118,9 +118,9 @@ public class InventoryController {
     private int maximumTargets;
 
     /**
-     * The constructor for {@link InventoryController}
+     * The constructor for {@link InventoryController}.
      * <p></p>
-     * Takes in a {@link GameManager} and stores it in the InventoryController
+     * Takes in a {@link GameManager} and stores it in the InventoryController.
      * @param gameManager {@link GameManager}
      */
     public InventoryController(GameManager gameManager){

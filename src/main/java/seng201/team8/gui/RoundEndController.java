@@ -6,9 +6,21 @@ import javafx.scene.control.Label;
 import seng201.team8.services.GameManager;
 import seng201.team8.services.RoundEndService;
 
+/**
+ * The controller class for RoundEndController.
+ * <p></p>
+ * Responsible for the communication between the user input and the RoundEndService.
+ */
 public class RoundEndController {
 
+    /**
+     * The {@link GameManager} for accessing information and launching into new screens.
+     */
     private final GameManager gameManager;
+    /**
+     * The {@link RoundEndService} for calculating rewards for the player and
+     * deciding on the next screen.
+     */
     private final RoundEndService roundEndService;
 
     @FXML
@@ -18,11 +30,22 @@ public class RoundEndController {
     @FXML
     private Label resultLabel;
 
+    /**
+     * The controller class for the {@link RoundEndController}.
+     * <p></p>
+     * Takes in a {@link GameManager}, creates a RoundEndService, and stores it
+     * in the {@link RoundEndController}.
+     * @param gameManager {@link GameManager}
+     */
     public RoundEndController(GameManager gameManager) {
         this.gameManager = gameManager;
         roundEndService = new RoundEndService(gameManager);
     }
 
+    /**
+     * Runs when the {@link RoundEndController} is initialized. Sets the screen
+     * up depending on if the player won or lost this round.
+     */
     public void initialize() {
         if(gameManager.getRoundWon()){
             setupVictoryScreen();
@@ -36,28 +59,54 @@ public class RoundEndController {
         applyStats(money, points, expPoints);
     }
 
+    /**
+     * Sets the screen up for player's victory.
+     */
     private void setupVictoryScreen(){
         resultLabel.setText("Victory");
         nextButton.setText("Next Round");
     }
 
+    /**
+     * Sets the screen up for player's defeat.
+     */
     private void setupDefeatScreen(){
         resultLabel.setText("Defeat");
-        nextButton.setText("Show Results");
+        nextButton.setText("Back to Game Start");
     }
 
+    /**
+     * Displays the rewards the player will receive.
+     * @param money {@link Integer}
+     * @param points {@link Integer}
+     * @param expPoints {@link Integer}
+     */
     private void displayStats(int money, int points, int expPoints){
-        // Change values on the screen
         xpGainedLabel.setText(String.valueOf(expPoints));
         pointsGainedLabel.setText(String.valueOf(points));
         moneyGainedLabel.setText(String.valueOf(money));
     }
 
+    /**
+     * Applies the rewards to the players {@link seng201.team8.models.dataRecords.InventoryData}
+     * and {@link seng201.team8.models.dataRecords.GameData}.
+     * @param money {@link Integer}
+     * @param points {@link Integer}
+     * @param expPoints {@link Integer}
+     */
     private void applyStats(int money, int points, int expPoints){
-        // Add stats to player and towers
         roundEndService.applyStats(money, points, expPoints);
     }
 
+    /**
+     * Determines where the player will go next.
+     * <p></p>
+     * If the player has won last round, the player will either, go to the victory screen if the
+     * player has reached the target round, or randomly decide if the player will go to the
+     * random event screen or the round selector screen.
+     * <p></p>
+     * If the player has lost last round, the player will be directed to the "Game Start" screen.
+     */
     @FXML
     private void onNextClicked(){
         if(gameManager.getRoundWon()){
