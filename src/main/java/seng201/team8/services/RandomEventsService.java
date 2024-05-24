@@ -1,7 +1,9 @@
 package seng201.team8.services;
 
+import seng201.team8.gui.RandomEventScreenController;
 import seng201.team8.models.Resource;
 import seng201.team8.models.Tower;
+import seng201.team8.models.dataRecords.InventoryData;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -12,7 +14,7 @@ import java.util.Random;
  * <p></p>
  * A specified random event is randomly chosen by the RandomEventScreenController and then the service applies
  * the effects of the random event.
- * @see seng201.team8.gui.RandomEventScreenController
+ * @see RandomEventScreenController
  */
 public class RandomEventsService {
     /**
@@ -39,7 +41,7 @@ public class RandomEventsService {
      * The constructor for RandomEventsService. Takes in the game's {@link GameManager} as a parameter.
      * <p></p>
      * Called by the RandomEventScreenController during initialization.
-     * @see seng201.team8.gui.RandomEventScreenController#RandomEventScreenController(GameManager)
+     * @see RandomEventScreenController#RandomEventScreenController(GameManager)
      * @param gameManager {@link GameManager}
      */
     public RandomEventsService(GameManager gameManager){
@@ -88,12 +90,19 @@ public class RandomEventsService {
     }
 
     /**
-     * Randomly selects a non-destroyed player {@link Tower} and destroys it.
+     * Randomly selects a non-destroyed main player {@link Tower} and destroys it.
      */
     public void destroyRandomTower(){
+        InventoryData inventoryData = gameManager.getInventoryManager().getInventoryData();
+        ArrayList<Tower> mainTowers = new ArrayList<>();
+        for (int i = 0; i < inventoryData.getMainTowers().length; i++){
+            if (inventoryData.getMainTowers()[i] != null){
+                mainTowers.add(inventoryData.getMainTowers()[i]);
+            }
+        }
         boolean notDestroyed = true;
         while (notDestroyed){
-            Tower randomTower = playerTowers.get(random.nextInt(playerTowers.size()));
+            Tower randomTower = mainTowers.get(random.nextInt(mainTowers.size()));
             if (!randomTower.isBroken()){
                 randomTower.setBroken(true);
                 notDestroyed = false;
