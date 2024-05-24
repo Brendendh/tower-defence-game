@@ -97,11 +97,11 @@ public class GameManager {
      * @see GameSetupService
      */
     final private Tower[] defaultTowers = new Tower[]{
-            new Tower("Corn Farm", new TowerStats(10, Resource.CORN, 1 ), 10, Rarity.COMMON),
-            new Tower("Corn Field", new TowerStats(35, Resource.CORN, 3), 15, Rarity.COMMON),
+            new Tower("Corn Farm", new TowerStats(20, Resource.CORN, 1 ), 10, Rarity.COMMON),
+            new Tower("Corn Field", new TowerStats(80, Resource.CORN, 3), 15, Rarity.COMMON),
             new Tower("Timber Yard", new TowerStats(8, Resource.WOOD, 1), 10, Rarity.COMMON),
             new Tower("Forest", new TowerStats(30, Resource.WOOD, 3), 15, Rarity.COMMON),
-            new Tower("Iron Mine", new TowerStats(1, Resource.IRON, 3), 10, Rarity.COMMON)};
+            new Tower("Iron Mine", new TowerStats(12, Resource.IRON, 3), 10, Rarity.COMMON)};
 
     /**
      * An Array of the 4 different types of {@link Upgrade}s available in the game.

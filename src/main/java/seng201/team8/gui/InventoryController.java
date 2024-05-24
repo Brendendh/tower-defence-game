@@ -118,9 +118,9 @@ public class InventoryController {
     private int maximumTargets;
 
     /**
-     * The constructor for {@link InventoryController}
+     * The constructor for {@link InventoryController}.
      * <p></p>
-     * Takes in a {@link GameManager} and stores it in the InventoryController
+     * Takes in a {@link GameManager} and stores it in the InventoryController.
      * @param gameManager {@link GameManager}
      */
     public InventoryController(GameManager gameManager){
@@ -469,7 +469,7 @@ public class InventoryController {
         } else {
             moveTowerButton.setText("Move Tower");
             isMovingTowers = false;
-            useItemButton.setDisable(false);
+            useItemButton.setDisable(selectedInventoryUpgradeIndex == -1);
         }
         styleTowerButtons();
         fromTowerIndex = -1;
@@ -543,7 +543,7 @@ public class InventoryController {
                 displayTowerNull();
             }
             isMovingTowers = false;
-            useItemButton.setDisable(false);
+            useItemButton.setDisable(selectedInventoryUpgradeIndex == -1);
             moveTowerButton.setText("Move Tower");
             clearSelectedTowerButtons();
         } else {
