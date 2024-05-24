@@ -4,7 +4,7 @@ package seng201.team8.exceptions;
  * An exception thrown when a player tries to sell nothing.
  * @see seng201.team8.services.ShopManager#sellMainTower(int) 
  * @see seng201.team8.services.ShopManager#sellReserveTower(int) 
- * @see seng201.team8.services.ShopManager#sellUpgrade(int) 
+ * @see seng201.team8.services.ShopManager#sellUpgrade(int)
  */
 
 public class SellingNullError extends Exception{
