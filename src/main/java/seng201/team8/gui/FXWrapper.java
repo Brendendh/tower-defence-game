@@ -66,7 +66,7 @@ public class FXWrapper {
            stage.setTitle(scene.getSceneName());
 
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
