@@ -246,8 +246,14 @@ public class RoundEvaluationController {
      * @param gameResult {@link Boolean}
      */
     private void finishGame(boolean gameResult) {
-        gameManager.setRoundWon(gameResult);
-        gameManager.getGameGUIManager().launchScreen("Round End");
+        if (gameResult){
+            gameManager.setRoundWon(gameResult);
+            gameManager.getGameGUIManager().launchScreen("Round End");
+        }
+        else{
+            gameManager.getGameGUIManager().launchScreen("Game Result");
+        }
+
     }
 
     /**

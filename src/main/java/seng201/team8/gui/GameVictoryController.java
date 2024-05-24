@@ -11,6 +11,11 @@ import seng201.team8.services.GameManager;
  */
 public class GameVictoryController {
     /**
+     * The label that displays the game result.
+     */
+    @FXML
+    private Label result;
+    /**
      * The label that is meant to display the player's game stats.
      * Its text is set upon initialization.
      */
@@ -45,13 +50,24 @@ public class GameVictoryController {
 
     /**
      * Is ran upon screen initialization and immediately sets the text for {@link GameVictoryController#statLabel}
-     * to display the amount of money and points the player has left by getting the data from {@link GameManager}
+     * to display the player stats by getting the data from {@link GameManager}
      *
      * @see GameManager#getGameData()
      */
     public void initialize(){
         int money = gameManager.getGameData().getMoney();
         int point = gameManager.getGameData().getPoint();
-        statLabel.setText("Won with "+money+" money and " +point+" points left");
+        String playerName = gameManager.getGameData().getPlayerName();
+        int currentRoundNumber = gameManager.getGameData().getRound();
+        int targetRoundNumber = gameManager.getGameData().getTargetRound();
+        if (gameManager.getRoundWon()){
+            result.setText("VICTORY");
+            statLabel.setText(playerName+" won with "+money+" money and "+point+" points left after "+targetRoundNumber+" rounds.");
+        }
+        else{
+            result.setText("DEFEAT");
+            statLabel.setText(playerName+ " lost with "+money+" money and " +point+" points left , only reaching round " +
+                    currentRoundNumber +" out of "+targetRoundNumber);
+        }
     }
 }

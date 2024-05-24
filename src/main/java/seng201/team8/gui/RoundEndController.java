@@ -49,14 +49,15 @@ public class RoundEndController {
     public void initialize() {
         if(gameManager.getRoundWon()){
             setupVictoryScreen();
+            int money = roundEndService.getMoney();
+            int points = roundEndService.getPoints();
+            int expPoints = roundEndService.getExpPoints();
+            displayStats(money, points, expPoints);
+            applyStats(money, points, expPoints);
         } else {
             setupDefeatScreen();
         }
-        int money = roundEndService.getMoney();
-        int points = roundEndService.getPoints();
-        int expPoints = roundEndService.getExpPoints();
-        displayStats(money, points, expPoints);
-        applyStats(money, points, expPoints);
+
     }
 
     /**
@@ -71,8 +72,7 @@ public class RoundEndController {
      * Sets the screen up for player's defeat.
      */
     private void setupDefeatScreen(){
-        resultLabel.setText("Defeat");
-        nextButton.setText("Back to Game Start");
+        gameManager.getGameGUIManager().launchScreen("Game Result");
     }
 
     /**
@@ -112,7 +112,7 @@ public class RoundEndController {
         if(gameManager.getRoundWon()){
             gameManager.getGameData().setRound(gameManager.getGameData().getRound() + 1);
             if(gameManager.getGameData().getRound() > gameManager.getGameData().getTargetRound()){
-                gameManager.getGameGUIManager().launchScreen("Game Victory");
+                gameManager.getGameGUIManager().launchScreen("Game Result");
             }
             else if (roundEndService.isRandomEventPlayed()) {
                 gameManager.getGameGUIManager().launchScreen("Random Event");
@@ -120,7 +120,7 @@ public class RoundEndController {
                 gameManager.getGameGUIManager().launchScreen("Round Selector");
             }
         } else {
-            gameManager.getGameGUIManager().launchScreen("Game Start");
+            gameManager.getGameGUIManager().launchScreen("Game Result");
         }
     }
 
