@@ -1,8 +1,8 @@
-# SENG201-24S1 Team 8 - Resource Stockpiling
+# SENG201-24S1 Tower Defence Game
 
 ## Authors
 - Brenden Lee
-- Wen Sheng Thong
+- Ian Thong
 - SENG201 Teaching team
 
 ## Prerequisites
